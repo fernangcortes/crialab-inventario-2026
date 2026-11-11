@@ -4,8 +4,11 @@ import os
 with open('data/inventario_conciliado.json', encoding='utf-8') as f:
     master_items = json.load(f)
 
-with open('data/bens_nao_cadastrados_cot.json', encoding='utf-8') as f:
-    nao_cadastrados = json.load(f)
+with open('data/sequencia_auditoria_temporal.json', encoding='utf-8') as f:
+    cot_sequence = json.load(f)
+
+with open('data/estoquenow_completo.json', encoding='utf-8') as f:
+    estoquenow_catalog = json.load(f)
 
 # Load photos data
 lote1 = json.load(open('data/auditoria_lote1.json', encoding='utf-8')).get('fotos', [])
@@ -15,7 +18,8 @@ all_photos = lote1 + lote2 + lote3
 
 payload = {
     'master': master_items,
-    'nao_cadastrados': nao_cadastrados,
+    'cot_sequence': cot_sequence,
+    'estoquenow': estoquenow_catalog,
     'photos': all_photos
 }
 
@@ -81,7 +85,7 @@ html = f"""<!DOCTYPE html>
   .header-title p {{ font-size: 13px; opacity: 0.92; margin-top: 4px; }}
   .header-badges {{ display: flex; gap: 10px; align-items: center; flex-wrap: wrap; }}
   .badge-processo {{ background: rgba(255,255,255,0.18); border: 1px solid rgba(255,255,255,0.3); padding: 5px 12px; border-radius: 20px; font-size: 11.5px; }}
-  .badge-deadline {{ background: #ef4444; color: white; padding: 5px 12px; border-radius: 20px; font-size: 11.5px; font-weight: 700; }}
+  .badge-deadline {{ background: #f59e0b; color: #0f172a; padding: 5px 12px; border-radius: 20px; font-size: 11.5px; font-weight: 700; }}
   
   .container {{ max-width: 1480px; margin: 25px auto; padding: 0 24px; }}
   
@@ -116,13 +120,12 @@ html = f"""<!DOCTYPE html>
   .btn-secondary {{ background: var(--card); color: var(--text); border: 1px solid var(--border); }}
   .btn-secondary:hover {{ background: #f1f5f9; }}
   
-  /* Column Visibility Dropdown */
+  /* Dropdown */
   .dropdown {{ position: relative; display: inline-block; }}
   .dropdown-menu {{ display: none; position: absolute; right: 0; top: 100%; background: white; min-width: 250px; box-shadow: 0 10px 25px rgba(0,0,0,0.15); border-radius: 8px; border: 1px solid var(--border); padding: 12px; z-index: 999; margin-top: 5px; max-height: 400px; overflow-y: auto; }}
   .dropdown-menu.show {{ display: block; }}
   .dropdown-header {{ font-size: 11px; font-weight: 700; text-transform: uppercase; color: var(--text-muted); margin-bottom: 8px; padding-bottom: 5px; border-bottom: 1px solid var(--border-light); }}
   .col-toggle-item {{ display: flex; align-items: center; gap: 8px; padding: 6px 4px; font-size: 12.5px; cursor: pointer; }}
-  .col-toggle-item input {{ cursor: pointer; }}
   
   /* Tables */
   .table-container {{ background: var(--card); border-radius: 12px; border: 1px solid var(--border-light); overflow-x: auto; box-shadow: 0 1px 3px rgba(0,0,0,0.04); }}
@@ -135,7 +138,7 @@ html = f"""<!DOCTYPE html>
   .editable-cell {{ cursor: pointer; position: relative; border-radius: 4px; padding: 2px 4px; transition: background 0.15s; }}
   .editable-cell:hover {{ background: #e0f2fe; outline: 1px dashed var(--primary); }}
   .editing {{ padding: 0 !important; }}
-  .editing input, .editing select, .editing textarea {{ width: 100%; padding: 6px 8px; border: 2px solid var(--primary); border-radius: 4px; font-size: 12px; outline: none; background: #fff; }}
+  .editing input, .editing select {{ width: 100%; padding: 6px 8px; border: 2px solid var(--primary); border-radius: 4px; font-size: 12px; outline: none; background: #fff; }}
   
   /* Badges */
   .badge {{ display: inline-block; padding: 3px 9px; border-radius: 12px; font-size: 10.5px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.3px; }}
@@ -164,23 +167,9 @@ html = f"""<!DOCTYPE html>
   .modal-content img {{ max-width: 100%; max-height: 85vh; border-radius: 8px; box-shadow: 0 10px 30px rgba(0,0,0,0.5); }}
   .close-modal {{ position: absolute; top: -40px; right: 0; color: white; font-size: 32px; cursor: pointer; font-weight: bold; }}
   
-  /* Spaces Grid */
-  .spaces-grid {{ display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 16px; }}
-  .space-box {{ background: var(--card); border-radius: 12px; border: 1px solid var(--border-light); padding: 20px; }}
-  .space-box h3 {{ font-size: 14.5px; font-weight: 700; margin-bottom: 6px; display: flex; align-items: center; justify-content: space-between; }}
-  .space-box p {{ font-size: 12px; color: var(--text-muted); margin-bottom: 10px; }}
-  
-  /* Toast Notification */
+  /* Toast */
   .toast {{ position: fixed; bottom: 20px; right: 20px; background: #1e293b; color: white; padding: 12px 20px; border-radius: 8px; font-size: 13px; z-index: 10000; box-shadow: 0 4px 12px rgba(0,0,0,0.2); opacity: 0; transform: translateY(10px); transition: all 0.3s; pointer-events: none; }}
   .toast.show {{ opacity: 1; transform: translateY(0); pointer-events: auto; }}
-
-  @media print {{
-    header, .kpi-grid, .tabs, .control-bar, .modal, .toast {{ display: none !important; }}
-    .container {{ max-width: 100%; margin: 0; padding: 0; }}
-    .table-container {{ border: none; box-shadow: none; }}
-    table {{ font-size: 9px; width: 100%; }}
-    th, td {{ padding: 4px 6px; border: 1px solid #777; }}
-  }}
 </style>
 </head>
 <body>
@@ -193,7 +182,7 @@ html = f"""<!DOCTYPE html>
     </div>
     <div class="header-badges">
       <div class="badge-processo">SEI: <strong>202600005037287</strong></div>
-      <div class="badge-deadline">Prazo SEI: 13/11/2026</div>
+      <div class="badge-deadline">Prazo SEI em Prorrogação</div>
       <a href="guia_fotografia_3d_ar.html" target="_blank" class="btn-action" style="background:#ffd54f; color:#0f172a;">📐 Guia Ilustrado 3D / AR</a>
     </div>
   </div>
@@ -204,43 +193,43 @@ html = f"""<!DOCTYPE html>
   <!-- KPIs -->
   <div class="kpi-grid">
     <div class="kpi-card">
-      <div class="kpi-title">Total no Acervo</div>
-      <div class="kpi-value" id="kpi-total">377</div>
+      <div class="kpi-title">Total no Acervo Oficial</div>
+      <div class="kpi-value">377</div>
       <div class="kpi-sub"><span>📦 CriaLab: 285</span> | <span>📻 Rádio: 92</span></div>
     </div>
     <div class="kpi-card">
-      <div class="kpi-title">Tombados Auditados</div>
-      <div class="kpi-value" style="color: var(--success);" id="kpi-audited">5</div>
-      <div class="kpi-sub"><span>✓ Confirmados com placa UEG</span></div>
+      <div class="kpi-title">Tombados na COT</div>
+      <div class="kpi-value" style="color: var(--success);">5</div>
+      <div class="kpi-sub"><span>✓ Com foto da placa UEG</span></div>
     </div>
     <div class="kpi-card">
-      <div class="kpi-title">Bens Não Tombados</div>
+      <div class="kpi-title">Não Tombados na COT</div>
       <div class="kpi-value" style="color: var(--warning);">9</div>
-      <div class="kpi-sub"><span>⚠️ Sem foto de tombamento</span></div>
+      <div class="kpi-sub"><span>⚠️ Sem placa (14 itens / 31 fotos)</span></div>
     </div>
     <div class="kpi-card">
-      <div class="kpi-title">Divergências de Setor</div>
-      <div class="kpi-value" style="color: var(--accent);">3</div>
-      <div class="kpi-sub"><span>🔄 Carga Rádio na COT</span></div>
+      <div class="kpi-title">Itens no Estoque Now</div>
+      <div class="kpi-value" style="color: #7c3aed;">245</div>
+      <div class="kpi-sub"><span>📦 Acervo Operacional de Circulação</span></div>
     </div>
     <div class="kpi-card">
       <div class="kpi-title">Fotos Processadas (IA)</div>
       <div class="kpi-value" style="color: var(--primary);">31</div>
-      <div class="kpi-sub"><span>🤖 14 itens mapeados em sequência</span></div>
+      <div class="kpi-sub"><span>🤖 Mapeamento Sequencial Exato</span></div>
     </div>
   </div>
 
   <!-- Tabs Navigation -->
   <div class="tabs">
     <button class="tab-btn active" onclick="switchTab('tab-inventario')">📋 Inventário Consolidado (377)</button>
+    <button class="tab-btn" onclick="switchTab('tab-cot')">🔍 Itens Auditados na COT (14)</button>
     <button class="tab-btn" onclick="switchTab('tab-fotos')">📸 Auditoria Fotográfica COT (31 fotos)</button>
-    <button class="tab-btn" onclick="switchTab('tab-extras')">⚠️ Bens Não Tombados na COT (9)</button>
+    <button class="tab-btn" onclick="switchTab('tab-estoquenow')">📦 Estoque Now (245 Itens Operacionais)</button>
     <button class="tab-btn" onclick="switchTab('tab-espacos')">🗺️ Espaços & Planta Baixa</button>
-    <button class="tab-btn" onclick="switchTab('tab-estoquenow')">📦 Estoque Now (Externa / Empréstimos)</button>
     <button class="tab-btn" onclick="switchTab('tab-fichas')">📑 Fichas & Documentos Oficiais</button>
   </div>
 
-  <!-- TAB 1: Inventário Consolidado com Edição Inline e Ocultação de Colunas -->
+  <!-- TAB 1: Inventário Consolidado -->
   <div id="tab-inventario" class="tab-content active">
     
     <div class="control-bar">
@@ -252,12 +241,11 @@ html = f"""<!DOCTYPE html>
         <button class="btn-filter active" onclick="setOriginFilter('ALL', this)">Todos (377)</button>
         <button class="btn-filter" onclick="setOriginFilter('CRIA LAB', this)">CriaLab (285)</button>
         <button class="btn-filter" onclick="setOriginFilter('RADIOTELEDIFUSÃO', this)">Radioteledifusão (92)</button>
-        <button class="btn-filter" onclick="setStatusFilter('AUDITED', this)">Auditados na COT</button>
+        <button class="btn-filter" onclick="setStatusFilter('AUDITED', this)">Tombados na COT (5)</button>
         <button class="btn-filter" onclick="setStatusFilter('DIVERGENCE', this)">Divergência Carga</button>
       </div>
 
       <div class="filter-group">
-        <!-- Dropdown de Visibilidade de Colunas -->
         <div class="dropdown">
           <button class="btn-filter btn-secondary" onclick="toggleColumnDropdown()">👁️ Colunas & Campos ▾</button>
           <div class="dropdown-menu" id="colDropdown">
@@ -272,21 +260,18 @@ html = f"""<!DOCTYPE html>
             <label class="col-toggle-item"><input type="checkbox" checked data-col="local" onchange="toggleColumn(this)"> Local Físico</label>
             <label class="col-toggle-item"><input type="checkbox" checked data-col="avarias" onchange="toggleColumn(this)"> Estado / Imperfeições</label>
             <label class="col-toggle-item"><input type="checkbox" checked data-col="fotos" onchange="toggleColumn(this)"> Fotos Evidência</label>
-            <div style="margin-top:8px; border-top:1px solid #eee; padding-top:6px; font-size:11px; color:#666;">
-              * Colunas desmarcadas não serão impressas nem incluídas no CSV.
-            </div>
           </div>
         </div>
 
         <button class="btn-filter btn-secondary" onclick="exportCustomCSV()">📥 Exportar CSV (Visíveis)</button>
         <button class="btn-action" onclick="window.print()">🖨️ Imprimir / PDF</button>
-        <button class="btn-filter btn-secondary" style="color:var(--danger);" onclick="resetEdits()" title="Restaura os dados originais caso tenha feito edições">↺ Restaurar</button>
+        <button class="btn-filter btn-secondary" style="color:var(--danger);" onclick="resetEdits()">↺ Restaurar</button>
       </div>
     </div>
 
     <div style="margin-bottom: 12px; font-size: 12px; color: var(--text-muted); display:flex; justify-content:space-between; align-items:center;">
-      <span>💡 <em>Dica: Dê duplo-clique nas células de <strong>Status</strong>, <strong>Local Físico</strong>, <strong>Estado/Imperfeições</strong> ou <strong>Observações</strong> para editar diretamente os dados.</em></span>
-      <span id="saveStatus" style="font-weight:600; color:var(--success);">✓ Dados sincronizados</span>
+      <span>💡 <em>Dica: Dê duplo-clique nas células de <strong>Status</strong>, <strong>Local</strong>, <strong>Estado</strong> ou <strong>Observações</strong> para editar diretamente os dados.</em></span>
+      <span id="saveStatus" style="font-weight:600; color:var(--success);">✓ Dados sincronizados localmente</span>
     </div>
 
     <div class="table-container">
@@ -310,7 +295,34 @@ html = f"""<!DOCTYPE html>
     </div>
   </div>
 
-  <!-- TAB 2: Fotos COT -->
+  <!-- TAB 2: Itens da COT (Sequência Cronológica de 14 Itens) -->
+  <div id="tab-cot" class="tab-content">
+    <div style="background: #e0f2fe; border-left: 4px solid var(--primary); padding: 14px 18px; margin-bottom: 20px; font-size: 13px; border-radius: 0 8px 8px 0;">
+      <strong>Regra Operacional de Captura:</strong> As 31 fotos foram tiradas estritamente em ordem temporal para cada equipamento:
+      <strong>1. Visão Geral do Equipamento</strong> ➔ <strong>2. Especificação Técnica / Serial</strong> ➔ <strong>3. Plaqueta de Tombamento (se houver)</strong>.
+      Quando não há a 3ª foto de tombamento, significa que <strong>o equipamento não estava tombado fisicamente</strong>.
+    </div>
+
+    <div class="table-container">
+      <table>
+        <thead>
+          <tr>
+            <th>Item #</th>
+            <th>Equipamento</th>
+            <th>Marca / Modelo</th>
+            <th>Situação Patrimonial</th>
+            <th>Tombamento Oficial</th>
+            <th>Especificação Técnica / Serial</th>
+            <th>Estado Físico</th>
+            <th>Fotos na Sequência</th>
+          </tr>
+        </thead>
+        <tbody id="cotTableBody"></tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- TAB 3: Fotos COT -->
   <div id="tab-fotos" class="tab-content">
     <div style="margin-bottom: 15px; font-size: 13px; color: var(--text-muted);">
       31 fotografias da Central de Operação Técnica (COT) processadas por agentes de IA com identificação de placas, números de série e avarias:
@@ -318,36 +330,47 @@ html = f"""<!DOCTYPE html>
     <div class="photo-grid" id="photoGrid"></div>
   </div>
 
-  <!-- TAB 3: Bens Extras -->
-  <div id="tab-extras" class="tab-content">
-    <div style="margin-bottom: 15px; font-size: 13px; color: var(--text-muted);">
-      Equipamentos identificados em operação na COT que não constam nas listas oficiais do CriaLab/Rádio ou necessitam de regularização patrimonial:
+  <!-- TAB 4: Estoque Now -->
+  <div id="tab-estoquenow" class="tab-content">
+    <div style="background: #fef3c7; border-left: 4px solid var(--warning); padding: 16px 20px; margin-bottom: 20px; font-size: 13px; border-radius: 0 8px 8px 0;">
+      <strong>⚠️ Diretriz Oficial sobre Bens em Externa:</strong>
+      Estar no Estoque Now ou em locação/externa <strong>NÃO serve como justificativa final perante o SEI</strong>.
+      Como o prazo será prorrogado, o procedimento obrigatório é: <strong>quando o equipamento retornar ao laboratório, tirar as fotos na sequência (Geral ➔ Specs ➔ Placa) e atualizar o sistema aqui via IA para auditá-lo oficialmente com fotos.</strong>
     </div>
+
+    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:15px; flex-wrap:wrap; gap:10px;">
+      <div style="font-size:14px; font-weight:700;">
+        Catálogo do Estoque Now Extraído de <code>data/estoquenow.pdf</code> (245 itens operacionais):
+      </div>
+      <div style="width:300px;">
+        <input type="text" id="searchEstoque" placeholder="🔍 Filtrar no Estoque Now..." onkeyup="filterEstoqueTable()" style="width:100%; padding:8px 12px; border:1px solid var(--border); border-radius:6px; font-size:12px;">
+      </div>
+    </div>
+
     <div class="table-container">
       <table>
         <thead>
           <tr>
-            <th>Equipamento</th>
-            <th>Marca / Modelo</th>
-            <th>Número de Série (S/N)</th>
-            <th>Identificação Encontrada</th>
-            <th>Estado Físico</th>
-            <th>Recomendação da Comissão</th>
+            <th>Código</th>
+            <th>Nome do Equipamento (Estoque Now)</th>
+            <th>Código de Barras</th>
+            <th>Alerta Manutenção</th>
+            <th>Ação no Retorno da Externa</th>
           </tr>
         </thead>
-        <tbody id="extrasTableBody"></tbody>
+        <tbody id="estoqueTableBody"></tbody>
       </table>
     </div>
   </div>
 
-  <!-- TAB 4: Espaços CriaLab (Planta Baixa) -->
+  <!-- TAB 5: Espaços CriaLab (Planta Baixa) -->
   <div id="tab-espacos" class="tab-content">
     <div style="margin-bottom: 20px; font-size: 13px; color: var(--text-muted);">
-      Divisão dos espaços do CriaLab / Radioteledifusão conforme plantas oficiais (Layout R05/2025). Utilize esta segmentação para as próximas etapas de varredura fotográfica e reconstrução espacial 3D / AR:
+      Estrutura de cômodos do CriaLab / Radioteledifusão conforme plantas oficiais (Layout R05/2025):
     </div>
     <div class="spaces-grid">
       <div class="space-box">
-        <h3>1. Sala de Operação Técnica (COT) <span class="badge badge-audited">Auditado (31 fotos)</span></h3>
+        <h3>1. Sala de Operação Técnica (COT) <span class="badge badge-audited">Auditado (14 itens / 31 fotos)</span></h3>
         <p>Área: 12,25m² | Pé Direito: 2,70m</p>
         <div style="font-size: 11px;">Mesas Behringer X32, Blackmagic ATEM 4K, Desktops Dell OptiPlex, Monitores, Servidor Spotware, Processador NovaStar.</div>
       </div>
@@ -385,30 +408,6 @@ html = f"""<!DOCTYPE html>
         <h3>8. Gabinetes E01 a E08 & Coordenação <span class="badge badge-pending">Pendente</span></h3>
         <p>8 Gabinetes de ~3,2m² cada + Coord. Adm (13,49m²)</p>
         <div style="font-size: 11px;">Mesas executivas, gaveteiros, armários de arquivo e estações administrativas.</div>
-      </div>
-    </div>
-  </div>
-
-  <!-- TAB 5: Estoque Now -->
-  <div id="tab-estoquenow" class="tab-content">
-    <div style="background: var(--card); border: 1px solid var(--border-light); border-radius: 12px; padding: 28px; max-width: 850px;">
-      <h3 style="margin-bottom: 12px; font-size: 16px;">📦 Cruzamento com Estoque Now (Bens em Externa)</h3>
-      <p style="font-size: 13px; color: var(--text-muted); line-height: 1.6; margin-bottom: 20px;">
-        Para justificar perante a Comissão os equipamentos que estão em externa, produções ou empréstimos ativos com alunos/equipes durante a passagem das fotos:
-      </p>
-      
-      <div style="background: #f8fafc; border-left: 4px solid var(--primary); padding: 16px; margin-bottom: 20px; font-size: 13px; border-radius: 0 8px 8px 0;">
-        <strong>Passo a Passo Rápido:</strong><br>
-        1. Como você já está com o site aberto no seu navegador, vá na aba de <strong>Equipamentos / Empréstimos Ativos</strong> no Estoque Now.<br>
-        2. Clique em <strong>Exportar (CSV ou Excel)</strong>.<br>
-        3. Arraste o arquivo baixado para o campo abaixo ou salve como <code>data/estoquenow.csv</code> na pasta do projeto.
-      </div>
-
-      <div style="border: 2px dashed var(--border); padding: 30px; text-align: center; border-radius: 10px; background: #fafafa; cursor: pointer;" onclick="document.getElementById('csvFileInput').click()">
-        <input type="file" id="csvFileInput" accept=".csv,.txt" style="display:none;" onchange="handleFileImport(event)">
-        <div style="font-size: 28px; margin-bottom: 8px;">📂</div>
-        <div style="font-size: 14px; font-weight: 600;">Clique aqui ou arraste o CSV do Estoque Now</div>
-        <div style="font-size: 12px; color: var(--text-muted); margin-top: 4px;">Conciliação automática instantânea por Placa ou Número de Série</div>
       </div>
     </div>
   </div>
@@ -451,14 +450,16 @@ html = f"""<!DOCTYPE html>
 <script>
 const INITIAL_DATA = {json.dumps(payload, ensure_ascii=False)};
 
-// Carregar do localStorage se houver edições salvas
 let localData = localStorage.getItem('crialab_inventario_data_2026');
 let DATA = localData ? JSON.parse(localData) : INITIAL_DATA;
+
+// Ensure cot_sequence and estoquenow are available
+DATA.cot_sequence = INITIAL_DATA.cot_sequence;
+DATA.estoquenow = INITIAL_DATA.estoquenow;
 
 let currentOrigin = 'ALL';
 let currentStatus = 'ALL';
 
-// Configuração de visibilidade das colunas
 let visibleColumns = {{
   origem: true,
   seq: true,
@@ -502,10 +503,10 @@ function renderTable() {{
     return true;
   }});
 
-  tbody.innerHTML = filtered.map((it, idx) => {{
+  tbody.innerHTML = filtered.map((it) => {{
     const badgeOrigem = it.origem === 'CRIA LAB' ? 'badge-crialab' : 'badge-radio';
-    const badgeAudit = it.auditado === 'SIM' ? 'badge-audited' : (it.auditado === 'EXTERNA' ? 'badge-divergence' : 'badge-pending');
-    const badgeText = it.auditado === 'SIM' ? 'Auditado' : (it.auditado === 'EXTERNA' ? 'Em Externa' : 'Pendente');
+    const badgeAudit = it.auditado === 'SIM' ? 'badge-audited' : 'badge-pending';
+    const badgeText = it.auditado === 'SIM' ? 'Auditado' : 'Pendente';
     const avariaBadge = (it.estado_fisico && it.estado_fisico !== 'Normal' && it.estado_fisico !== 'A conferir') 
       ? `<span class="badge badge-danger">${{it.estado_fisico}}</span>` 
       : `<span style="color:#64748b;">${{it.estado_fisico || 'Normal'}}</span>`;
@@ -581,7 +582,6 @@ function editStatus(el, seq, origem) {{
     <select onchange="saveStatusSelect(this, '${{seq}}', '${{origem}}')" onblur="renderTable()">
       <option value="SIM" ${{item.auditado === 'SIM' ? 'selected' : ''}}>Auditado (Localizado)</option>
       <option value="NÃO" ${{item.auditado === 'NÃO' ? 'selected' : ''}}>Pendente</option>
-      <option value="EXTERNA" ${{item.auditado === 'EXTERNA' ? 'selected' : ''}}>Em Externa (Estoque Now)</option>
     </select>
   `;
   el.querySelector('select').focus();
@@ -626,10 +626,10 @@ function saveEstadoSelect(select, seq, origem) {{
 }}
 
 function resetEdits() {{
-  if (confirm('Tem certeza que deseja restaurar os dados originais? Suas edições locais serão descartadas.')) {{
+  if (confirm('Restaurar dados originais? Suas edições locais serão descartadas.')) {{
     localStorage.removeItem('crialab_inventario_data_2026');
     DATA = JSON.parse(JSON.stringify(INITIAL_DATA));
-    showToast('Dados restaurados com sucesso!');
+    showToast('Dados restaurados!');
     renderTable();
   }}
 }}
@@ -649,14 +649,12 @@ window.onclick = function(e) {{
 function toggleColumn(checkbox) {{
   const colName = checkbox.getAttribute('data-col');
   visibleColumns[colName] = checkbox.checked;
-  
-  // Atualiza classes no CSS/tabela
   document.querySelectorAll('.col-' + colName).forEach(el => {{
     el.style.display = checkbox.checked ? '' : 'none';
   }});
 }}
 
-/* Export CSV with only visible columns */
+/* Export CSV with visible columns */
 function exportCustomCSV() {{
   const search = document.getElementById('searchInput').value.toLowerCase();
   const filtered = DATA.master.filter(it => {{
@@ -692,7 +690,7 @@ function exportCustomCSV() {{
     if (visibleColumns.especie) r.push('"' + it.especie + '"');
     if (visibleColumns.descricao) r.push('"' + (it.descricao || '').replace(/"/g, '""') + '"');
     if (visibleColumns.marca) r.push('"' + (it.marca || '') + '"');
-    if (visibleColumns.status) r.push('"' + (it.auditado === 'SIM' ? 'Auditado' : (it.auditado === 'EXTERNA' ? 'Em Externa' : 'Pendente')) + '"');
+    if (visibleColumns.status) r.push('"' + (it.auditado === 'SIM' ? 'Auditado' : 'Pendente') + '"');
     if (visibleColumns.local) r.push('"' + (it.local_fisico || '') + '"');
     if (visibleColumns.avarias) r.push('"' + (it.estado_fisico || '') + '"');
     if (visibleColumns.fotos) r.push('"' + (it.fotos_evidencia || '') + '"');
@@ -708,36 +706,49 @@ function exportCustomCSV() {{
   a.click();
 }}
 
-/* File Import for Estoque Now */
-function handleFileImport(e) {{
-  const file = e.target.files[0];
-  if (!file) return;
-  const reader = new FileReader();
-  reader.onload = function(evt) {{
-    const content = evt.target.result;
-    parseEstoqueNow(content);
-  }};
-  reader.readAsText(file);
+/* Render COT Items Sequence Table */
+function renderCOTSequence() {{
+  const tbody = document.getElementById('cotTableBody');
+  tbody.innerHTML = DATA.cot_sequence.map(it => {{
+    const isTomb = it.tombamento_oficial ? true : false;
+    const badgeStatus = isTomb ? 'badge-audited' : 'badge-divergence';
+    
+    return `<tr>
+      <td style="font-weight:700; text-align:center;">${{it.id}}</td>
+      <td><strong>${{it.equipamento}}</strong></td>
+      <td>${{it.marca}} ${{it.modelo}}</td>
+      <td><span class="badge ${{badgeStatus}}">${{it.status_tombamento}}</span></td>
+      <td style="font-weight:700; color:var(--primary);">${{it.tombamento_oficial || '-'}}</td>
+      <td><code>${{it.especificacao_tecnica}}</code></td>
+      <td>${{it.estado_fisico}}</td>
+      <td style="font-size:11px; color:#64748b;">${{it.fotos.join('<br>')}}</td>
+    </tr>`;
+  }}).join('');
 }}
 
-function parseEstoqueNow(csvText) {{
-  let matched = 0;
-  const lines = csvText.split(/\\r?\\n/);
-  lines.forEach(line => {{
-    const l = line.toUpperCase();
-    DATA.master.forEach(it => {{
-      const t = String(it.tombamento).replace(/^0+/, '');
-      if (t && l.includes(t)) {{
-        it.auditado = 'EXTERNA';
-        it.local_fisico = 'Em externa / Empréstimo Ativo (Estoque Now)';
-        it.observacao_auditoria = 'Item em circulação externa identificado no Estoque Now.';
-        matched++;
-      }}
-    }});
+/* Render Estoque Now Table */
+function renderEstoqueNow() {{
+  const tbody = document.getElementById('estoqueTableBody');
+  const search = (document.getElementById('searchEstoque') ? document.getElementById('searchEstoque').value : '').toLowerCase();
+  
+  const filtered = DATA.estoquenow.filter(it => {{
+    if (!search) return true;
+    return (it.codigo + ' ' + it.nome + ' ' + it.barcode).toLowerCase().includes(search);
   }});
-  localStorage.setItem('crialab_inventario_data_2026', JSON.stringify(DATA));
-  showToast(`Estoque Now processado! ${{matched}} itens em externa identificados.`);
-  renderTable();
+
+  tbody.innerHTML = filtered.slice(0, 100).map(it => `
+    <tr>
+      <td style="font-weight:700; color:var(--primary); font-family:monospace;">${{it.codigo}}</td>
+      <td><strong>${{it.nome}}</strong></td>
+      <td style="font-family:monospace; color:#64748b;">${{it.barcode}}</td>
+      <td>${{it.em_manutencao === 'Sim' ? '<span class="badge badge-danger">Em Manutenção</span>' : '<span style="color:#64748b;">Operacional</span>'}}</td>
+      <td style="font-size:11.5px; color:#1565c0;">Tirar fotos no retorno (Geral ➔ Specs ➔ Placa) para auditoria por IA</td>
+    </tr>
+  `).join('');
+}}
+
+function filterEstoqueTable() {{
+  renderEstoqueNow();
 }}
 
 /* Render Photos */
@@ -766,21 +777,6 @@ function renderPhotos() {{
   }}).join('');
 }}
 
-/* Render Extras */
-function renderExtras() {{
-  const tbody = document.getElementById('extrasTableBody');
-  tbody.innerHTML = DATA.nao_cadastrados.map(e => `
-    <tr>
-      <td><strong>${{e.equipamento}}</strong></td>
-      <td>${{e.marca}} ${{e.modelo}}</td>
-      <td><code>${{e.especificacao_tecnica || e.numero_serie || '-'}}</code></td>
-      <td><span class="badge badge-warning">${{e.status_tombamento || 'NÃO TOMBADO'}}</span></td>
-      <td>${{e.estado_fisico}}</td>
-      <td style="font-size:11.5px; color:#64748b;">${{e.fotos ? e.fotos.join(', ') : '-'}}</td>
-    </tr>
-  `).join('');
-}}
-
 function openModal(src, caption) {{
   document.getElementById('modalImg').src = src;
   document.getElementById('modalCaption').innerText = caption;
@@ -793,8 +789,9 @@ function closeModal() {{
 
 // Initialize
 renderTable();
+renderCOTSequence();
+renderEstoqueNow();
 renderPhotos();
-renderExtras();
 </script>
 
 </body>
@@ -807,4 +804,4 @@ with open('index.html', 'w', encoding='utf-8') as f:
 with open('dashboard.html', 'w', encoding='utf-8') as f:
     f.write(html)
 
-print('index.html and dashboard.html successfully updated with editable fields, metatags, favicon, and column toggles!')
+print('Updated index.html and dashboard.html with 14 sequence items and 245 Estoque Now items!')
