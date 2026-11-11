@@ -1,0 +1,68 @@
+[
+  {
+    "equipamento": "Mesa de Som Analógica com Interface USB",
+    "marca": "Yamaha",
+    "modelo": "MG12XU",
+    "numero_serie": "BRACVX01071",
+    "tombamento_identificado": "Sem placa colada",
+    "localizacao_encontrada": "Central de Operação Técnica (COT)",
+    "estado_fisico": "Normal / Operacional",
+    "fotos": ["IMG_20261111_103810.jpg", "IMG_20261111_103849.jpg"],
+    "recomendacao": "Verificar nota fiscal de aquisição ou patrimoniamento de laboratório para afixação de plaqueta com código de barras."
+  },
+  {
+    "equipamento": "Processador / Controlador de Vídeo para Painel de LED",
+    "marca": "NovaStar",
+    "modelo": "VX400 (All-in-One Controller)",
+    "numero_serie": "21MB44422N0A10002120",
+    "tombamento_identificado": "Sem placa visível no rack",
+    "localizacao_encontrada": "Central de Operação Técnica (COT)",
+    "estado_fisico": "Normal / Operacional",
+    "fotos": ["IMG_20261111_104431.jpg", "IMG_20261111_104438.jpg"],
+    "recomendacao": "Equipamento crítico para controle do painel de LED dos estúdios. Solicitar emplacamento patrimonial oficial."
+  },
+  {
+    "equipamento": "Placa de Captura de Vídeo USB 3.0",
+    "marca": "ezcap",
+    "modelo": "Game Pro 4K60fps USB 3.0 Capture (COD. 13729)",
+    "numero_serie": "EZCAP26920100003",
+    "tombamento_identificado": "Sem placa colada",
+    "localizacao_encontrada": "Central de Operação Técnica (COT)",
+    "estado_fisico": "Normal / Operacional",
+    "fotos": ["IMG_20261111_104826.jpg", "IMG_20261111_104837.jpg"],
+    "recomendacao": "Periférico móvel de transmissão/streaming. Cadastrar no controle interno e verificar incorporação."
+  },
+  {
+    "equipamento": "HD Externo Portátil 4TB",
+    "marca": "Seagate",
+    "modelo": "Seagate Portable Drive (SRD0NF1 / P/N: 2N1AP6-500)",
+    "numero_serie": "NT3D44VV",
+    "tombamento_identificado": "Etiqueta operacional manuscrita 'Loggagem 08 / TOTAL 3,63 TB'",
+    "localizacao_encontrada": "Central de Operação Técnica (COT)",
+    "estado_fisico": "Normal / Operacional (Fabr. 2024)",
+    "fotos": ["IMG_20261111_104935.jpg", "IMG_20261111_104945.jpg"],
+    "recomendacao": "Mídia de armazenamento recente (2024). Vincular ao inventário permanente ou registrar como material de projeto."
+  },
+  {
+    "equipamento": "Roteador Wireless 300Mbps",
+    "marca": "D-Link",
+    "modelo": "DIR-615 (H/W Ver: E5)",
+    "numero_serie": "F3XE4B7024692",
+    "tombamento_identificado": "Etiqueta manual: 'TOMBO: 702226 / UEG: 72490' + bilhete 'NÃO CONSTA EM LISTA' + fita 'Secretaria'",
+    "localizacao_encontrada": "Central de Operação Técnica (COT)",
+    "estado_fisico": "Imperfeição (resíduos de fita crepe e marcas de cola)",
+    "fotos": ["IMG_20261111_104755.jpg", "IMG_20261111_104809.jpg"],
+    "recomendacao": "Item cedido ou remanejado informalmente do setor Secretaria. Tramitar transferência formal via SPM ou avaliar destinação para SUKATECH."
+  },
+  {
+    "equipamento": "Monitor de Vídeo 19.5 polegadas (Pivot Vertical)",
+    "marca": "Dell",
+    "modelo": "P2014Ht",
+    "numero_serie": "A verificar na face traseira",
+    "tombamento_identificado": "Pendente de inspeção presencial na lateral/base",
+    "localizacao_encontrada": "Central de Operação Técnica (COT)",
+    "estado_fisico": "Normal / Operacional",
+    "fotos": ["IMG_20261111_104232.jpg", "IMG_20261111_104244.jpg"],
+    "recomendacao": "Verificar se corresponde a um dos monitores cadastrados na carga da Unidade ou se requer nova etiqueta."
+  }
+]

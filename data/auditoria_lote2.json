@@ -1,0 +1,325 @@
+{
+  "lote": 2,
+  "local": "Central de Operação Técnica (COT) - CriaLab / Radioteledifusão",
+  "data_auditoria": "2026-11-11",
+  "total_fotos": 10,
+  "total_bens_identificados": 4,
+  "fotos": [
+    {
+      "foto_indice": 1,
+      "arquivo": "c:\\Users\\FGC\\dev\\CriaLab\\inventario\\2026\\fotos\\central de operacao tecnica\\IMG_20261111_104048.jpg",
+      "nome_arquivo": "IMG_20261111_104048.jpg",
+      "enquadramento": "Visão geral",
+      "tipo_equipamento": "Computador Desktop (Gabinete Slim / SFF)",
+      "marca": "DELL",
+      "modelo_visivel": "OptiPlex 5090 (Intel Core i7)",
+      "placa_patrimonio_ueg": {
+        "visivel": false,
+        "numero": null,
+        "codigo_barras": false,
+        "observacao": "Etiqueta afixada na parte traseira do chassi (visível na foto 3 - IMG_20261111_104140.jpg)"
+      },
+      "numero_serie_fabricante": {
+        "visivel": false,
+        "service_tag": null,
+        "express_code": null
+      },
+      "estado_fisico": "Normal",
+      "detalhes_estado_fisico": "Gabinete íntegro, limpo, sem avarias estruturais aparentes, posicionado na bancada técnica sob o suporte do monitor.",
+      "item_identificado": "Item 1 - Desktop Dell OptiPlex 5090",
+      "observacoes": "Equipamento em operação com cabos periféricos e USB conectados ao painel frontal."
+    },
+    {
+      "foto_indice": 2,
+      "arquivo": "c:\\Users\\FGC\\dev\\CriaLab\\inventario\\2026\\fotos\\central de operacao tecnica\\IMG_20261111_104129.jpg",
+      "nome_arquivo": "IMG_20261111_104129.jpg",
+      "enquadramento": "Detalhe de etiqueta técnica do item anterior",
+      "tipo_equipamento": "Computador Desktop (Gabinete Slim / SFF)",
+      "marca": "DELL",
+      "modelo_visivel": "Reg Model: D15S / Reg Type: D15S004 (OptiPlex 5090)",
+      "placa_patrimonio_ueg": {
+        "visivel": false,
+        "numero": null,
+        "codigo_barras": false,
+        "observacao": "Foco na etiqueta regulatória e de homologação técnica do chassi traseiro."
+      },
+      "numero_serie_fabricante": {
+        "visivel": true,
+        "service_tag": null,
+        "express_code": null,
+        "part_number": "DP/N: RP4H1 A00 BRH1"
+      },
+      "estado_fisico": "Normal",
+      "detalhes_estado_fisico": "Etiqueta regulatória de fábrica intacta, totalmente legível, sem rasgos.",
+      "item_identificado": "Item 1 - Desktop Dell OptiPlex 5090",
+      "observacoes": "Indústria Brasileira (Dell Computadores do Brasil Ltda - Hortolândia/SP). Tensão 100-240V ~ 4.2A 50/60Hz."
+    },
+    {
+      "foto_indice": 3,
+      "arquivo": "c:\\Users\\FGC\\dev\\CriaLab\\inventario\\2026\\fotos\\central de operacao tecnica\\IMG_20261111_104140.jpg",
+      "nome_arquivo": "IMG_20261111_104140.jpg",
+      "enquadramento": "Detalhe da etiqueta de tombamento do item anterior",
+      "tipo_equipamento": "Computador Desktop (Gabinete Slim / SFF)",
+      "marca": "DELL",
+      "modelo_visivel": "OptiPlex 5090",
+      "placa_patrimonio_ueg": {
+        "visivel": true,
+        "ente": "Estado de Goiás",
+        "orgao": "UEG",
+        "numero": "02612297",
+        "numero_formatado": "2612297",
+        "codigo_barras": true,
+        "observacao": "Etiqueta metálica padrão UEG / Estado de Goiás com código de barras legível."
+      },
+      "numero_serie_fabricante": {
+        "visivel": false,
+        "service_tag": null,
+        "express_code": null
+      },
+      "estado_fisico": "Normal",
+      "detalhes_estado_fisico": "Etiqueta patrimonial íntegra, sem descolamento, código de barras e numeração em perfeito estado.",
+      "item_identificado": "Item 1 - Desktop Dell OptiPlex 5090",
+      "observacoes": "Correspondência no inventário master: Registro RADIOTELEDIFUSÃO seq 32, Tombamento 2612297 (Kit Hardware Microcomputador Dell Tipo 2)."
+    },
+    {
+      "foto_indice": 4,
+      "arquivo": "c:\\Users\\FGC\\dev\\CriaLab\\inventario\\2026\\fotos\\central de operacao tecnica\\IMG_20261111_104156.jpg",
+      "nome_arquivo": "IMG_20261111_104156.jpg",
+      "enquadramento": "Visão geral",
+      "tipo_equipamento": "Monitor de Vídeo",
+      "marca": "DELL",
+      "modelo_visivel": "Dell P2422Hb (23,8 polegadas)",
+      "placa_patrimonio_ueg": {
+        "visivel": false,
+        "numero": null,
+        "codigo_barras": false,
+        "observacao": "Etiqueta de patrimônio colada na traseira (visível na foto 6 - IMG_20261111_104217.jpg)"
+      },
+      "numero_serie_fabricante": {
+        "visivel": false,
+        "service_tag": null,
+        "express_code": null
+      },
+      "estado_fisico": "Normal",
+      "detalhes_estado_fisico": "Display e moldura frontal em bom estado de conservação, sem trincas ou riscos visíveis no painel.",
+      "item_identificado": "Item 2 - Monitor Dell P2422Hb",
+      "observacoes": "Monitor posicionado sobre a bancada sobre o gabinete SFF do item 1, com suporte/haste para webcam no topo."
+    },
+    {
+      "foto_indice": 5,
+      "arquivo": "c:\\Users\\FGC\\dev\\CriaLab\\inventario\\2026\\fotos\\central de operacao tecnica\\IMG_20261111_104211.jpg",
+      "nome_arquivo": "IMG_20261111_104211.jpg",
+      "enquadramento": "Detalhe da etiqueta técnica do fabricante do item anterior",
+      "tipo_equipamento": "Monitor de Vídeo Flat Panel",
+      "marca": "DELL",
+      "modelo_visivel": "P2422Hb (Modelo P2422H)",
+      "placa_patrimonio_ueg": {
+        "visivel": false,
+        "numero": null,
+        "codigo_barras": false,
+        "observacao": "Foco na etiqueta de especificações do fabricante e Service Tag."
+      },
+      "numero_serie_fabricante": {
+        "visivel": true,
+        "service_tag": "GZ9BHH3",
+        "express_code": "369 604 859 43",
+        "serial_parcial": "TVB... A00 (parcialmente ocultado pela coluna do suporte)"
+      },
+      "estado_fisico": "Normal",
+      "detalhes_estado_fisico": "Etiqueta traseira original íntegra, QR codes e Service Tag perfeitamente legíveis.",
+      "item_identificado": "Item 2 - Monitor Dell P2422Hb",
+      "observacoes": "Fabricado no Brasil (Novembro/2021). Monitor Plano Panel / Flat Panel Monitor."
+    },
+    {
+      "foto_indice": 6,
+      "arquivo": "c:\\Users\\FGC\\dev\\CriaLab\\inventario\\2026\\fotos\\central de operacao tecnica\\IMG_20261111_104217.jpg",
+      "nome_arquivo": "IMG_20261111_104217.jpg",
+      "enquadramento": "Detalhe da etiqueta de tombamento do item anterior",
+      "tipo_equipamento": "Monitor de Vídeo Flat Panel",
+      "marca": "DELL",
+      "modelo_visivel": "P2422Hb",
+      "placa_patrimonio_ueg": {
+        "visivel": true,
+        "ente": "Estado de Goiás",
+        "orgao": "UEG",
+        "numero": "02612249",
+        "numero_formatado": "2612249",
+        "codigo_barras": true,
+        "observacao": "Etiqueta metálica com código de barras fixada na parte traseira próximo à entrada de energia."
+      },
+      "numero_serie_fabricante": {
+        "visivel": false,
+        "service_tag": null,
+        "express_code": null
+      },
+      "estado_fisico": "Normal",
+      "detalhes_estado_fisico": "Etiqueta de tombamento preservada e legível, com leve desgaste/arranhões superficiais nas bordas, sem comprometer a leitura do código de barras ou numeração.",
+      "item_identificado": "Item 2 - Monitor Dell P2422Hb",
+      "observacoes": "Correspondência no inventário master: Registro RADIOTELEDIFUSÃO seq 62, Tombamento 2612249 (Monitor P2422HB Dell)."
+    },
+    {
+      "foto_indice": 7,
+      "arquivo": "c:\\Users\\FGC\\dev\\CriaLab\\inventario\\2026\\fotos\\central de operacao tecnica\\IMG_20261111_104232.jpg",
+      "nome_arquivo": "IMG_20261111_104232.jpg",
+      "enquadramento": "Visão geral",
+      "tipo_equipamento": "Monitor de Vídeo (Pivot / Retrato)",
+      "marca": "DELL",
+      "modelo_visivel": "Dell P2014Ht (orientação vertical / retrato 90°)",
+      "placa_patrimonio_ueg": {
+        "visivel": false,
+        "numero": null,
+        "codigo_barras": false,
+        "observacao": "Sem placa de tombamento visível na face frontal."
+      },
+      "numero_serie_fabricante": {
+        "visivel": false,
+        "service_tag": null,
+        "express_code": null
+      },
+      "estado_fisico": "Normal",
+      "detalhes_estado_fisico": "Monitor posicionado na vertical em bom estado aparente, molduras e botões íntegros, sem danos visíveis.",
+      "item_identificado": "Item 3 - Monitor Dell P2014Ht",
+      "observacoes": "Monitor de 19,5 polegadas posicionado como tela secundária vertical na estação técnica."
+    },
+    {
+      "foto_indice": 8,
+      "arquivo": "c:\\Users\\FGC\\dev\\CriaLab\\inventario\\2026\\fotos\\central de operacao tecnica\\IMG_20261111_104244.jpg",
+      "nome_arquivo": "IMG_20261111_104244.jpg",
+      "enquadramento": "Detalhe da etiqueta técnica do fabricante do item anterior",
+      "tipo_equipamento": "Monitor de Vídeo Flat Panel",
+      "marca": "DELL",
+      "modelo_visivel": "P2014Ht (Dell Professional P2014H)",
+      "placa_patrimonio_ueg": {
+        "visivel": false,
+        "numero": null,
+        "codigo_barras": false,
+        "observacao": "Etiqueta patrimonial UEG ausente nesta área fotografada (recomenda-se checagem de outras faces do monitor ou gaveta retrátil de identificação)."
+      },
+      "numero_serie_fabricante": {
+        "visivel": false,
+        "service_tag": null,
+        "express_code": null,
+        "observacao": "O enquadramento capturou a etiqueta de homologação elétrica/portas (VGA, DVI-D, DP, USB); a Service Tag nesta família costuma situar-se em aba retrátil lateral ou etiqueta adjacente."
+      },
+      "estado_fisico": "Normal / Sem Etiqueta Patrimonial Visível",
+      "detalhes_estado_fisico": "Carcaça e conectores em perfeito estado; etiqueta do fabricante com especificações de consumo e modelo perfeitamente legíveis.",
+      "item_identificado": "Item 3 - Monitor Dell P2014Ht",
+      "observacoes": "Classificado para verificação presencial da existência de plaqueta de tombamento (não localizada nesta foto)."
+    },
+    {
+      "foto_indice": 9,
+      "arquivo": "c:\\Users\\FGC\\dev\\CriaLab\\inventario\\2026\\fotos\\central de operacao tecnica\\IMG_20261111_104324.jpg",
+      "nome_arquivo": "IMG_20261111_104324.jpg",
+      "enquadramento": "Visão geral",
+      "tipo_equipamento": "Computador Portátil / Notebook",
+      "marca": "DELL",
+      "modelo_visivel": "Dell Latitude 3420",
+      "placa_patrimonio_ueg": {
+        "visivel": false,
+        "numero": null,
+        "codigo_barras": false,
+        "observacao": "Tampa superior contém etiqueta adesiva manuscrita 'PAINEL LED'. Etiqueta patrimonial fixada na face inferior (base)."
+      },
+      "numero_serie_fabricante": {
+        "visivel": false,
+        "service_tag": null,
+        "express_code": null
+      },
+      "estado_fisico": "Normal",
+      "detalhes_estado_fisico": "Carcaça superior íntegra, fechado sobre a bancada. Presença de fita/adesivo de identificação operacional manuscrita 'PAINEL LED' com canto inferior descolado.",
+      "item_identificado": "Item 4 - Notebook Dell Latitude 3420",
+      "observacoes": "Notebook utilizado na operação do painel de LED da COT."
+    },
+    {
+      "foto_indice": 10,
+      "arquivo": "c:\\Users\\FGC\\dev\\CriaLab\\inventario\\2026\\fotos\\central de operacao tecnica\\IMG_20261111_104356.jpg",
+      "nome_arquivo": "IMG_20261111_104356.jpg",
+      "enquadramento": "Detalhe da base inferior do item anterior",
+      "tipo_equipamento": "Computador Portátil / Notebook",
+      "marca": "DELL",
+      "modelo_visivel": "Latitude 3420 (Reg Model: P144G / Reg Type No.: P144G001)",
+      "placa_patrimonio_ueg": {
+        "visivel": true,
+        "parcial": true,
+        "ente": "Estado de Goiás",
+        "orgao": "UEG",
+        "numero": "02610808",
+        "numero_formatado": "2610808",
+        "codigo_barras": true,
+        "observacao": "Canto esquerdo da etiqueta de tombamento visível à direita da foto, adjacente à inscrição 'Latitude 3420'. Confirmado integralmente no registro subsequente IMG_20261111_104408.jpg como 'Estado de Goiás UEG 02610808'."
+      },
+      "numero_serie_fabricante": {
+        "visivel": true,
+        "service_tag": "C8XH2L3",
+        "express_code": "26661341271"
+      },
+      "estado_fisico": "Normal",
+      "detalhes_estado_fisico": "Chassi inferior e etiquetas em ótimo estado. Leve dobra/desgaste na ponta inferior da etiqueta da Service Tag.",
+      "item_identificado": "Item 4 - Notebook Dell Latitude 3420",
+      "observacoes": "Correspondência no inventário master: Registro CRIA LAB seq 241, Tombamento 2610808 (Notebook Dell 14 polegadas, 8GB RAM, 256GB SSD)."
+    }
+  ],
+  "resumo_bens": [
+    {
+      "item": 1,
+      "especie": "Computador Desktop SFF",
+      "marca": "DELL",
+      "modelo": "OptiPlex 5090",
+      "tombamento_ueg": "02612297",
+      "service_tag": null,
+      "fotos_relacionadas": [
+        "IMG_20261111_104048.jpg",
+        "IMG_20261111_104129.jpg",
+        "IMG_20261111_104140.jpg"
+      ],
+      "status_inventario": "Localizado e auditado (seq 32 RADIOTELEDIFUSÃO)",
+      "estado_conservacao": "Normal"
+    },
+    {
+      "item": 2,
+      "especie": "Monitor de Vídeo 23.8\"",
+      "marca": "DELL",
+      "modelo": "P2422Hb",
+      "tombamento_ueg": "02612249",
+      "service_tag": "GZ9BHH3",
+      "express_service_code": "369 604 859 43",
+      "fotos_relacionadas": [
+        "IMG_20261111_104156.jpg",
+        "IMG_20261111_104211.jpg",
+        "IMG_20261111_104217.jpg"
+      ],
+      "status_inventario": "Localizado e auditado (seq 62 RADIOTELEDIFUSÃO)",
+      "estado_conservacao": "Normal (leve arranhão na borda da etiqueta)"
+    },
+    {
+      "item": 3,
+      "especie": "Monitor de Vídeo 19.5\" (Vertical)",
+      "marca": "DELL",
+      "modelo": "P2014Ht",
+      "tombamento_ueg": "Pendente de localização física / Não visível",
+      "service_tag": null,
+      "fotos_relacionadas": [
+        "IMG_20261111_104232.jpg",
+        "IMG_20261111_104244.jpg"
+      ],
+      "status_inventario": "Sem etiqueta de patrimônio visível nas fotos do lote",
+      "estado_conservacao": "Normal operacional"
+    },
+    {
+      "item": 4,
+      "especie": "Notebook 14\"",
+      "marca": "DELL",
+      "modelo": "Latitude 3420",
+      "tombamento_ueg": "02610808",
+      "service_tag": "C8XH2L3",
+      "express_service_code": "26661341271",
+      "rotulo_operacional": "PAINEL LED",
+      "fotos_relacionadas": [
+        "IMG_20261111_104324.jpg",
+        "IMG_20261111_104356.jpg"
+      ],
+      "status_inventario": "Localizado e auditado (seq 241 CRIA LAB)",
+      "estado_conservacao": "Normal (com etiqueta manuscrita 'PAINEL LED')"
+    }
+  ]
+}

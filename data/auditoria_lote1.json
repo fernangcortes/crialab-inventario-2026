@@ -1,0 +1,307 @@
+{
+  "lote": "Lote 1 - Central de Operação Técnica (COT)",
+  "data_auditoria": "2026-11-11",
+  "auditor": "Auditor de Patrimônio UEG",
+  "resumo": {
+    "total_fotos_analisadas": 10,
+    "total_bens_distintos": 5,
+    "bens_tombados_identificados": 2,
+    "bens_sem_etiqueta_visivel": 3,
+    "anomalias_detectadas": [
+      {
+        "item": "Microfone Shure SM58",
+        "tipo": "Avaria física",
+        "descricao": "Grade de proteção metálica (globo) amassada no topo."
+      },
+      {
+        "item": "Switcher Blackmagic ATEM Television Studio Pro 4K",
+        "tipo": "Divergência cadastral",
+        "descricao": "Etiqueta física de tombamento nº 03269767 está registrada no sistema mestre como Datavideo, mas o equipamento físico real é Blackmagic Design."
+      },
+      {
+        "item": "Switcher Blackmagic ATEM Television Studio Pro 4K",
+        "tipo": "Imperfeição/Intervenção operacional",
+        "descricao": "Fita adesiva preta fixada sobre o conjunto central de teclas de seleção de entrada (4 a 10)."
+      }
+    ]
+  },
+  "fotos": [
+    {
+      "foto_indice": 1,
+      "arquivo": "c:\\Users\\FGC\\dev\\CriaLab\\inventario\\2026\\fotos\\central de operacao tecnica\\IMG_20261111_103510.jpg",
+      "tipo_foto": "Visão geral do item",
+      "item_id": 1,
+      "tipo_equipamento": "Mesa de Som Digital / Console de Áudio",
+      "marca": "Behringer",
+      "modelo": "X32 Producer",
+      "placa_tombamento": {
+        "visivel": true,
+        "numero": "00836325",
+        "codigo_barras_visivel": true,
+        "orgao": "Estado de Goiás / U.E.G",
+        "posicao": "Lateral direita da carcaça"
+      },
+      "numero_serie_fabricante": null,
+      "estado_fisico": "Normal",
+      "detalhes_estado_fisico": "Equipamento em bom estado de conservação física; botões, faders e tela íntegros.",
+      "observacoes": "Mesa digital de 17 faders motorizados. Etiqueta patrimonial visível na lateral direita (ver detalhe na Foto 2)."
+    },
+    {
+      "foto_indice": 2,
+      "arquivo": "c:\\Users\\FGC\\dev\\CriaLab\\inventario\\2026\\fotos\\central de operacao tecnica\\IMG_20261111_103516.jpg",
+      "tipo_foto": "Detalhe da etiqueta de item anterior",
+      "item_id": 1,
+      "foto_referencia_item": 1,
+      "tipo_equipamento": "Mesa de Som Digital / Console de Áudio",
+      "marca": "Behringer",
+      "modelo": "X32 Producer",
+      "placa_tombamento": {
+        "visivel": true,
+        "numero": "00836325",
+        "codigo_barras_visivel": true,
+        "orgao": "Estado de Goiás / U.E.G",
+        "posicao": "Lateral direita da carcaça"
+      },
+      "numero_serie_fabricante": null,
+      "estado_fisico": "Normal",
+      "detalhes_estado_fisico": "Etiqueta coberta por fita protetora transparente com pequenas bolhas e marcas superficiais, porém texto 'Estado de Goiás / U.E.G', numeração '00836325' e código de barras 100% legíveis.",
+      "observacoes": "Confere com o cadastro mestre: Tombamento 836325 - 'MESA DE SOM MIXER DIGITAL 17 FADERS MOTORIZADOS BEHRINGER'."
+    },
+    {
+      "foto_indice": 3,
+      "arquivo": "c:\\Users\\FGC\\dev\\CriaLab\\inventario\\2026\\fotos\\central de operacao tecnica\\IMG_20261111_103541.jpg",
+      "tipo_foto": "Visão geral do item",
+      "item_id": 2,
+      "tipo_equipamento": "Microfone Dinâmico Vocal",
+      "marca": "Shure",
+      "modelo": "SM58",
+      "placa_tombamento": {
+        "visivel": false,
+        "numero": null,
+        "codigo_barras_visivel": false,
+        "orgao": null,
+        "posicao": "Não localizada no ângulo fotografado"
+      },
+      "numero_serie_fabricante": null,
+      "estado_fisico": "Imperfeição",
+      "detalhes_estado_fisico": "Cúpula de grade metálica esférica (globo) apresenta afundamento / deformação por impacto na parte superior frontal.",
+      "observacoes": "Equipamento sem etiqueta de patrimônio visível no ângulo capturado. No inventário mestre constam microfones Shure SM58 cadastrados (ex: tombamento 723974). Recomenda-se aferir base/conector para verificar se há gravação de tombamento ou aplicar nova etiqueta."
+    },
+    {
+      "foto_indice": 4,
+      "arquivo": "c:\\Users\\FGC\\dev\\CriaLab\\inventario\\2026\\fotos\\central de operacao tecnica\\IMG_20261111_103556.jpg",
+      "tipo_foto": "Visão geral do item",
+      "item_id": 3,
+      "tipo_equipamento": "Receptor Portátil de Microfone Sem Fio (Bodypack Receiver)",
+      "marca": "Sony",
+      "modelo": "URX-P03",
+      "placa_tombamento": {
+        "visivel": false,
+        "numero": null,
+        "codigo_barras_visivel": false,
+        "orgao": null,
+        "posicao": "Ausente na parte frontal"
+      },
+      "numero_serie_fabricante": null,
+      "estado_fisico": "Normal",
+      "detalhes_estado_fisico": "Bom estado de conservação, visor íntegro com leves marcas de atrito, duas antenas integradas e cabo XLR/P2 Neutrik conectado.",
+      "observacoes": "Identificação de controle interno do CriaLab via fita adesiva frontal com manuscrito '02' (Kit 02). Componente do sistema Sony UWP-D11."
+    },
+    {
+      "foto_indice": 5,
+      "arquivo": "c:\\Users\\FGC\\dev\\CriaLab\\inventario\\2026\\fotos\\central de operacao tecnica\\IMG_20261111_103625.jpg",
+      "tipo_foto": "Detalhe da etiqueta / número de série de item anterior",
+      "item_id": 3,
+      "foto_referencia_item": 4,
+      "tipo_equipamento": "Receptor Portátil de Microfone Sem Fio (Bodypack Receiver)",
+      "marca": "Sony",
+      "modelo": "URX-P03 (Faixa 42-51 / 638.125-697.875MHz)",
+      "placa_tombamento": {
+        "visivel": false,
+        "numero": null,
+        "codigo_barras_visivel": false,
+        "orgao": null,
+        "posicao": "Ausente"
+      },
+      "numero_serie_fabricante": "115983",
+      "estado_fisico": "Normal",
+      "detalhes_estado_fisico": "Placa traseira de especificações do fabricante e etiqueta de série originais em excelente estado, clipe de fixação íntegro.",
+      "observacoes": "Número de série do fabricante identificado: 'No. 115983' (Sony Corporation, Made in Korea). Sem placa patrimonial colada no corpo do receptor. Sistema mestre lista conjuntos Sony UWP-D11 sob tombamentos 836314, 836315, 836316."
+    },
+    {
+      "foto_indice": 6,
+      "arquivo": "c:\\Users\\FGC\\dev\\CriaLab\\inventario\\2026\\fotos\\central de operacao tecnica\\IMG_20261111_103810.jpg",
+      "tipo_foto": "Visão geral do item",
+      "item_id": 4,
+      "tipo_equipamento": "Mesa de Som Analógica com Interface USB / Mixer de Áudio",
+      "marca": "Yamaha",
+      "modelo": "MG12XU",
+      "placa_tombamento": {
+        "visivel": false,
+        "numero": null,
+        "codigo_barras_visivel": false,
+        "orgao": null,
+        "posicao": "Não visível no painel frontal"
+      },
+      "numero_serie_fabricante": null,
+      "estado_fisico": "Normal",
+      "detalhes_estado_fisico": "Console em ótimo estado estético e de conservação; knobs rotativos, faders e conectores XLR/P10 completos e preservados.",
+      "observacoes": "Mesa de mixagem de 12 canais com efeitos digitais SPX e conectividade USB."
+    },
+    {
+      "foto_indice": 7,
+      "arquivo": "c:\\Users\\FGC\\dev\\CriaLab\\inventario\\2026\\fotos\\central de operacao tecnica\\IMG_20261111_103849.jpg",
+      "tipo_foto": "Detalhe da etiqueta / número de série de item anterior",
+      "item_id": 4,
+      "foto_referencia_item": 6,
+      "tipo_equipamento": "Mesa de Som Analógica com Interface USB / Mixer de Áudio",
+      "marca": "Yamaha",
+      "modelo": "MG12XU",
+      "placa_tombamento": {
+        "visivel": false,
+        "numero": null,
+        "codigo_barras_visivel": false,
+        "orgao": null,
+        "posicao": "Não visível no painel traseiro"
+      },
+      "numero_serie_fabricante": "BRACVX01071",
+      "estado_fisico": "Normal",
+      "detalhes_estado_fisico": "Painel traseiro, soquete AC, porta USB 2.0 e etiquetas do fabricante sem avarias.",
+      "observacoes": "Número de série do fabricante identificado: 'SER. No. BRACVX01071' (Yamaha Corporation, Made in Indonesia). Recomenda-se etiquetagem patrimonial caso não esteja etiquetada nas laterais/base."
+    },
+    {
+      "foto_indice": 8,
+      "arquivo": "c:\\Users\\FGC\\dev\\CriaLab\\inventario\\2026\\fotos\\central de operacao tecnica\\IMG_20261111_103949.jpg",
+      "tipo_foto": "Visão geral do item",
+      "item_id": 5,
+      "tipo_equipamento": "Switcher de Vídeo Broadcast / Console de Produção e Corte",
+      "marca": "Blackmagic Design",
+      "modelo": "ATEM Television Studio Pro 4K",
+      "placa_tombamento": {
+        "visivel": false,
+        "numero": "03269767",
+        "codigo_barras_visivel": false,
+        "orgao": "Estado de Goiás / UEG",
+        "posicao": "Fixada na lateral do chassi (detalhada na Foto 10)"
+      },
+      "numero_serie_fabricante": "9798249",
+      "estado_fisico": "Imperfeição",
+      "detalhes_estado_fisico": "Corpo e eletrônica íntegros, porém contém fita adesiva gaffer preta aplicada sobre botões do painel de seleção de entrada (teclas 4 a 10).",
+      "observacoes": "Mesa de corte de vídeo profissional para estúdio 4K com alavanca T-Bar, trackball PTZ e teclas de corte iluminadas."
+    },
+    {
+      "foto_indice": 9,
+      "arquivo": "c:\\Users\\FGC\\dev\\CriaLab\\inventario\\2026\\fotos\\central de operacao tecnica\\IMG_20261111_104009.jpg",
+      "tipo_foto": "Detalhe da etiqueta / número de série de item anterior",
+      "item_id": 5,
+      "foto_referencia_item": 8,
+      "tipo_equipamento": "Switcher de Vídeo Broadcast / Console de Produção e Corte",
+      "marca": "Blackmagic Design",
+      "modelo": "ATEM Television Studio Pro 4K",
+      "placa_tombamento": {
+        "visivel": false,
+        "numero": null,
+        "codigo_barras_visivel": false,
+        "orgao": null,
+        "posicao": "Fotografada em outro ângulo (Foto 10)"
+      },
+      "numero_serie_fabricante": "9798249",
+      "estado_fisico": "Normal",
+      "detalhes_estado_fisico": "Chassi de alumínio em ótimo estado, serigrafia e etiqueta de série do fabricante Blackmagic com código de barras intactas.",
+      "observacoes": "Confirmação do modelo 'ATEM Television Studio Pro 4K' e número de série de fábrica '9798249'."
+    },
+    {
+      "foto_indice": 10,
+      "arquivo": "c:\\Users\\FGC\\dev\\CriaLab\\inventario\\2026\\fotos\\central de operacao tecnica\\IMG_20261111_104014.jpg",
+      "tipo_foto": "Detalhe da etiqueta de item anterior",
+      "item_id": 5,
+      "foto_referencia_item": 8,
+      "tipo_equipamento": "Switcher de Vídeo Broadcast / Console de Produção e Corte",
+      "marca": "Blackmagic Design",
+      "modelo": "ATEM Television Studio Pro 4K",
+      "placa_tombamento": {
+        "visivel": true,
+        "numero": "03269767",
+        "codigo_barras_visivel": true,
+        "orgao": "Estado de Goiás / UEG",
+        "posicao": "Lateral do chassi metálico"
+      },
+      "numero_serie_fabricante": null,
+      "estado_fisico": "Normal",
+      "detalhes_estado_fisico": "Etiqueta patrimonial adesiva bem fixada, código de barras nítido e numeração '03269767' legível, com leve desgaste na impressão da letra 'd' em 'Estado de Goiás'.",
+      "observacoes": "Apontamento de auditoria: O tombamento 03269767 está registrado no inventário mestre da UEG como marca 'DATAVIDEO' (Switch 3269767 Switcher de Vídeo Broadcast SDI 06x06), caracterizando divergência cadastral de especificação/marca em relação ao bem real (Blackmagic ATEM Television Studio Pro 4K)."
+    }
+  ],
+  "bens_consolidados": [
+    {
+      "item_id": 1,
+      "descricao": "Mesa de Som Digital / Console de Áudio 17 Faders",
+      "marca": "Behringer",
+      "modelo": "X32 Producer",
+      "tombamento_ueg": "00836325",
+      "numero_serie": null,
+      "estado_conservacao": "Normal / Bom",
+      "fotos_associadas": [
+        "IMG_20261111_103510.jpg (Visão geral)",
+        "IMG_20261111_103516.jpg (Etiqueta patrimônio)"
+      ],
+      "status_auditoria": "Regular - Tombamento conferido e localizado no cadastro mestre."
+    },
+    {
+      "item_id": 2,
+      "descricao": "Microfone Dinâmico Vocal de Mão Cardioide",
+      "marca": "Shure",
+      "modelo": "SM58",
+      "tombamento_ueg": null,
+      "numero_serie": null,
+      "estado_conservacao": "Imperfeição física (globo metálico amassado)",
+      "fotos_associadas": [
+        "IMG_20261111_103541.jpg (Visão geral)"
+      ],
+      "status_auditoria": "Pendente - Sem placa visível; avaria na grade protetora."
+    },
+    {
+      "item_id": 3,
+      "descricao": "Receptor Portátil de Microfone Sem Fio (Bodypack Receiver)",
+      "marca": "Sony",
+      "modelo": "URX-P03 (Sistema UWP-D11)",
+      "tombamento_ueg": null,
+      "numero_serie": "115983",
+      "estado_conservacao": "Normal / Bom",
+      "fotos_associadas": [
+        "IMG_20261111_103556.jpg (Visão geral no case com fita '02')",
+        "IMG_20261111_103625.jpg (Etiqueta de fábrica / S/N)"
+      ],
+      "status_auditoria": "Pendente de vinculação - S/N 115983 identificado; sem placa de tombamento colada no corpo do aparelho."
+    },
+    {
+      "item_id": 4,
+      "descricao": "Mesa de Som Analógica 12 Canais com USB e Efeitos SPX",
+      "marca": "Yamaha",
+      "modelo": "MG12XU",
+      "tombamento_ueg": null,
+      "numero_serie": "BRACVX01071",
+      "estado_conservacao": "Normal / Ótimo",
+      "fotos_associadas": [
+        "IMG_20261111_103810.jpg (Visão geral frontal)",
+        "IMG_20261111_103849.jpg (Painel traseiro / S/N)"
+      ],
+      "status_auditoria": "Pendente de etiquetagem - S/N BRACVX01071 identificado; placa de tombamento ausente nas fotos."
+    },
+    {
+      "item_id": 5,
+      "descricao": "Switcher de Vídeo Broadcast / Console de Produção e Corte 4K",
+      "marca": "Blackmagic Design",
+      "modelo": "ATEM Television Studio Pro 4K",
+      "tombamento_ueg": "03269767",
+      "numero_serie": "9798249",
+      "estado_conservacao": "Imperfeição estética/funcional (fita adesiva preta cobrindo botões 4-10)",
+      "fotos_associadas": [
+        "IMG_20261111_103949.jpg (Visão geral com fita)",
+        "IMG_20261111_104009.jpg (Etiqueta de fábrica / S/N)",
+        "IMG_20261111_104014.jpg (Etiqueta patrimônio UEG 03269767)"
+      ],
+      "status_auditoria": "Divergência Cadastral - Bem físico Blackmagic com etiqueta 03269767 cadastrada como 'Datavideo' no inventário mestre."
+    }
+  ]
+}

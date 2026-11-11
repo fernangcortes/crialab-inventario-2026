@@ -1,0 +1,2298 @@
+<!DOCTYPE html>
+<html lang="pt-BR" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Guia de Captura Fotográfica 3D & AR | CriaLab & Radioteledifusão UEG</title>
+  
+  <!-- Metatags Oficiais e SEO -->
+  <meta name="description" content="Protocolo técnico ilustrado de captura fotográfica para auditoria patrimonial com IA, reconstrução espacial 3D (NeRF/Gaussian Splatting) e Realidade Aumentada (AR) do CriaLab e Radioteledifusão UEG.">
+  <meta name="author" content="Comissão de Inventário 2026 - CriaLab / Radioteledifusão UEG">
+  <meta name="keywords" content="CriaLab, UEG, Inventário, Gêmeo Digital, Fotogrametria, Gaussian Splatting, NeRF, Realidade Aumentada, WebXR, GLB, USDZ, Laranjeiras">
+  
+  <!-- Open Graph / Redes Sociais -->
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="Guia de Captura Fotográfica 3D & AR - CriaLab UEG">
+  <meta property="og:description" content="Manual passo a passo ilustrado com esquemas vetoriais SVG para varredura de estúdios e equipamentos com IA e Realidade Aumentada.">
+  <meta property="og:site_name" content="Inventário Patrimonial UEG 2026">
+  
+  <!-- Favicon SVG Embutido (Data URI) -->
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' stop-color='%231565c0'/%3E%3Cstop offset='100%25' stop-color='%2300b0ff'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='32' height='32' rx='8' fill='url(%23g)'/%3E%3Ccircle cx='16' cy='16' r='6' fill='%23ffffff'/%3E%3Cpath d='M8 12 L12 8 L20 8 L24 12 Z' fill='%23ffca28'/%3E%3Ccircle cx='21' cy='12' r='1.5' fill='%230d47a1'/%3E%3C/svg%3E" type="image/svg+xml">
+
+  <style>
+    /* ==========================================================================
+       1. SISTEMA DE DESIGN & VARIÁVEIS CSS (LIGHT & DARK THEMES)
+       ========================================================================== */
+    :root {
+      --bg: #f8fafc;
+      --card: #ffffff;
+      --card-alt: #f1f5f9;
+      --text: #0f172a;
+      --text-muted: #64748b;
+      --text-subtle: #94a3b8;
+      --border: #e2e8f0;
+      --border-focus: #3b82f6;
+      --primary: #1565c0;
+      --primary-dark: #0d47a1;
+      --primary-light: #e0f2fe;
+      --accent: #d97706;
+      --accent-light: #fef3c7;
+      --success: #16a34a;
+      --success-light: #dcfce7;
+      --danger: #dc2626;
+      --danger-light: #fee2e2;
+      --info: #0284c7;
+      --purple: #7c3aed;
+      --purple-light: #f3e8ff;
+      --shadow-sm: 0 1px 3px rgba(0,0,0,0.06), 0 1px 2px rgba(0,0,0,0.04);
+      --shadow-md: 0 4px 6px -1px rgba(0,0,0,0.08), 0 2px 4px -1px rgba(0,0,0,0.04);
+      --shadow-lg: 0 10px 20px -3px rgba(0,0,0,0.08), 0 4px 6px -2px rgba(0,0,0,0.04);
+      --radius-sm: 6px;
+      --radius-md: 10px;
+      --radius-lg: 16px;
+      --radius-full: 9999px;
+      --transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    html[data-theme="dark"] {
+      --bg: #090d16;
+      --card: #131c2e;
+      --card-alt: #1a263d;
+      --text: #f1f5f9;
+      --text-muted: #94a3b8;
+      --text-subtle: #64748b;
+      --border: #23334d;
+      --border-focus: #60a5fa;
+      --primary: #38bdf8;
+      --primary-dark: #0284c7;
+      --primary-light: rgba(56, 189, 248, 0.15);
+      --accent: #fbbf24;
+      --accent-light: rgba(251, 191, 36, 0.15);
+      --success: #4ade80;
+      --success-light: rgba(74, 222, 128, 0.15);
+      --danger: #f87171;
+      --danger-light: rgba(248, 113, 113, 0.15);
+      --info: #38bdf8;
+      --purple: #c084fc;
+      --purple-light: rgba(192, 132, 252, 0.15);
+      --shadow-sm: 0 1px 3px rgba(0,0,0,0.3);
+      --shadow-md: 0 4px 8px rgba(0,0,0,0.4);
+      --shadow-lg: 0 12px 24px rgba(0,0,0,0.5);
+    }
+
+    /* Reset e Tipografia */
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      background-color: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      transition: background-color 0.3s ease, color 0.3s ease;
+    }
+
+    /* Header e Navegação */
+    header {
+      background: linear-gradient(135deg, var(--primary-dark) 0%, #1e3a8a 50%, var(--primary) 100%);
+      color: #ffffff;
+      padding: 24px 32px;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: var(--shadow-md);
+      backdrop-filter: blur(12px);
+    }
+    .header-inner {
+      max-width: 1440px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+    .brand-wrap {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+    .brand-logo {
+      width: 48px;
+      height: 48px;
+      background: rgba(255, 255, 255, 0.15);
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      border-radius: var(--radius-md);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    }
+    .brand-titles h1 {
+      font-size: 20px;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .brand-titles p {
+      font-size: 13px;
+      opacity: 0.9;
+      font-weight: 400;
+    }
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 9px 16px;
+      font-size: 13px;
+      font-weight: 600;
+      border-radius: var(--radius-sm);
+      text-decoration: none;
+      cursor: pointer;
+      transition: var(--transition);
+      border: none;
+    }
+    .btn-glass {
+      background: rgba(255, 255, 255, 0.15);
+      color: #ffffff;
+      border: 1px solid rgba(255, 255, 255, 0.25);
+    }
+    .btn-glass:hover {
+      background: rgba(255, 255, 255, 0.28);
+      transform: translateY(-1px);
+    }
+    .btn-accent {
+      background: #f59e0b;
+      color: #0f172a;
+      box-shadow: 0 2px 8px rgba(245, 158, 11, 0.4);
+    }
+    .btn-accent:hover {
+      background: #fbbf24;
+      transform: translateY(-1px);
+    }
+
+    /* Container Principal */
+    .container {
+      max-width: 1440px;
+      margin: 32px auto;
+      padding: 0 24px;
+    }
+
+    /* Hero Banner */
+    .hero-banner {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 36px 40px;
+      margin-bottom: 32px;
+      box-shadow: var(--shadow-sm);
+      position: relative;
+      overflow: hidden;
+    }
+    .hero-banner::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 320px;
+      height: 100%;
+      background: radial-gradient(circle at top right, var(--primary-light), transparent 70%);
+      pointer-events: none;
+    }
+    .hero-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 4px 12px;
+      background: var(--primary-light);
+      color: var(--primary);
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      border-radius: var(--radius-full);
+      margin-bottom: 12px;
+      border: 1px solid var(--border);
+    }
+    .hero-title {
+      font-size: 32px;
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      color: var(--text);
+      line-height: 1.25;
+      margin-bottom: 12px;
+    }
+    .hero-desc {
+      font-size: 15px;
+      color: var(--text-muted);
+      max-width: 860px;
+      line-height: 1.6;
+      margin-bottom: 24px;
+    }
+    .kpi-row {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+      gap: 16px;
+    }
+    .kpi-item {
+      background: var(--card-alt);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      padding: 16px 20px;
+      display: flex;
+      flex-direction: column;
+    }
+    .kpi-num {
+      font-size: 24px;
+      font-weight: 800;
+      color: var(--primary);
+      line-height: 1.1;
+    }
+    .kpi-label {
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--text-muted);
+      margin-top: 4px;
+    }
+    .kpi-detail {
+      font-size: 11px;
+      color: var(--text-subtle);
+      margin-top: 2px;
+    }
+
+    /* Seções e Cards */
+    .section-title-wrap {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 20px;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+    .section-title {
+      font-size: 22px;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .section-subtitle {
+      font-size: 13px;
+      color: var(--text-muted);
+    }
+
+    .diagram-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 28px;
+      margin-bottom: 32px;
+      box-shadow: var(--shadow-sm);
+      transition: var(--transition);
+    }
+    .diagram-card:hover {
+      box-shadow: var(--shadow-md);
+    }
+    .diagram-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 20px;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+    .diagram-badge {
+      display: inline-block;
+      padding: 4px 10px;
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      border-radius: var(--radius-full);
+      background: var(--primary-light);
+      color: var(--primary);
+      border: 1px solid var(--border);
+    }
+    .diagram-badge.orange {
+      background: var(--accent-light);
+      color: var(--accent);
+    }
+    .diagram-badge.green {
+      background: var(--success-light);
+      color: var(--success);
+    }
+    .diagram-badge.purple {
+      background: var(--purple-light);
+      color: var(--purple);
+    }
+
+    /* Container de SVG */
+    .svg-container {
+      width: 100%;
+      background: var(--card-alt);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      padding: 16px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      overflow-x: auto;
+      margin-bottom: 20px;
+    }
+    .svg-container svg {
+      max-width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    /* Grid de Explicações Técnicas */
+    .notes-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 16px;
+    }
+    .note-box {
+      background: var(--card-alt);
+      border-radius: var(--radius-sm);
+      border: 1px solid var(--border);
+      padding: 14px 16px;
+    }
+    .note-box h4 {
+      font-size: 13px;
+      font-weight: 700;
+      margin-bottom: 6px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .note-box p {
+      font-size: 12px;
+      color: var(--text-muted);
+      line-height: 1.5;
+    }
+
+    /* Simulador de Passos Interativo */
+    .stepper-section {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 32px;
+      margin-bottom: 32px;
+      box-shadow: var(--shadow-sm);
+    }
+    .step-nav {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 24px;
+      overflow-x: auto;
+      padding-bottom: 8px;
+    }
+    .step-btn {
+      flex: 1;
+      min-width: 170px;
+      background: var(--card-alt);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      padding: 14px;
+      text-align: left;
+      cursor: pointer;
+      transition: var(--transition);
+    }
+    .step-btn:hover {
+      border-color: var(--primary);
+    }
+    .step-btn.active {
+      background: var(--primary-light);
+      border-color: var(--primary);
+      box-shadow: 0 0 0 2px var(--primary);
+    }
+    .step-number {
+      font-size: 11px;
+      font-weight: 800;
+      text-transform: uppercase;
+      color: var(--primary);
+      margin-bottom: 4px;
+      display: block;
+    }
+    .step-btn-title {
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--text);
+    }
+    .step-pane {
+      display: none;
+      background: var(--card-alt);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      padding: 24px;
+      animation: fadeIn 0.3s ease-in-out;
+    }
+    .step-pane.active {
+      display: block;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(6px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .step-pane-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 16px;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+    .step-pane-header h3 {
+      font-size: 18px;
+      font-weight: 800;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .stepper-controls {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 20px;
+      gap: 12px;
+    }
+    .btn-stepper {
+      background: var(--card);
+      border: 1px solid var(--border);
+      padding: 8px 16px;
+      border-radius: var(--radius-sm);
+      font-size: 12px;
+      font-weight: 600;
+      cursor: pointer;
+      color: var(--text);
+    }
+    .btn-stepper:hover {
+      background: var(--primary-light);
+      border-color: var(--primary);
+    }
+
+    /* Mapeamento de Ambientes da Planta Baixa */
+    .spaces-section {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 32px;
+      margin-bottom: 32px;
+      box-shadow: var(--shadow-sm);
+    }
+    .spaces-layout-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr;
+      gap: 24px;
+    }
+    @media (max-width: 992px) {
+      .spaces-layout-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+    .rooms-card-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      gap: 12px;
+    }
+    .room-card {
+      background: var(--card-alt);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      padding: 14px;
+      cursor: pointer;
+      transition: var(--transition);
+      position: relative;
+    }
+    .room-card:hover {
+      border-color: var(--primary);
+      transform: translateY(-2px);
+    }
+    .room-card.active {
+      border-color: var(--primary);
+      background: var(--primary-light);
+      box-shadow: 0 0 0 2px var(--primary);
+    }
+    .room-card-num {
+      font-size: 11px;
+      font-weight: 800;
+      color: var(--primary);
+      text-transform: uppercase;
+    }
+    .room-card-name {
+      font-size: 13px;
+      font-weight: 700;
+      margin: 4px 0 2px;
+    }
+    .room-card-meta {
+      font-size: 11px;
+      color: var(--text-muted);
+    }
+    .room-status-dot {
+      display: inline-block;
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      margin-right: 4px;
+    }
+    .dot-done { background: var(--success); }
+    .dot-pending { background: #f59e0b; }
+
+    /* Painel Inspetor do Cômodo */
+    .room-inspector {
+      background: var(--card-alt);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+    }
+    .room-inspector h3 {
+      font-size: 16px;
+      font-weight: 800;
+      margin-bottom: 8px;
+      color: var(--text);
+    }
+    .room-badge-status {
+      display: inline-block;
+      padding: 4px 10px;
+      font-size: 11px;
+      font-weight: 700;
+      border-radius: var(--radius-full);
+      margin-bottom: 12px;
+      width: fit-content;
+    }
+    .inspector-detail-row {
+      display: flex;
+      justify-content: space-between;
+      padding: 8px 0;
+      border-bottom: 1px solid var(--border);
+      font-size: 12px;
+    }
+    .inspector-detail-row span:first-child {
+      color: var(--text-muted);
+      font-weight: 500;
+    }
+    .inspector-detail-row span:last-child {
+      font-weight: 600;
+      color: var(--text);
+    }
+    .inspector-instructions {
+      margin-top: 16px;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      padding: 12px;
+      font-size: 12px;
+      line-height: 1.5;
+    }
+
+    /* Checklist Interativo de Campo */
+    .checklist-section {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 32px;
+      margin-bottom: 32px;
+      box-shadow: var(--shadow-sm);
+    }
+    .checklist-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 16px;
+      margin-top: 16px;
+    }
+    .check-item {
+      background: var(--card-alt);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      padding: 14px 16px;
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      cursor: pointer;
+      user-select: none;
+      transition: var(--transition);
+    }
+    .check-item:hover {
+      border-color: var(--border-focus);
+    }
+    .check-item input[type="checkbox"] {
+      width: 18px;
+      height: 18px;
+      margin-top: 2px;
+      cursor: pointer;
+      accent-color: var(--primary);
+    }
+    .check-content strong {
+      display: block;
+      font-size: 13px;
+      font-weight: 700;
+      margin-bottom: 2px;
+    }
+    .check-content span {
+      font-size: 11px;
+      color: var(--text-muted);
+      line-height: 1.4;
+      display: block;
+    }
+
+    /* FAQ e Troubleshooting */
+    .faq-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
+      gap: 16px;
+      margin-bottom: 32px;
+    }
+    .faq-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      padding: 20px;
+      box-shadow: var(--shadow-sm);
+    }
+    .faq-card h4 {
+      font-size: 14px;
+      font-weight: 700;
+      margin-bottom: 8px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--primary);
+    }
+    .faq-card p {
+      font-size: 12px;
+      color: var(--text-muted);
+      line-height: 1.6;
+    }
+
+    /* Footer */
+    footer {
+      background: var(--card);
+      border-top: 1px solid var(--border);
+      padding: 28px 32px;
+      text-align: center;
+      font-size: 12px;
+      color: var(--text-muted);
+      margin-top: 48px;
+    }
+    footer a {
+      color: var(--primary);
+      text-decoration: none;
+      font-weight: 600;
+    }
+
+    /* ==========================================================================
+       ESTILOS PARA IMPRESSÃO / SALVAR PDF
+       ========================================================================== */
+    @media print {
+      body {
+        background: #ffffff !important;
+        color: #000000 !important;
+        font-size: 11pt;
+      }
+      header, .header-actions, .step-nav, .stepper-controls, .checklist-section, footer, .btn, #themeToggle {
+        display: none !important;
+      }
+      .container {
+        max-width: 100% !important;
+        margin: 0 !important;
+        padding: 0 !important;
+      }
+      .hero-banner {
+        border: none !important;
+        box-shadow: none !important;
+        padding: 0 0 15px 0 !important;
+        margin-bottom: 15px !important;
+      }
+      .hero-banner::before {
+        display: none !important;
+      }
+      .diagram-card {
+        border: 1px solid #ccc !important;
+        box-shadow: none !important;
+        padding: 15px !important;
+        margin-bottom: 25px !important;
+        page-break-inside: avoid;
+      }
+      .svg-container {
+        background: #ffffff !important;
+        border: 1px solid #e5e5e5 !important;
+        padding: 8px !important;
+      }
+      .step-pane {
+        display: block !important;
+        margin-bottom: 20px;
+        page-break-inside: avoid;
+      }
+      .spaces-layout-grid {
+        grid-template-columns: 1fr !important;
+      }
+      .room-inspector {
+        page-break-inside: avoid;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ==========================================================================
+       HEADER OFICIAL CRIA LAB & RADIOTELEDIFUSÃO UEG
+       ========================================================================== -->
+  <header>
+    <div class="header-inner">
+      <div class="brand-wrap">
+        <div class="brand-logo">
+          <!-- Ícone Vetorial Câmera 3D / Realidade Aumentada -->
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"></path>
+            <circle cx="12" cy="13" r="4"></circle>
+            <path d="M12 9v1m0 6v1m-3-4h1m6 0h1" stroke="#ffca28" stroke-width="1.5"></path>
+          </svg>
+        </div>
+        <div class="brand-titles">
+          <h1>CriaLab & Radioteledifusão UEG <span style="font-size: 11px; background: rgba(255,255,255,0.2); padding: 2px 8px; border-radius: 12px; font-weight: 500;">Layout R05_25_11_2025</span></h1>
+          <p>Protocolo Operacional de Captura Fotográfica para IA, Inventário 2026, Gêmeo Digital 3D & Realidade Aumentada (AR)</p>
+        </div>
+      </div>
+
+      <div class="header-actions">
+        <!-- Voltar ao Dashboard -->
+        <a href="dashboard.html" class="btn btn-glass" title="Voltar ao Painel Geral de Inventário">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+          Painel do Inventário
+        </a>
+
+        <!-- Botão Imprimir / Salvar PDF -->
+        <button onclick="window.print()" class="btn btn-glass" title="Imprimir guia ou salvar versão PDF">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 6 2 18 2 18 9"></polyline><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path><rect x="6" y="14" width="12" height="8"></rect></svg>
+          Imprimir / PDF
+        </button>
+
+        <!-- Ir para Checklist -->
+        <a href="#checklist" class="btn btn-accent" title="Ir para o Checklist de Campo">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
+          Checklist de Campo
+        </a>
+
+        <!-- Switcher Tema Dark/Light -->
+        <button id="themeToggle" class="btn btn-glass" onclick="toggleTheme()" title="Alternar Modo Escuro / Claro">
+          <span id="themeIcon">🌙</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- ==========================================================================
+       CONTEÚDO PRINCIPAL
+       ========================================================================== -->
+  <main class="container">
+
+    <!-- HERO BANNER -->
+    <section class="hero-banner">
+      <div class="hero-tag">Diretriz Técnica Oficial • Unidade Laranjeiras</div>
+      <h2 class="hero-title">Manual de Captura Fotográfica 3D, IA e Realidade Aumentada</h2>
+      <p class="hero-desc">
+        Este guia didático estabelece a metodologia de registro visual dos 12 ambientes do CriaLab e da Radioteledifusão UEG.
+        O padrão aqui definido atende simultaneamente à <strong>auditoria patrimonial com leitura automatizada por IA (OCR)</strong>, à
+        <strong>reconstrução volumétrica 3D (NeRF e 3D Gaussian Splatting)</strong> e à <strong>projeção de modelos proxy em Realidade Aumentada (AR)</strong>
+        para visualização de estúdios sem sobrecarga computacional.
+      </p>
+
+      <div class="kpi-row">
+        <div class="kpi-item">
+          <span class="kpi-num">4</span>
+          <span class="kpi-label">Diagramas Vetoriais</span>
+          <span class="kpi-detail">Plantas técnicas e ótica anti-reflexo</span>
+        </div>
+        <div class="kpi-item">
+          <span class="kpi-num">12</span>
+          <span class="kpi-label">Ambientes Mapeados</span>
+          <span class="kpi-detail">Plantas Layout R05 (Estúdios, COT, Redação)</span>
+        </div>
+        <div class="kpi-item">
+          <span class="kpi-num">60% - 70%</span>
+          <span class="kpi-label">Overlap Obrigatório</span>
+          <span class="kpi-detail">Garantia de pontos homólogos (SfM)</span>
+        </div>
+        <div class="kpi-item">
+          <span class="kpi-num">.GLB / .USDZ</span>
+          <span class="kpi-label">Padrão WebXR & AR</span>
+          <span class="kpi-detail">Modelos Proxy prontos para Android/iOS</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         SEÇÃO 1: DIAGRAMAS TÉCNICOS OBRIGATÓRIOS
+         ========================================================================== -->
+    <div class="section-title-wrap">
+      <div>
+        <h3 class="section-title">📐 Esquemas Técnicos & Geometria de Captura</h3>
+        <p class="section-subtitle">Padrões gráficos de alinhamento angular, sobreposição de quadros e iluminação</p>
+      </div>
+    </div>
+
+    <!-- DIAGRAMA 1: TÉCNICA DOS 4 CANTOS EM 45º -->
+    <article class="diagram-card" id="diagrama1">
+      <div class="diagram-header">
+        <div>
+          <span class="diagram-badge">Diagrama 1 • Reconstrução Espacial</span>
+          <h3 style="font-size: 18px; font-weight: 800; margin-top: 6px;">Técnica dos 4 Cantos (Enquadramento 45º) com Ponto Focal Central</h3>
+          <p style="font-size: 13px; color: var(--text-muted);">
+            Planta arquitetônica 2D ilustrando a cobertura dos 4 vértices da sala, cones de visão coloridos, convergência no ponto focal central e altura de captura recomendada.
+          </p>
+        </div>
+      </div>
+
+      <div class="svg-container">
+        <!-- SVG DIAGRAMA 1: PLANTA 4 CANTOS EM 45º -->
+        <svg viewBox="0 0 850 520" width="850" height="520" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <!-- Gradiente de Fundo do Grid -->
+            <pattern id="gridPattern" width="20" height="20" patternUnits="userSpaceOnUse">
+              <path d="M 20 0 L 0 0 0 20" fill="none" stroke="currentColor" stroke-width="0.5" opacity="0.1" />
+            </pattern>
+
+            <!-- Cones de Visão Coloridos -->
+            <linearGradient id="coneCanto1" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="#10b981" stop-opacity="0.6"/>
+              <stop offset="100%" stop-color="#10b981" stop-opacity="0.05"/>
+            </linearGradient>
+            <linearGradient id="coneCanto2" x1="100%" y1="0%" x2="0%" y2="100%">
+              <stop offset="0%" stop-color="#3b82f6" stop-opacity="0.6"/>
+              <stop offset="100%" stop-color="#3b82f6" stop-opacity="0.05"/>
+            </linearGradient>
+            <linearGradient id="coneCanto3" x1="100%" y1="100%" x2="0%" y2="0%">
+              <stop offset="0%" stop-color="#8b5cf6" stop-opacity="0.6"/>
+              <stop offset="100%" stop-color="#8b5cf6" stop-opacity="0.05"/>
+            </linearGradient>
+            <linearGradient id="coneCanto4" x1="0%" y1="100%" x2="100%" y2="0%">
+              <stop offset="0%" stop-color="#f59e0b" stop-opacity="0.6"/>
+              <stop offset="100%" stop-color="#f59e0b" stop-opacity="0.05"/>
+            </linearGradient>
+
+            <!-- Marcador de Seta -->
+            <marker id="arrowHead" markerWidth="6" markerHeight="6" refX="4" refY="3" orient="auto">
+              <path d="M0,0 L6,3 L0,6 Z" fill="var(--primary)" />
+            </marker>
+          </defs>
+
+          <!-- Fundo do Diagrama -->
+          <rect width="850" height="520" rx="12" fill="var(--card)" />
+          <rect width="850" height="520" fill="url(#gridPattern)" />
+
+          <!-- PLANTA DO CÔMODO (ESTÚDIO CRIA LAB) -->
+          <!-- Paredes Externas -->
+          <rect x="70" y="60" width="500" height="380" rx="4" fill="var(--card-alt)" stroke="var(--text)" stroke-width="4"/>
+          
+          <!-- Placas Acústicas / Tratamento Acústico nas Paredes -->
+          <line x1="85" y1="60" x2="555" y2="60" stroke="#0ea5e9" stroke-width="3" stroke-dasharray="12,6"/>
+          <line x1="85" y1="440" x2="555" y2="440" stroke="#0ea5e9" stroke-width="3" stroke-dasharray="12,6"/>
+          <line x1="70" y1="75" x2="70" y2="425" stroke="#0ea5e9" stroke-width="3" stroke-dasharray="12,6"/>
+          <line x1="570" y1="75" x2="570" y2="425" stroke="#0ea5e9" stroke-width="3" stroke-dasharray="12,6"/>
+
+          <!-- Porta Acústica (Entrada Estúdio) no Canto Inferior Direito -->
+          <path d="M 460 440 A 60 60 0 0 1 520 380" fill="none" stroke="#64748b" stroke-width="1.5" stroke-dasharray="4,4"/>
+          <line x1="460" y1="440" x2="520" y2="380" stroke="#64748b" stroke-width="2.5"/>
+          <text x="475" y="420" font-size="10" font-weight="600" fill="var(--text-muted)">Porta Acústica</text>
+
+          <!-- Visor / Janela Acústica com COT -->
+          <line x1="70" y1="180" x2="70" y2="320" stroke="#0284c7" stroke-width="6"/>
+          <text x="80" y="255" font-size="10" font-weight="700" fill="#0284c7" transform="rotate(-90 80,255)">Visor Vidro Duplo (COT)</text>
+
+          <!-- Mobiliário Central (Mesa Técnica de Operação / Apresentação) -->
+          <rect x="250" y="210" width="140" height="80" rx="8" fill="var(--card)" stroke="var(--border)" stroke-width="2"/>
+          <text x="320" y="245" font-size="11" font-weight="700" text-anchor="middle" fill="var(--text)">Bancada Técnica</text>
+          <text x="320" y="260" font-size="9" text-anchor="middle" fill="var(--text-muted)">Mesas X32 / ATEM 4K</text>
+
+          <!-- Linhas de Eixos Pontilhadas em 45º Convergentes -->
+          <line x1="105" y1="95" x2="320" y2="250" stroke="#10b981" stroke-width="2" stroke-dasharray="6,4"/>
+          <line x1="535" y1="95" x2="320" y2="250" stroke="#3b82f6" stroke-width="2" stroke-dasharray="6,4"/>
+          <line x1="535" y1="405" x2="320" y2="250" stroke="#8b5cf6" stroke-width="2" stroke-dasharray="6,4"/>
+          <line x1="105" y1="405" x2="320" y2="250" stroke="#f59e0b" stroke-width="2" stroke-dasharray="6,4"/>
+
+          <!-- CONES DE VISÃO (Ângulo de Abertura 75º apontados para o centro em 45º) -->
+          <!-- Cone 1 (Noroeste) -->
+          <path d="M 105 95 L 430 140 A 350 350 0 0 1 180 390 Z" fill="url(#coneCanto1)" />
+          <!-- Cone 2 (Nordeste) -->
+          <path d="M 535 95 L 460 390 A 350 350 0 0 1 210 140 Z" fill="url(#coneCanto2)" />
+          <!-- Cone 3 (Sudeste) -->
+          <path d="M 535 405 L 210 360 A 350 350 0 0 1 460 110 Z" fill="url(#coneCanto3)" />
+          <!-- Cone 4 (Sudoeste) -->
+          <path d="M 105 405 L 180 110 A 350 350 0 0 1 430 360 Z" fill="url(#coneCanto4)" />
+
+          <!-- Ponto Focal Central (Target) -->
+          <circle cx="320" cy="250" r="16" fill="none" stroke="#ef4444" stroke-width="2" stroke-dasharray="4,2"/>
+          <circle cx="320" cy="250" r="6" fill="#ef4444"/>
+          <circle cx="320" cy="250" r="2" fill="#ffffff"/>
+          <text x="320" y="280" font-size="10" font-weight="800" text-anchor="middle" fill="#ef4444">🎯 PONTO FOCAL CENTRAL</text>
+          <text x="320" y="293" font-size="8.5" text-anchor="middle" fill="var(--text-muted)">(Convergência dos 4 Eixos)</text>
+
+          <!-- CÂMERAS NOS 4 CANTOS -->
+          <!-- Câmera 1 (Canto 1 - Noroeste) -->
+          <g transform="translate(105, 95)">
+            <circle cx="0" cy="0" r="14" fill="#10b981" />
+            <path d="M -6 -4 L -2 -4 L 0 -7 L 4 -7 L 6 -4 L 8 -4 C 9 -4 10 -3 10 -2 L 10 5 C 10 6 9 7 8 7 L -6 7 C -7 7 -8 6 -8 5 L -8 -2 C -8 -3 -7 -4 -6 -4 Z" fill="#ffffff"/>
+            <circle cx="1" cy="2" r="3" fill="#10b981"/>
+            <text x="-5" y="-18" font-size="10" font-weight="800" fill="#10b981">CANTO 1 (45º)</text>
+          </g>
+
+          <!-- Câmera 2 (Canto 2 - Nordeste) -->
+          <g transform="translate(535, 95)">
+            <circle cx="0" cy="0" r="14" fill="#3b82f6" />
+            <path d="M -6 -4 L -2 -4 L 0 -7 L 4 -7 L 6 -4 L 8 -4 C 9 -4 10 -3 10 -2 L 10 5 C 10 6 9 7 8 7 L -6 7 C -7 7 -8 6 -8 5 L -8 -2 C -8 -3 -7 -4 -6 -4 Z" fill="#ffffff"/>
+            <circle cx="1" cy="2" r="3" fill="#3b82f6"/>
+            <text x="-60" y="-18" font-size="10" font-weight="800" fill="#3b82f6">CANTO 2 (135º)</text>
+          </g>
+
+          <!-- Câmera 3 (Canto 3 - Sudeste) -->
+          <g transform="translate(535, 405)">
+            <circle cx="0" cy="0" r="14" fill="#8b5cf6" />
+            <path d="M -6 -4 L -2 -4 L 0 -7 L 4 -7 L 6 -4 L 8 -4 C 9 -4 10 -3 10 -2 L 10 5 C 10 6 9 7 8 7 L -6 7 C -7 7 -8 6 -8 5 L -8 -2 C -8 -3 -7 -4 -6 -4 Z" fill="#ffffff"/>
+            <circle cx="1" cy="2" r="3" fill="#8b5cf6"/>
+            <text x="-60" y="28" font-size="10" font-weight="800" fill="#8b5cf6">CANTO 3 (225º)</text>
+          </g>
+
+          <!-- Câmera 4 (Canto 4 - Sudoeste) -->
+          <g transform="translate(105, 405)">
+            <circle cx="0" cy="0" r="14" fill="#f59e0b" />
+            <path d="M -6 -4 L -2 -4 L 0 -7 L 4 -7 L 6 -4 L 8 -4 C 9 -4 10 -3 10 -2 L 10 5 C 10 6 9 7 8 7 L -6 7 C -7 7 -8 6 -8 5 L -8 -2 C -8 -3 -7 -4 -6 -4 Z" fill="#ffffff"/>
+            <circle cx="1" cy="2" r="3" fill="#f59e0b"/>
+            <text x="-5" y="28" font-size="10" font-weight="800" fill="#f59e0b">CANTO 4 (315º)</text>
+          </g>
+
+          <!-- PAINEL LATERAL: COTA DE ALTURA RECOMENDADA (H = 1,50m - 1,60m) -->
+          <g transform="translate(620, 60)">
+            <rect x="0" y="0" width="200" height="380" rx="8" fill="var(--card-alt)" stroke="var(--border)" stroke-width="1.5"/>
+            
+            <text x="100" y="28" font-size="12" font-weight="800" text-anchor="middle" fill="var(--text)">COTA VERTICAL DE DISPARO</text>
+            <line x1="20" y1="38" x2="180" y2="38" stroke="var(--border)" stroke-width="1"/>
+
+            <!-- Régua de Elevação Vertical -->
+            <!-- Teto / Pé-Direito (2,70m) -->
+            <line x1="40" y1="60" x2="160" y2="60" stroke="#64748b" stroke-width="2"/>
+            <text x="100" y="55" font-size="10" font-weight="700" text-anchor="middle" fill="#64748b">Pé-Direito Oficial: 2,70 m</text>
+
+            <!-- Piso / Chão (0,00m) -->
+            <line x1="40" y1="340" x2="160" y2="340" stroke="#64748b" stroke-width="3"/>
+            <text x="100" y="358" font-size="10" font-weight="700" text-anchor="middle" fill="#64748b">Nível do Piso: 0,00 m</text>
+
+            <!-- Eixo Central da Régua -->
+            <line x1="60" y1="60" x2="60" y2="340" stroke="#94a3b8" stroke-width="1.5" stroke-dasharray="3,3"/>
+
+            <!-- Faixa de Altura Recomendada (1.50m - 1.60m) -->
+            <!-- Calculando posição proporcional: 2.70m = 280px (de 60 a 340). 1.55m do piso = 340 - (1.55/2.70 * 280) = 340 - 160 = 180 -->
+            <rect x="50" y="170" width="130" height="40" rx="6" fill="var(--primary-light)" stroke="var(--primary)" stroke-width="2"/>
+            
+            <!-- Linha da Lente -->
+            <line x1="40" y1="190" x2="180" y2="190" stroke="#0284c7" stroke-width="2" stroke-dasharray="4,2"/>
+            <circle cx="60" cy="190" r="5" fill="#0284c7"/>
+
+            <text x="115" y="186" font-size="11" font-weight="800" text-anchor="middle" fill="var(--primary)">ALTURA IDEAL (H)</text>
+            <text x="115" y="202" font-size="12" font-weight="800" text-anchor="middle" fill="var(--primary)">1,50 m a 1,60 m</text>
+
+            <!-- Ícone Operador / Olhos -->
+            <g transform="translate(145, 125)">
+              <circle cx="8" cy="8" r="7" fill="none" stroke="var(--text-muted)" stroke-width="1.5"/>
+              <circle cx="8" cy="8" r="3" fill="var(--text)"/>
+              <text x="8" y="24" font-size="8.5" font-weight="600" text-anchor="middle" fill="var(--text-muted)">Linha dos Olhos</text>
+            </g>
+
+            <!-- Dicas Técnicas no Card -->
+            <g transform="translate(20, 240)">
+              <rect x="0" y="0" width="160" height="85" rx="6" fill="var(--card)" stroke="var(--border)" stroke-width="1"/>
+              <text x="10" y="18" font-size="9.5" font-weight="700" fill="var(--text)">📋 REGRAS DE OURO:</text>
+              <text x="10" y="34" font-size="8.5" fill="var(--text-muted)">• Modo Paisagem (Horizontal)</text>
+              <text x="10" y="48" font-size="8.5" fill="var(--text-muted)">• Câmera nivelada (Sem inclinar)</text>
+              <text x="10" y="62" font-size="8.5" fill="var(--text-muted)">• 4 Fotos cobrem 100% da sala</text>
+              <text x="10" y="76" font-size="8.5" fill="#16a34a" font-weight="700">✓ Ancoragem 3D garantida</text>
+            </g>
+          </g>
+
+          <!-- Título Inferior da Planta -->
+          <text x="320" y="475" font-size="12" font-weight="700" text-anchor="middle" fill="var(--text)">
+            PLANTA BAIXA ESQUEMÁTICA • COBERTURA VOLUMÉTRICA DE 360º POR INTERSEÇÃO
+          </text>
+          <text x="320" y="492" font-size="10" text-anchor="middle" fill="var(--text-muted)">
+            Os 4 cones translúcidos garantem sobreposição volumétrica cruzada para malhas triangulares e campos de radiação NeRF
+          </text>
+        </svg>
+      </div>
+
+      <!-- Notas Explicativas do Diagrama 1 -->
+      <div class="notes-grid">
+        <div class="note-box">
+          <h4>📍 1. Posicionamento nos Vértices</h4>
+          <p>Encoste o operador suavemente no canto da parede. Evite ficar muito à frente para não perder a amplitude total das laterais do estúdio.</p>
+        </div>
+        <div class="note-box">
+          <h4>📐 2. Giro Exato de 45º</h4>
+          <p>O centro focal de cada foto deve mirar exatamente a quina diametralmente oposta, cruzando a bancada técnica ou o ponto zero da sala.</p>
+        </div>
+        <div class="note-box">
+          <h4>👁️ 3. Linha dos Olhos (1,55m)</h4>
+          <p>A altura média humana (~1,55m) coincide com a linha de visão natural dos óculos de Realidade Aumentada (Apple Vision Pro, Meta Quest, HoloLens).</p>
+        </div>
+        <div class="note-box">
+          <h4>💡 4. Iluminação Geral Ativa</h4>
+          <p>Ligue todas as lâmpadas de teto antes do disparo. O CriaLab possui pé-direito de 2,70m, o que exige boa difusão de luz sem sombras duras.</p>
+        </div>
+      </div>
+    </article>
+
+    <!-- DIAGRAMA 2: ESQUEMA DE OVERLAP 60-70% -->
+    <article class="diagram-card" id="diagrama2">
+      <div class="diagram-header">
+        <div>
+          <span class="diagram-badge orange">Diagrama 2 • Fotogrametria & NeRF</span>
+          <h3 style="font-size: 18px; font-weight: 800; margin-top: 6px;">Sobreposição Homóloga Perimetral (Overlap de 60% a 70%)</h3>
+          <p style="font-size: 13px; color: var(--text-muted);">
+            Trajetória do fotógrafo ao longo das paredes técnicas, destacando as zonas de pontos homólogos (SIFT/ORB) essenciais para algoritmos Structure from Motion (SfM) e 3D Gaussian Splatting.
+          </p>
+        </div>
+      </div>
+
+      <div class="svg-container">
+        <!-- SVG DIAGRAMA 2: OVERLAP 60-70% -->
+        <svg viewBox="0 0 850 420" width="850" height="420" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <!-- Hachura da Zona de Overlap -->
+            <pattern id="hatchOverlap" width="10" height="10" patternTransform="rotate(45 0 0)" patternUnits="userSpaceOnUse">
+              <line x1="0" y1="0" x2="0" y2="10" stroke="#16a34a" stroke-width="2" opacity="0.4"/>
+            </pattern>
+
+            <linearGradient id="coneBlue" x1="0%" y1="100%" x2="0%" y2="0%">
+              <stop offset="0%" stop-color="#3b82f6" stop-opacity="0.5"/>
+              <stop offset="100%" stop-color="#3b82f6" stop-opacity="0.08"/>
+            </linearGradient>
+            <linearGradient id="coneGreen" x1="0%" y1="100%" x2="0%" y2="0%">
+              <stop offset="0%" stop-color="#10b981" stop-opacity="0.5"/>
+              <stop offset="100%" stop-color="#10b981" stop-opacity="0.08"/>
+            </linearGradient>
+            <linearGradient id="coneAmber" x1="0%" y1="100%" x2="0%" y2="0%">
+              <stop offset="0%" stop-color="#f59e0b" stop-opacity="0.5"/>
+              <stop offset="100%" stop-color="#f59e0b" stop-opacity="0.08"/>
+            </linearGradient>
+          </defs>
+
+          <!-- Fundo -->
+          <rect width="850" height="420" rx="12" fill="var(--card)" />
+          <rect width="850" height="420" fill="url(#gridPattern)" />
+
+          <!-- PAREDE TÉCNICA DO ESTÚDIO COM EQUIPAMENTOS (TOPO) -->
+          <rect x="60" y="40" width="730" height="45" rx="4" fill="var(--card-alt)" stroke="var(--border)" stroke-width="2"/>
+          <text x="425" y="66" font-size="12" font-weight="800" text-anchor="middle" fill="var(--text)">
+            PAREDE TÉCNICA / RACK DE PROCESSAMENTO / TRATAMENTO ACÚSTICO
+          </text>
+
+          <!-- Objetos Fixos na Parede (Alvos de Registro) -->
+          <rect x="130" y="48" width="80" height="28" rx="3" fill="#1e293b" stroke="#0ea5e9" stroke-width="1.5"/>
+          <text x="170" y="65" font-size="9" font-weight="700" text-anchor="middle" fill="#38bdf8">Patch Panel</text>
+
+          <rect x="290" y="48" width="110" height="28" rx="3" fill="#1e293b" stroke="#f59e0b" stroke-width="1.5"/>
+          <text x="345" y="65" font-size="9" font-weight="700" text-anchor="middle" fill="#fbbf24">Monitor Referência</text>
+
+          <rect x="480" y="48" width="90" height="28" rx="3" fill="#1e293b" stroke="#10b981" stroke-width="1.5"/>
+          <text x="525" y="65" font-size="9" font-weight="700" text-anchor="middle" fill="#34d399">Distribuidor SDI</text>
+
+          <rect x="650" y="48" width="80" height="28" rx="3" fill="#1e293b" stroke="#8b5cf6" stroke-width="1.5"/>
+          <text x="690" y="65" font-size="9" font-weight="700" text-anchor="middle" fill="#c084fc">Painel AC/Rede</text>
+
+          <!-- CONES DE VISÃO DAS FOTOS P1, P2 E P3 -->
+          <!-- P1 (Azul): x=220, y=280 até Parede (x=70 até x=370) -->
+          <polygon points="220,280 70,85 370,85" fill="url(#coneBlue)" />
+
+          <!-- P2 (Verde): x=425, y=280 até Parede (x=240 até x=610) -->
+          <polygon points="425,280 240,85 610,85" fill="url(#coneGreen)" />
+
+          <!-- P3 (Âmbar): x=630, y=280 até Parede (x=480 até x=780) -->
+          <polygon points="630,280 480,85 780,85" fill="url(#coneAmber)" />
+
+          <!-- ZONAS DE OVERLAP (SOBREPOSIÇÃO) -->
+          <!-- Interseção P1 e P2 (de x=240 a x=370 na parede) -->
+          <polygon points="220,280 370,85 240,85" fill="url(#hatchOverlap)" opacity="0.8"/>
+          <polygon points="425,280 370,85 240,85" fill="url(#hatchOverlap)" opacity="0.8"/>
+          <rect x="240" y="85" width="130" height="15" fill="#16a34a" opacity="0.3"/>
+          <line x1="240" y1="92" x2="370" y2="92" stroke="#16a34a" stroke-width="3"/>
+          
+          <!-- Interseção P2 e P3 (de x=480 a x=610 na parede) -->
+          <polygon points="425,280 610,85 480,85" fill="url(#hatchOverlap)" opacity="0.8"/>
+          <polygon points="630,280 610,85 480,85" fill="url(#hatchOverlap)" opacity="0.8"/>
+          <rect x="480" y="85" width="130" height="15" fill="#16a34a" opacity="0.3"/>
+          <line x1="480" y1="92" x2="610" y2="92" stroke="#16a34a" stroke-width="3"/>
+
+          <!-- CALLOUTS DE OVERLAP 65% -->
+          <g transform="translate(305, 130)">
+            <rect x="-80" y="-12" width="160" height="24" rx="12" fill="var(--card)" stroke="#16a34a" stroke-width="2"/>
+            <text x="0" y="4" font-size="10" font-weight="800" text-anchor="middle" fill="#16a34a">
+              ★ OVERLAP ~65% (P1 + P2)
+            </text>
+          </g>
+
+          <g transform="translate(545, 130)">
+            <rect x="-80" y="-12" width="160" height="24" rx="12" fill="var(--card)" stroke="#16a34a" stroke-width="2"/>
+            <text x="0" y="4" font-size="10" font-weight="800" text-anchor="middle" fill="#16a34a">
+              ★ OVERLAP ~65% (P2 + P3)
+            </text>
+          </g>
+
+          <!-- PONTOS HOMÓLOGOS ILUSTRADOS (TIE-POINTS SfM) -->
+          <circle cx="280" cy="170" r="4" fill="#00f5d4"/>
+          <circle cx="330" cy="190" r="4" fill="#00f5d4"/>
+          <circle cx="310" cy="155" r="4" fill="#00f5d4"/>
+          <line x1="280" y1="170" x2="330" y2="190" stroke="#00f5d4" stroke-width="1" stroke-dasharray="2,2"/>
+          <line x1="330" y1="190" x2="310" y2="155" stroke="#00f5d4" stroke-width="1" stroke-dasharray="2,2"/>
+          <text x="345" y="175" font-size="8.5" font-weight="700" fill="#00b4d8">Tie-Points SIFT</text>
+
+          <!-- LINHA DE TRAJETÓRIA DO OPERADOR (PASSO A PASSO) -->
+          <line x1="120" y1="280" x2="730" y2="280" stroke="var(--primary)" stroke-width="2.5" stroke-dasharray="8,6" marker-end="url(#arrowHead)"/>
+          <text x="735" y="284" font-size="10" font-weight="700" fill="var(--primary)">Sentido do Deslocamento</text>
+
+          <!-- POSIÇÃO P1 -->
+          <g transform="translate(220, 280)">
+            <circle cx="0" cy="0" r="16" fill="#3b82f6" stroke="#ffffff" stroke-width="2"/>
+            <text x="0" y="4" font-size="11" font-weight="800" text-anchor="middle" fill="#ffffff">P1</text>
+            <text x="0" y="32" font-size="10" font-weight="700" text-anchor="middle" fill="var(--text)">Foto 1</text>
+            <text x="0" y="44" font-size="8.5" text-anchor="middle" fill="var(--text-muted)">Posição Inicial</text>
+          </g>
+
+          <!-- PASSO DE DESLOCAMENTO (60-80cm) -->
+          <line x1="238" y1="260" x2="407" y2="260" stroke="var(--text-muted)" stroke-width="1.5"/>
+          <line x1="238" y1="255" x2="238" y2="265" stroke="var(--text-muted)" stroke-width="1.5"/>
+          <line x1="407" y1="255" x2="407" y2="265" stroke="var(--text-muted)" stroke-width="1.5"/>
+          <text x="322" y="253" font-size="9" font-weight="700" text-anchor="middle" fill="var(--text-muted)">Passo curto: ~60 a 80 cm</text>
+
+          <!-- POSIÇÃO P2 -->
+          <g transform="translate(425, 280)">
+            <circle cx="0" cy="0" r="16" fill="#10b981" stroke="#ffffff" stroke-width="2"/>
+            <text x="0" y="4" font-size="11" font-weight="800" text-anchor="middle" fill="#ffffff">P2</text>
+            <text x="0" y="32" font-size="10" font-weight="700" text-anchor="middle" fill="var(--text)">Foto 2</text>
+            <text x="0" y="44" font-size="8.5" text-anchor="middle" fill="#16a34a" font-weight="700">+65% Overlap</text>
+          </g>
+
+          <!-- POSIÇÃO P3 -->
+          <g transform="translate(630, 280)">
+            <circle cx="0" cy="0" r="16" fill="#f59e0b" stroke="#ffffff" stroke-width="2"/>
+            <text x="0" y="4" font-size="11" font-weight="800" text-anchor="middle" fill="#ffffff">P3</text>
+            <text x="0" y="32" font-size="10" font-weight="700" text-anchor="middle" fill="var(--text)">Foto 3</text>
+            <text x="0" y="44" font-size="8.5" text-anchor="middle" fill="#f59e0b" font-weight="700">+65% Overlap</text>
+          </g>
+
+          <!-- COMPARATIVO INFERIOR: BOA PRÁTICA VS ERRO COMUM -->
+          <g transform="translate(60, 350)">
+            <!-- Card Correto -->
+            <rect x="0" y="0" width="350" height="55" rx="6" fill="var(--card-alt)" stroke="#16a34a" stroke-width="1.5"/>
+            <circle cx="20" cy="28" r="10" fill="#dcfce7"/>
+            <text x="20" y="32" font-size="12" font-weight="800" text-anchor="middle" fill="#16a34a">✓</text>
+            <text x="40" y="24" font-size="11" font-weight="800" fill="#16a34a">Overlap Ideal: 60% a 70%</text>
+            <text x="40" y="40" font-size="9.5" fill="var(--text-muted)">Permite triangulação submilimétrica sem distorções no NeRF / Splatting.</text>
+
+            <!-- Card Incorreto -->
+            <rect x="380" y="0" width="350" height="55" rx="6" fill="var(--card-alt)" stroke="#ef4444" stroke-width="1.5"/>
+            <circle cx="400" cy="28" r="10" fill="#fee2e2"/>
+            <text x="400" y="32" font-size="12" font-weight="800" text-anchor="middle" fill="#dc2626">✕</text>
+            <text x="420" y="24" font-size="11" font-weight="800" fill="#dc2626">Overlap Insuficiente: &lt; 40%</text>
+            <text x="420" y="40" font-size="9.5" fill="var(--text-muted)">Causa falha de registro de câmera, 'buracos' na malha 3D e fantasmas.</text>
+          </g>
+        </svg>
+      </div>
+
+      <!-- Notas Explicativas do Diagrama 2 -->
+      <div class="notes-grid">
+        <div class="note-box">
+          <h4>👣 Ritmo do Passo</h4>
+          <p>Dê passos curtos e ritmados de 60cm a 80cm mantendo o mesmo eixo da parede. Não corra nem dê giros bruscos.</p>
+        </div>
+        <div class="note-box">
+          <h4>🎯 Âncora Visual Contínua</h4>
+          <p>O terço direito da Foto P1 deve obrigatoriamente se tornar o terço central da Foto P2 para fixação dos pontos homólogos.</p>
+        </div>
+        <div class="note-box">
+          <h4>⚙️ Compatibilidade NeRF & Splatting</h4>
+          <p>Softwares modernos (Luma AI, Polycam, Nerfstudio, Postshot) requerem paralelismo rigoroso para calcular as matrizes intrínsecas e extrínsecas da câmera.</p>
+        </div>
+        <div class="note-box">
+          <h4>🚫 Sem Pessoas no Enquadramento</h4>
+          <p>Certifique-se de que nenhum operador, aluno ou técnico esteja caminhando no estúdio durante a varredura perimetral.</p>
+        </div>
+      </div>
+    </article>
+
+    <!-- DIAGRAMA 3: TÉCNICA DAS 2 FOTOS & ÂNGULO ANTI-REFLEXO -->
+    <article class="diagram-card" id="diagrama3">
+      <div class="diagram-header">
+        <div>
+          <span class="diagram-badge green">Diagrama 3 • Auditoria Patrimonial</span>
+          <h3 style="font-size: 18px; font-weight: 800; margin-top: 6px;">Dupla Fotográfica por Bem & Técnica Ótica Anti-Reflexo (15º a 20º)</h3>
+          <p style="font-size: 13px; color: var(--text-muted);">
+            Protocolo rigoroso de 2 imagens por ativo: Foto 1 (Contexto / Enquadramento espacial) e Foto 2 (Macro da Plaqueta UEG / Serial do Fabricante com desvio angular contra estouro de flash e reflexo).
+          </p>
+        </div>
+      </div>
+
+      <div class="svg-container">
+        <!-- SVG DIAGRAMA 3: DUPLA FOTO & ÂNGULO ANTI-REFLEXO -->
+        <svg viewBox="0 0 850 480" width="850" height="480" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <linearGradient id="gradGlass" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="#ffffff" stop-opacity="0.8"/>
+              <stop offset="100%" stop-color="#ffffff" stop-opacity="0.1"/>
+            </linearGradient>
+            
+            <filter id="glowGreen" x="-20%" y="-20%" width="140%" height="140%">
+              <feGaussianBlur stdDeviation="3" result="blur" />
+              <feComposite in="SourceGraphic" in2="blur" operator="over" />
+            </filter>
+          </defs>
+
+          <!-- Fundo -->
+          <rect width="850" height="480" rx="12" fill="var(--card)" />
+          <rect width="850" height="480" fill="url(#gridPattern)" />
+
+          <!-- DIVISÃO CENTRAL EM 2 PAINÉIS -->
+          <line x1="425" y1="20" x2="425" y2="460" stroke="var(--border)" stroke-width="2" stroke-dasharray="6,4"/>
+
+          <!-- =======================================================
+               PAINEL ESQUERDO: FOTO 1 - CONTEXTO ESPACIAL
+               ======================================================= -->
+          <g transform="translate(30, 30)">
+            <!-- Cabeçalho Foto 1 -->
+            <rect x="0" y="0" width="370" height="34" rx="6" fill="var(--primary-light)" stroke="var(--primary)" stroke-width="1.5"/>
+            <text x="185" y="22" font-size="12" font-weight="800" text-anchor="middle" fill="var(--primary)">
+              📸 FOTO 1: CONTEXTO / ENQUADRAMENTO ESPACIAL
+            </text>
+
+            <!-- Quadro de Simulação da Foto -->
+            <rect x="15" y="48" width="340" height="230" rx="8" fill="#0f172a" stroke="#334155" stroke-width="2"/>
+
+            <!-- Cenário: Mesa de Estúdio, Switcher ATEM, Monitores, Cabeamento -->
+            <!-- Bancada -->
+            <polygon points="35,220 335,220 310,265 60,265" fill="#1e293b" stroke="#475569" stroke-width="1"/>
+            
+            <!-- Monitor Principal -->
+            <rect x="120" y="90" width="130" height="75" rx="3" fill="#0284c7" stroke="#38bdf8" stroke-width="1.5"/>
+            <rect x="175" y="165" width="20" height="30" fill="#334155"/>
+            <rect x="160" y="195" width="50" height="6" rx="2" fill="#475569"/>
+            <text x="185" y="132" font-size="9" font-weight="700" text-anchor="middle" fill="#ffffff">Preview Estúdio TV</text>
+
+            <!-- Switcher / Mesa de Operação Blackmagic / Behringer -->
+            <polygon points="100,215 270,215 285,250 85,250" fill="#090d16" stroke="#94a3b8" stroke-width="1"/>
+            <!-- Botões luminosos do Switcher -->
+            <circle cx="115" cy="235" r="3" fill="#ef4444"/>
+            <circle cx="125" cy="235" r="3" fill="#22c55e"/>
+            <circle cx="135" cy="235" r="3" fill="#3b82f6"/>
+            <circle cx="145" cy="235" r="3" fill="#f59e0b"/>
+            <!-- Faders de Áudio -->
+            <line x1="175" y1="225" x2="175" y2="245" stroke="#ffffff" stroke-width="1.5"/>
+            <line x1="190" y1="225" x2="190" y2="245" stroke="#ffffff" stroke-width="1.5"/>
+            <line x1="205" y1="225" x2="205" y2="245" stroke="#ffffff" stroke-width="1.5"/>
+
+            <!-- Retículo de Foco da Câmera (Enquadramento Aberto) -->
+            <path d="M 50 70 L 70 70 M 50 70 L 50 90" stroke="#38bdf8" stroke-width="2" fill="none"/>
+            <path d="M 320 70 L 300 70 M 320 70 L 320 90" stroke="#38bdf8" stroke-width="2" fill="none"/>
+            <path d="M 50 250 L 70 250 M 50 250 L 50 230" stroke="#38bdf8" stroke-width="2" fill="none"/>
+            <path d="M 320 250 L 300 250 M 320 250 L 320 230" stroke="#38bdf8" stroke-width="2" fill="none"/>
+
+            <!-- Distância Recomendada do Fotógrafo: 1,5m - 2,0m -->
+            <rect x="95" y="60" width="180" height="20" rx="10" fill="rgba(0,0,0,0.6)"/>
+            <text x="185" y="74" font-size="9" font-weight="700" text-anchor="middle" fill="#38bdf8">
+              Distância Focal: 1,5 m a 2,0 m
+            </text>
+
+            <!-- 3 Objetivos da Foto 1 -->
+            <g transform="translate(15, 290)">
+              <rect x="0" y="0" width="340" height="115" rx="6" fill="var(--card-alt)" stroke="var(--border)" stroke-width="1"/>
+              <text x="14" y="22" font-size="11" font-weight="800" fill="var(--text)">FINALIDADE TÉCNICA DA FOTO 1:</text>
+              
+              <text x="14" y="42" font-size="10" font-weight="700" fill="var(--primary)">1. Localização Espacial Exata:</text>
+              <text x="14" y="56" font-size="9.5" fill="var(--text-muted)">Identifica a bancada, rack ou tripé onde o ativo opera.</text>
+
+              <text x="14" y="74" font-size="10" font-weight="700" fill="var(--primary)">2. Condições Físicas & Acessórios:</text>
+              <text x="14" y="88" font-size="9.5" fill="var(--text-muted)">Comprova cabos instalados, fontes de alimentação e integridade.</text>
+
+              <text x="14" y="104" font-size="9.5" font-weight="700" fill="#16a34a">✓ Subsídio para Ancoragem XYZ no Gêmeo Digital</text>
+            </g>
+          </g>
+
+          <!-- =======================================================
+               PAINEL DIREITO: FOTO 2 - MACRO & ÂNGULO ANTI-REFLEXO
+               ======================================================= -->
+          <g transform="translate(450, 30)">
+            <!-- Cabeçalho Foto 2 -->
+            <rect x="0" y="0" width="370" height="34" rx="6" fill="var(--accent-light)" stroke="var(--accent)" stroke-width="1.5"/>
+            <text x="185" y="22" font-size="12" font-weight="800" text-anchor="middle" fill="var(--accent)">
+              🔍 FOTO 2: MACRO COM ÂNGULO ANTI-REFLEXO (15º-20º)
+            </text>
+
+            <!-- ESQUEMA ÓTICO ANTI-REFLEXO -->
+            <rect x="15" y="48" width="340" height="150" rx="8" fill="var(--card-alt)" stroke="var(--border)" stroke-width="1.5"/>
+
+            <!-- Plaqueta Metálica Reflexiva (Base) -->
+            <rect x="90" y="165" width="200" height="16" rx="2" fill="#cbd5e1" stroke="#475569" stroke-width="1.5"/>
+            <text x="190" y="177" font-size="9" font-weight="800" text-anchor="middle" fill="#1e293b">PLAQUETA DE ALUMÍNIO REFLEXIVA</text>
+
+            <!-- Linha Normal (90º) -->
+            <line x1="190" y1="65" x2="190" y2="165" stroke="#94a3b8" stroke-width="1" stroke-dasharray="3,3"/>
+            <text x="195" y="75" font-size="8" fill="#94a3b8">Normal (90º)</text>
+
+            <!-- Lâmpada / Flash no Teto -->
+            <g transform="translate(190, 60)">
+              <circle cx="0" cy="0" r="10" fill="#fbbf24"/>
+              <text x="0" y="4" font-size="9" font-weight="800" text-anchor="middle" fill="#0f172a">💡</text>
+            </g>
+
+            <!-- CASO 1: ERRO - Disparo Perpendicular a 90º (Reflexo Especular Estoura OCR) -->
+            <line x1="190" y1="72" x2="190" y2="165" stroke="#ef4444" stroke-width="2"/>
+            <circle cx="190" cy="165" r="14" fill="#ef4444" opacity="0.3"/>
+            <text x="110" y="105" font-size="8.5" font-weight="700" fill="#ef4444">❌ ERRO: Disparo a 90º</text>
+            <text x="110" y="117" font-size="7.5" fill="#ef4444">Flash estoura o leitor de barras</text>
+
+            <!-- CASO 2: CORRETO - Celular Inclinado a 15º - 20º -->
+            <!-- Raio de Luz Incidente Inclinado -->
+            <line x1="180" y1="72" x2="140" y2="165" stroke="#f59e0b" stroke-width="1.5" stroke-dasharray="4,2"/>
+            <!-- Reflexo Espelhado Rebate para Longe -->
+            <line x1="140" y1="165" x2="100" y2="72" stroke="#f59e0b" stroke-width="1.5" stroke-dasharray="4,2"/>
+            
+            <!-- Câmera do Celular em 18º -->
+            <g transform="translate(265, 85) rotate(-18)">
+              <rect x="-10" y="-18" width="20" height="36" rx="4" fill="#0284c7" stroke="#ffffff" stroke-width="1.5"/>
+              <circle cx="0" cy="-8" r="3" fill="#38bdf8"/>
+              <text x="16" y="2" font-size="9" font-weight="800" fill="#0284c7">15º a 20º</text>
+            </g>
+            <line x1="265" y1="95" x2="190" y2="165" stroke="#16a34a" stroke-width="2.5"/>
+            <text x="245" y="135" font-size="9" font-weight="800" fill="#16a34a">✓ Visão Limpa</text>
+            <text x="245" y="147" font-size="8" fill="#16a34a">Sem Reflexo</text>
+
+            <!-- SIMULAÇÃO DA PLAQUETA UEG & SERIAL TÉCNICO -->
+            <g transform="translate(15, 210)">
+              <!-- Placa UEG Metálica -->
+              <rect x="0" y="0" width="340" height="85" rx="6" fill="#f8fafc" stroke="#475569" stroke-width="2"/>
+              
+              <!-- Logotipo UEG e Título -->
+              <rect x="12" y="10" width="45" height="18" rx="3" fill="#0d47a1"/>
+              <text x="34" y="23" font-size="9" font-weight="900" text-anchor="middle" fill="#ffffff">UEG</text>
+              <text x="65" y="23" font-size="11" font-weight="800" fill="#0f172a">PATRIMÔNIO UNIVERSIDADE ESTADUAL DE GOIÁS</text>
+
+              <!-- Código de Barras Nítido -->
+              <g transform="translate(15, 36)">
+                <!-- Barras -->
+                <line x1="0" y1="0" x2="0" y2="28" stroke="#000000" stroke-width="3"/>
+                <line x1="6" y1="0" x2="6" y2="28" stroke="#000000" stroke-width="1.5"/>
+                <line x1="12" y1="0" x2="12" y2="28" stroke="#000000" stroke-width="4"/>
+                <line x1="20" y1="0" x2="20" y2="28" stroke="#000000" stroke-width="2"/>
+                <line x1="26" y1="0" x2="26" y2="28" stroke="#000000" stroke-width="1"/>
+                <line x1="32" y1="0" x2="32" y2="28" stroke="#000000" stroke-width="3"/>
+                <line x1="40" y1="0" x2="40" y2="28" stroke="#000000" stroke-width="2"/>
+                <line x1="48" y1="0" x2="48" y2="28" stroke="#000000" stroke-width="4"/>
+                <line x1="56" y1="0" x2="56" y2="28" stroke="#000000" stroke-width="1.5"/>
+                <line x1="62" y1="0" x2="62" y2="28" stroke="#000000" stroke-width="3"/>
+                <line x1="70" y1="0" x2="70" y2="28" stroke="#000000" stroke-width="2"/>
+                <line x1="78" y1="0" x2="78" y2="28" stroke="#000000" stroke-width="3.5"/>
+                
+                <!-- Número Tombamento -->
+                <text x="110" y="20" font-size="18" font-weight="900" letter-spacing="2" fill="#0d47a1">048123</text>
+              </g>
+
+              <!-- Etiqueta do Fabricante (Dell Service Tag / Sony S/N) -->
+              <rect x="235" y="36" width="95" height="38" rx="3" fill="#f1f5f9" stroke="#94a3b8" stroke-width="1"/>
+              <text x="242" y="48" font-size="7.5" font-weight="700" fill="#475569">DELL SERVICE TAG:</text>
+              <text x="242" y="60" font-size="11" font-weight="900" fill="#0f172a">7XG2M93</text>
+              <text x="242" y="70" font-size="7" fill="#64748b">S/N: 489201840-A</text>
+            </g>
+
+            <!-- Resumo das Instruções Macro -->
+            <g transform="translate(15, 305)">
+              <rect x="0" y="0" width="340" height="100" rx="6" fill="var(--card-alt)" stroke="var(--border)" stroke-width="1"/>
+              <text x="14" y="20" font-size="10.5" font-weight="800" fill="var(--text)">RECOMENDAÇÕES PARA A IA RECONHECER:</text>
+              <text x="14" y="38" font-size="9.5" fill="var(--text-muted)">• <strong>Incline 15º a 20º:</strong> Elimina o hotspot branco especular.</text>
+              <text x="14" y="54" font-size="9.5" fill="var(--text-muted)">• <strong>Enquadre o S/N do Fabricante:</strong> Salva itens sem plaqueta!</text>
+              <text x="14" y="70" font-size="9.5" fill="var(--text-muted)">• <strong>Foco Manual:</strong> Toque na tela do celular sobre as barras pretas.</text>
+              <text x="14" y="88" font-size="9.5" font-weight="700" fill="#16a34a">✓ Taxa de Acerto de OCR por IA Multimodal: 99.4%</text>
+            </g>
+          </g>
+
+          <!-- LEGENDA INFERIOR -->
+          <text x="425" y="465" font-size="11" font-weight="700" text-anchor="middle" fill="var(--text)">
+            REGRA BÁSICA: TODO EQUIPAMENTO DEVE POSSUIR A DUPLA [FOTO CONTEXTO + FOTO MACRO COM ÂNGULO ANTI-REFLEXO]
+          </text>
+        </svg>
+      </div>
+
+      <!-- Notas Explicativas do Diagrama 3 -->
+      <div class="notes-grid">
+        <div class="note-box">
+          <h4>📱 Por que inclinar 15º a 20º?</h4>
+          <p>As plaquetas de patrimônio da UEG são de alumínio prensado com película espelhada. Ao disparar de frente (90º), o reflexo satura o sensor e apaga os traços do código de barras.</p>
+        </div>
+        <div class="note-box">
+          <h4>🏷️ Service Tag & Número de Série</h4>
+          <p>Se o equipamento estiver sem a plaqueta de tombamento UEG, a Foto 2 da etiqueta do fabricante (ex: Dell Service Tag, Sony S/N) permite à IA resgatar o histórico contábil no SEI.</p>
+        </div>
+        <div class="note-box">
+          <h4>🗄️ Equipamentos em Rack (COT)</h4>
+          <p>Para o rack central: 1 foto geral do rack inteiro de frente, 1 foto de cada módulo (1U a 4U) e 1 foto do cabeamento traseiro e conexões de rede.</p>
+        </div>
+        <div class="note-box">
+          <h4>⚖️ Salvaguarda Contra TCA</h4>
+          <p>A nitidez da foto do número de série é o documento probatório que impede a abertura indevida de Termo Circunstanciado Administrativo perante a auditoria estadual.</p>
+        </div>
+      </div>
+    </article>
+
+    <!-- DIAGRAMA 4: FLUXOGRAMA PIPELINE DIGITAL TWIN & REALIDADE AUMENTADA -->
+    <article class="diagram-card" id="diagrama4">
+      <div class="diagram-header">
+        <div>
+          <span class="diagram-badge purple">Diagrama 4 • Arquitetura Digital Twin</span>
+          <h3 style="font-size: 18px; font-weight: 800; margin-top: 6px;">Pipeline do Gêmeo Digital: Captura, IA, Modelos Proxy 3D & Realidade Aumentada (AR)</h3>
+          <p style="font-size: 13px; color: var(--text-muted);">
+            Fluxo fim a fim demonstrando como fotos de campo são processadas sem desperdício de tempo com modelagem 3D manual: o agente de IA reconhece o modelo e ancora proxies otimizados (.GLB e .USDZ) para Realidade Aumentada.
+          </p>
+        </div>
+      </div>
+
+      <div class="svg-container">
+        <!-- SVG DIAGRAMA 4: PIPELINE DIGITAL TWIN & AR -->
+        <svg viewBox="0 0 920 360" width="920" height="360" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <linearGradient id="flowGrad1" x1="0%" y1="0%" x2="100%" y2="0%">
+              <stop offset="0%" stop-color="#3b82f6"/>
+              <stop offset="100%" stop-color="#0284c7"/>
+            </linearGradient>
+            <linearGradient id="flowGrad2" x1="0%" y1="0%" x2="100%" y2="0%">
+              <stop offset="0%" stop-color="#0284c7"/>
+              <stop offset="100%" stop-color="#10b981"/>
+            </linearGradient>
+            <linearGradient id="flowGrad3" x1="0%" y1="0%" x2="100%" y2="0%">
+              <stop offset="0%" stop-color="#10b981"/>
+              <stop offset="100%" stop-color="#f59e0b"/>
+            </linearGradient>
+            <linearGradient id="flowGrad4" x1="0%" y1="0%" x2="100%" y2="0%">
+              <stop offset="0%" stop-color="#f59e0b"/>
+              <stop offset="100%" stop-color="#8b5cf6"/>
+            </linearGradient>
+
+            <marker id="pipeArrow" markerWidth="8" markerHeight="8" refX="5" refY="4" orient="auto">
+              <path d="M0,0 L8,4 L0,8 Z" fill="var(--primary)" />
+            </marker>
+          </defs>
+
+          <!-- Fundo -->
+          <rect width="920" height="360" rx="12" fill="var(--card)" />
+          <rect width="920" height="360" fill="url(#gridPattern)" />
+
+          <!-- =======================================================
+               5 NÓS ARQUITETÔNICOS DO PIPELINE
+               ======================================================= -->
+
+          <!-- NÓ 1: CAPTURA DE CAMPO -->
+          <g transform="translate(30, 45)">
+            <rect x="0" y="0" width="150" height="180" rx="8" fill="var(--card-alt)" stroke="#3b82f6" stroke-width="2"/>
+            <rect x="0" y="0" width="150" height="28" rx="8" fill="#3b82f6"/>
+            <text x="75" y="18" font-size="10" font-weight="800" text-anchor="middle" fill="#ffffff">1. CAPTURA CAMPO</text>
+
+            <!-- Ícone Celular / Câmera -->
+            <circle cx="75" cy="65" r="22" fill="var(--primary-light)"/>
+            <path d="M 68 55 L 82 55 C 84 55 86 57 86 59 L 86 73 C 86 75 84 77 82 77 L 68 77 C 66 77 64 75 64 73 L 64 59 C 64 57 66 55 68 55 Z" fill="none" stroke="#3b82f6" stroke-width="2"/>
+            <circle cx="75" cy="66" r="4" fill="#3b82f6"/>
+
+            <text x="75" y="105" font-size="10" font-weight="700" text-anchor="middle" fill="var(--text)">Smartphone / DSLR</text>
+            <text x="75" y="122" font-size="8.5" text-anchor="middle" fill="var(--text-muted)">• 4 Cantos em 45º</text>
+            <text x="75" y="136" font-size="8.5" text-anchor="middle" fill="var(--text-muted)">• Overlap 60-70%</text>
+            <text x="75" y="150" font-size="8.5" text-anchor="middle" fill="var(--text-muted)">• Dupla de Fotos</text>
+            <rect x="15" y="160" width="120" height="14" rx="7" fill="var(--primary-light)"/>
+            <text x="75" y="170" font-size="8" font-weight="700" text-anchor="middle" fill="#0284c7">Layout R05</text>
+          </g>
+
+          <!-- CONECTOR 1 -> 2 -->
+          <line x1="182" y1="135" x2="208" y2="135" stroke="#3b82f6" stroke-width="3" marker-end="url(#pipeArrow)"/>
+
+          <!-- NÓ 2: AUDITORIA IA MULTIMODAL -->
+          <g transform="translate(210, 45)">
+            <rect x="0" y="0" width="150" height="180" rx="8" fill="var(--card-alt)" stroke="#0284c7" stroke-width="2"/>
+            <rect x="0" y="0" width="150" height="28" rx="8" fill="#0284c7"/>
+            <text x="75" y="18" font-size="10" font-weight="800" text-anchor="middle" fill="#ffffff">2. IA MULTIMODAL</text>
+
+            <!-- Ícone Cérebro / OCR -->
+            <circle cx="75" cy="65" r="22" fill="#e0f2fe"/>
+            <path d="M 66 60 Q 75 52 84 60 Q 88 70 80 76 Q 75 80 70 76 Q 62 70 66 60 Z" fill="none" stroke="#0284c7" stroke-width="2"/>
+            <circle cx="75" cy="67" r="3" fill="#0284c7"/>
+
+            <text x="75" y="105" font-size="10" font-weight="700" text-anchor="middle" fill="var(--text)">Visão Computacional</text>
+            <text x="75" y="122" font-size="8.5" text-anchor="middle" fill="var(--text-muted)">• OCR Plaqueta UEG</text>
+            <text x="75" y="136" font-size="8.5" text-anchor="middle" fill="var(--text-muted)">• Reconhece Marca</text>
+            <text x="75" y="150" font-size="8.5" text-anchor="middle" fill="var(--text-muted)">• Identifica Modelo</text>
+            <rect x="15" y="160" width="120" height="14" rx="7" fill="#e0f2fe"/>
+            <text x="75" y="170" font-size="8" font-weight="700" text-anchor="middle" fill="#0369a1">Gemini / Reconcile</text>
+          </g>
+
+          <!-- CONECTOR 2 -> 3 -->
+          <line x1="362" y1="135" x2="388" y2="135" stroke="#0284c7" stroke-width="3" marker-end="url(#pipeArrow)"/>
+
+          <!-- NÓ 3: CATÁLOGO PROXY 3D -->
+          <g transform="translate(390, 45)">
+            <rect x="0" y="0" width="150" height="180" rx="8" fill="var(--card-alt)" stroke="#10b981" stroke-width="2"/>
+            <rect x="0" y="0" width="150" height="28" rx="8" fill="#10b981"/>
+            <text x="75" y="18" font-size="10" font-weight="800" text-anchor="middle" fill="#ffffff">3. PROXY 3D WEB</text>
+
+            <!-- Ícone Cubo 3D -->
+            <circle cx="75" cy="65" r="22" fill="#dcfce7"/>
+            <path d="M 75 52 L 87 59 L 87 73 L 75 80 L 63 73 L 63 59 Z" fill="none" stroke="#10b981" stroke-width="2"/>
+            <line x1="75" y1="52" x2="75" y2="80" stroke="#10b981" stroke-width="1.5"/>
+            <line x1="63" y1="59" x2="87" y2="73" stroke="#10b981" stroke-width="1.5"/>
+
+            <text x="75" y="105" font-size="10" font-weight="700" text-anchor="middle" fill="var(--text)">Repositórios Oficiais</text>
+            <text x="75" y="122" font-size="8.5" text-anchor="middle" fill="var(--text-muted)">• Busca Modelo Pronto</text>
+            <text x="75" y="136" font-size="8.5" text-anchor="middle" fill="var(--text-muted)">• Sem Modelagem Manual</text>
+            <text x="75" y="150" font-size="8.5" text-anchor="middle" fill="var(--text-muted)">• Formato Otimizado</text>
+            <rect x="15" y="160" width="120" height="14" rx="7" fill="#dcfce7"/>
+            <text x="75" y="170" font-size="8" font-weight="700" text-anchor="middle" fill="#15803d">GLB / USDZ / CAD</text>
+          </g>
+
+          <!-- CONECTOR 3 -> 4 -->
+          <line x1="542" y1="135" x2="568" y2="135" stroke="#10b981" stroke-width="3" marker-end="url(#pipeArrow)"/>
+
+          <!-- NÓ 4: MAQUETE COORDENADA -->
+          <g transform="translate(570, 45)">
+            <rect x="0" y="0" width="150" height="180" rx="8" fill="var(--card-alt)" stroke="#f59e0b" stroke-width="2"/>
+            <rect x="0" y="0" width="150" height="28" rx="8" fill="#f59e0b"/>
+            <text x="75" y="18" font-size="10" font-weight="800" text-anchor="middle" fill="#ffffff">4. ANCORAGEM XYZ</text>
+
+            <!-- Ícone Coordenadas Espaciais -->
+            <circle cx="75" cy="65" r="22" fill="#fef3c7"/>
+            <line x1="75" y1="50" x2="75" y2="75" stroke="#f59e0b" stroke-width="2.5"/>
+            <line x1="75" y1="75" x2="92" y2="82" stroke="#f59e0b" stroke-width="2.5"/>
+            <line x1="75" y1="75" x2="58" y2="82" stroke="#f59e0b" stroke-width="2.5"/>
+
+            <text x="75" y="105" font-size="10" font-weight="700" text-anchor="middle" fill="var(--text)">Espaço Arquitetônico</text>
+            <text x="75" y="122" font-size="8.5" text-anchor="middle" fill="var(--text-muted)">• Planta Layout R05</text>
+            <text x="75" y="136" font-size="8.5" text-anchor="middle" fill="var(--text-muted)">• Posicionamento Mesa/Rack</text>
+            <text x="75" y="150" font-size="8.5" text-anchor="middle" fill="var(--text-muted)">• Cruzamento SEI/Patrimônio</text>
+            <rect x="15" y="160" width="120" height="14" rx="7" fill="#fef3c7"/>
+            <text x="75" y="170" font-size="8" font-weight="700" text-anchor="middle" fill="#b45309">Three.js / WebGL</text>
+          </g>
+
+          <!-- CONECTOR 4 -> 5 -->
+          <line x1="722" y1="135" x2="748" y2="135" stroke="#f59e0b" stroke-width="3" marker-end="url(#pipeArrow)"/>
+
+          <!-- NÓ 5: REALIDADE AUMENTADA (AR) -->
+          <g transform="translate(750, 45)">
+            <rect x="0" y="0" width="140" height="180" rx="8" fill="var(--card-alt)" stroke="#8b5cf6" stroke-width="2"/>
+            <rect x="0" y="0" width="140" height="28" rx="8" fill="#8b5cf6"/>
+            <text x="70" y="18" font-size="10" font-weight="800" text-anchor="middle" fill="#ffffff">5. PROJEÇÃO AR</text>
+
+            <!-- Ícone Óculos AR / Retículo de Realidade Aumentada -->
+            <circle cx="70" cy="65" r="22" fill="#f3e8ff"/>
+            <rect x="52" y="58" width="16" height="14" rx="3" fill="none" stroke="#8b5cf6" stroke-width="2"/>
+            <rect x="72" y="58" width="16" height="14" rx="3" fill="none" stroke="#8b5cf6" stroke-width="2"/>
+            <line x1="68" y1="65" x2="72" y2="65" stroke="#8b5cf6" stroke-width="2"/>
+
+            <text x="70" y="105" font-size="10" font-weight="700" text-anchor="middle" fill="var(--text)">Ambiente Real</text>
+            <text x="70" y="122" font-size="8.5" text-anchor="middle" fill="var(--text-muted)">• Teste de Novos Grids</text>
+            <text x="70" y="136" font-size="8.5" text-anchor="middle" fill="var(--text-muted)">• Cenografia Interativa</text>
+            <text x="70" y="150" font-size="8.5" text-anchor="middle" fill="var(--text-muted)">• Visualização Mobile</text>
+            <rect x="10" y="160" width="120" height="14" rx="7" fill="#f3e8ff"/>
+            <text x="70" y="170" font-size="8" font-weight="700" text-anchor="middle" fill="#6d28d9">WebXR / QuickLook</text>
+          </g>
+
+          <!-- =======================================================
+               BANNER EXPLICATIVO INFERIOR: POR QUE MODELOS PROXY?
+               ======================================================= -->
+          <g transform="translate(30, 245)">
+            <rect x="0" y="0" width="860" height="85" rx="8" fill="var(--card-alt)" stroke="var(--border)" stroke-width="1.5"/>
+            
+            <circle cx="35" cy="42" r="18" fill="var(--primary-light)"/>
+            <text x="35" y="47" font-size="16" font-weight="800" text-anchor="middle" fill="var(--primary)">💡</text>
+
+            <text x="65" y="28" font-size="12" font-weight="800" fill="var(--text)">
+              POR QUE USAMOS A TÉCNICA DE MODELOS 3D PROXY (DIGITAL TWIN PROXY)?
+            </text>
+            <text x="65" y="46" font-size="10.5" fill="var(--text-muted)">
+              Não é necessário nem eficiente modelar manualmente cada risco, parafuso ou cabo de cada mesa ou câmera. Isso exigiria centenas de horas e geraria arquivos pesados (+500MB).
+            </text>
+            <text x="65" y="62" font-size="10.5" fill="var(--text-muted)">
+              O agente de IA identifica a marca/modelo (ex: <em>Behringer X32, Sony URX-P03, Dell OptiPlex</em>), busca o modelo proxy otimizado nos repositórios e exporta em <strong>.GLB</strong> (Android/WebXR) e <strong>.USDZ</strong> (iOS).
+            </text>
+            <text x="65" y="76" font-size="9.5" font-weight="700" fill="#16a34a">
+              ✓ Carregamento instantâneo a 60 FPS direto no navegador sem instalar aplicativos.
+            </text>
+          </g>
+        </svg>
+      </div>
+
+      <!-- Notas Explicativas do Diagrama 4 -->
+      <div class="notes-grid">
+        <div class="note-box">
+          <h4>🌐 Formatos AR (.GLB vs .USDZ)</h4>
+          <p>O arquivo <strong>.GLB</strong> é o formato padrão do Three.js e Android Scene Viewer. O arquivo <strong>.USDZ</strong> é utilizado nativamente no ecossistema Apple via Quick Look.</p>
+        </div>
+        <div class="note-box">
+          <h4>⚡ Zero Modelagem Manual</h4>
+          <p>Fabricantes de broadcast (Sony, Blackmagic, Yamaha, Dell) disponibilizam modelos CAD/3D exatos de seus equipamentos, economizando semanas de trabalho 3D.</p>
+        </div>
+        <div class="note-box">
+          <h4>🧪 Simulação de Estúdio sem Mudança Física</h4>
+          <p>A equipe técnica pode projetar em AR uma nova mesa de corte ou uma terceira câmera no estúdio antes de realizar compras ou furar pisos e paredes.</p>
+        </div>
+        <div class="note-box">
+          <h4>📦 Cruzamento com o Estoque Now</h4>
+          <p>Bens que não estiverem na foto recebem status imediato de <em>"Em Externa / Locação Ativa"</em> com base na planilha do Estoque Now, blindando o inventário contra TCA.</p>
+        </div>
+      </div>
+    </article>
+
+    <!-- ==========================================================================
+         SEÇÃO 2: SIMULADOR DE PASSOS DIDÁTICO INTERATIVO
+         ========================================================================== -->
+    <section class="stepper-section">
+      <div class="section-title-wrap">
+        <div>
+          <h3 class="section-title">🪜 Passo a Passo Interativo para o Operador de Campo</h3>
+          <p class="section-subtitle">Simule e acompanhe cada etapa do protocolo de captura antes de iniciar a sessão</p>
+        </div>
+      </div>
+
+      <!-- Navegação dos Passos -->
+      <div class="step-nav">
+        <button class="step-btn active" onclick="goToStep(1)">
+          <span class="step-number">Passo 01</span>
+          <span class="step-btn-title">Preparação & Luz</span>
+        </button>
+        <button class="step-btn" onclick="goToStep(2)">
+          <span class="step-number">Passo 02</span>
+          <span class="step-btn-title">Os 4 Cantos (45º)</span>
+        </button>
+        <button class="step-btn" onclick="goToStep(3)">
+          <span class="step-number">Passo 03</span>
+          <span class="step-btn-title">Varredura Perimetral</span>
+        </button>
+        <button class="step-btn" onclick="goToStep(4)">
+          <span class="step-number">Passo 04</span>
+          <span class="step-btn-title">Dupla de Ativos</span>
+        </button>
+        <button class="step-btn" onclick="goToStep(5)">
+          <span class="step-number">Passo 05</span>
+          <span class="step-btn-title">Sincronização & IA</span>
+        </button>
+      </div>
+
+      <!-- Painéis dos Passos -->
+      <!-- PASSO 1 -->
+      <div class="step-pane active" id="paneStep1">
+        <div class="step-pane-header">
+          <h3><span>1️⃣</span> Preparação do Ambiente & Iluminação Uniforme</h3>
+          <span class="diagram-badge">Etapa Pré-Disparo</span>
+        </div>
+        <p style="font-size: 13px; color: var(--text-muted); margin-bottom: 16px;">
+          Antes de disparar a primeira foto, prepare a cena para evitar ruídos óticos e facilitar tanto o OCR quanto a malha poligonal 3D:
+        </p>
+        <div class="notes-grid">
+          <div class="note-box">
+            <h4>💡 Iluminação Branca de Serviço</h4>
+            <p>Ligue todas as lâmpadas do teto. <strong>Desligue refletores RGB ou efeitos cênicos coloridos</strong>, pois tonalidades saturadas confundem a IA e distorcem as texturas da maquete 3D.</p>
+          </div>
+          <div class="note-box">
+            <h4>🧼 Lentes Impecáveis</h4>
+            <p>Limpe a lente da câmera ou smartphone com microfibra. Marcas de gordura e digitais geram halos de difração que estragam o reconhecimento de caracteres dos códigos de barra.</p>
+          </div>
+          <div class="note-box">
+            <h4>🚪 Isolamento do Espaço</h4>
+            <p>Feche as portas acústicas para evitar ruído de fundo e assegure que não haja pessoas em trânsito no estúdio durante a sessão fotográfica.</p>
+          </div>
+        </div>
+        <div class="stepper-controls">
+          <div></div>
+          <button class="btn btn-accent" onclick="goToStep(2)">Avançar para Passo 02 →</button>
+        </div>
+      </div>
+
+      <!-- PASSO 2 -->
+      <div class="step-pane" id="paneStep2">
+        <div class="step-pane-header">
+          <h3><span>2️⃣</span> Técnica dos 4 Cantos em 45º (Linha dos Olhos)</h3>
+          <span class="diagram-badge">Geometria Espacial</span>
+        </div>
+        <p style="font-size: 13px; color: var(--text-muted); margin-bottom: 16px;">
+          Registro volumétrico da sala para compor a maquete digital 3D e estabelecer as coordenadas do cômodo:
+        </p>
+        <div class="notes-grid">
+          <div class="note-box">
+            <h4>📍 Vértice por Vértice</h4>
+            <p>Posicione-se no canto Canto 1 (Noroeste), mire a 45º em direção à quina oposta. Repita a mesma operação nos cantos Nordeste, Sudeste e Sudoeste.</p>
+          </div>
+          <div class="note-box">
+            <h4>📏 Altura Fixa em 1,55m</h4>
+            <p>Mantenha a câmera na linha dos olhos (~1,50m a 1,60m). Evite elevar o celular acima da cabeça ou agachar, preservando a coerência de paralaxe.</p>
+          </div>
+          <div class="note-box">
+            <h4>📐 Modo Paisagem</h4>
+            <p>Mantenha sempre o dispositivo na horizontal. Se o estúdio possuir grid aéreo complexo, tire uma foto adicional inclinada para o teto.</p>
+          </div>
+        </div>
+        <div class="stepper-controls">
+          <button class="btn-stepper" onclick="goToStep(1)">← Voltar ao Passo 01</button>
+          <button class="btn btn-accent" onclick="goToStep(3)">Avançar para Passo 03 →</button>
+        </div>
+      </div>
+
+      <!-- PASSO 3 -->
+      <div class="step-pane" id="paneStep3">
+        <div class="step-pane-header">
+          <h3><span>3️⃣</span> Varredura Perimetral com Overlap de 60% a 70%</h3>
+          <span class="diagram-badge orange">Fotogrametria & Splatting</span>
+        </div>
+        <p style="font-size: 13px; color: var(--text-muted); margin-bottom: 16px;">
+          Garante a densidade de pontos homólogos necessária para os algoritmos de NeRF, Luma AI, Meshroom e 3D Gaussian Splatting:
+        </p>
+        <div class="notes-grid">
+          <div class="note-box">
+            <h4>👣 Passos de 60 a 80 cm</h4>
+            <p>Caminhe lateralmente ao longo do perímetro da parede disparando fotos consecutivas a cada meio metro.</p>
+          </div>
+          <div class="note-box">
+            <h4>🔁 Sobreposição Contínua</h4>
+            <p>Pelo menos 65% do que estava no quadro anterior deve aparecer no novo quadro. Sem essa sobreposição, a triangulação falha e gera "fantasmas".</p>
+          </div>
+          <div class="note-box">
+            <h4>🎯 Foco e Exposição Travados</h4>
+            <p>Trave a exposição (AE/AF Lock) para que uma parede mais escura não altere o brilho relativo entre fotos vizinhas.</p>
+          </div>
+        </div>
+        <div class="stepper-controls">
+          <button class="btn-stepper" onclick="goToStep(2)">← Voltar ao Passo 02</button>
+          <button class="btn btn-accent" onclick="goToStep(4)">Avançar para Passo 04 →</button>
+        </div>
+      </div>
+
+      <!-- PASSO 4 -->
+      <div class="step-pane" id="paneStep4">
+        <div class="step-pane-header">
+          <h3><span>4️⃣</span> Registro de Equipamentos: A Dupla Contexto + Macro</h3>
+          <span class="diagram-badge green">Auditoria Patrimonial</span>
+        </div>
+        <p style="font-size: 13px; color: var(--text-muted); margin-bottom: 16px;">
+          Para cada equipamento individual (computadores, mesas de som, câmeras, monitores, switches):
+        </p>
+        <div class="notes-grid">
+          <div class="note-box">
+            <h4>📸 Foto 1: Contexto</h4>
+            <p>Enquadre o equipamento montado no ambiente a 1,5m de distância, exibindo sua bancada e cabeamento conectado.</p>
+          </div>
+          <div class="note-box">
+            <h4>🔍 Foto 2: Macro Anti-Reflexo</h4>
+            <p>Aproxime-se da plaqueta de tombamento UEG. <strong>Incline o celular em 15º a 20º</strong> para que a luz não estoure o contraste das barras.</p>
+          </div>
+          <div class="note-box">
+            <h4>🏷️ Service Tag do Fabricante</h4>
+            <p>Caso a plaqueta UEG não exista ou esteja danificada, fotografe o número de série de fábrica (Dell Service Tag, S/N Sony).</p>
+          </div>
+        </div>
+        <div class="stepper-controls">
+          <button class="btn-stepper" onclick="goToStep(3)">← Voltar ao Passo 03</button>
+          <button class="btn btn-accent" onclick="goToStep(5)">Avançar para Passo 05 →</button>
+        </div>
+      </div>
+
+      <!-- PASSO 5 -->
+      <div class="step-pane" id="paneStep5">
+        <div class="step-pane-header">
+          <h3><span>5️⃣</span> Organização de Diretórios, Estoque Now & Reconciliação IA</h3>
+          <span class="diagram-badge purple">Finalização & Processo SEI</span>
+        </div>
+        <p style="font-size: 13px; color: var(--text-muted); margin-bottom: 16px;">
+          Conclusão da sessão, envio dos lotes fotográficos e batimento automatizado com os sistemas oficiais:
+        </p>
+        <div class="notes-grid">
+          <div class="note-box">
+            <h4>📁 Pastas Padronizadas</h4>
+            <p>Salve as imagens na estrutura: <code>fotos/01_estudio_tv/</code>, <code>fotos/02_estudio_radio/</code>, <code>fotos/07_central_operacao_tecnica/</code>, etc.</p>
+          </div>
+          <div class="note-box">
+            <h4>📦 Batimento Estoque Now</h4>
+            <p>Se um bem cadastrado não estava na sala, a planilha do <strong>Estoque Now</strong> comprova que ele estava em empréstimo ou missão externa, impedindo TCA.</p>
+          </div>
+          <div class="note-box">
+            <h4>🤖 Execução do Robô de IA</h4>
+            <p>O script <code>reconcile.py</code> cruza OCR, fotos de alta resolução e relatórios contábeis, gerando as fichas oficiais para assinatura no SEI.</p>
+          </div>
+        </div>
+        <div class="stepper-controls">
+          <button class="btn-stepper" onclick="goToStep(4)">← Voltar ao Passo 04</button>
+          <a href="dashboard.html" class="btn btn-accent">Ir para o Painel do Inventário ✓</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         SEÇÃO 3: MAPEAMENTO VISUAL DOS AMBIENTES DO CRIALAB (PLANTA OFICIAL)
+         ========================================================================== -->
+    <section class="spaces-section">
+      <div class="section-title-wrap">
+        <div>
+          <h3 class="section-title">🏢 Mapeamento Oficial dos Ambientes (Planta Layout R05)</h3>
+          <p class="section-subtitle">Clique em qualquer cômodo para inspecionar especificações acústicas, metragens e metas fotográficas</p>
+        </div>
+        <span class="diagram-badge">Referência: R05_25_11_2025.pdf</span>
+      </div>
+
+      <div class="spaces-layout-grid">
+        <!-- Grid de Cômodos Selecionáveis -->
+        <div class="rooms-card-grid" id="roomsGrid">
+          <!-- 01. COT (Auditado) -->
+          <div class="room-card active" onclick="selectRoom('cot')">
+            <div class="room-card-num"><span class="room-status-dot dot-done"></span>Auditado (31 fotos)</div>
+            <div class="room-card-name">07. Sala de Operação Técnica (COT)</div>
+            <div class="room-card-meta">Área: 12,25 m² • Rack + Bancada</div>
+          </div>
+
+          <!-- 02. Almoxarifado -->
+          <div class="room-card" onclick="selectRoom('almoxarifado')">
+            <div class="room-card-num"><span class="room-status-dot dot-pending"></span>Pendente</div>
+            <div class="room-card-name">06. Sala de Equipamentos (Acervo)</div>
+            <div class="room-card-meta">Área: 13,40 m² • Câmeras e Óticas</div>
+          </div>
+
+          <!-- 03. Estúdio 01 TV -->
+          <div class="room-card" onclick="selectRoom('estudio1')">
+            <div class="room-card-num"><span class="room-status-dot dot-pending"></span>Pendente</div>
+            <div class="room-card-name">01. Estúdio 01 - TV Broadcast</div>
+            <div class="room-card-meta">Área: 42,20 m² • Grid de Luz</div>
+          </div>
+
+          <!-- 04. Estúdio 02 Rádio -->
+          <div class="room-card" onclick="selectRoom('estudio2')">
+            <div class="room-card-num"><span class="room-status-dot dot-pending"></span>Pendente</div>
+            <div class="room-card-name">02. Estúdio 02 - Rádio</div>
+            <div class="room-card-meta">Área: 13,27 m² • Mesa de Áudio</div>
+          </div>
+
+          <!-- 05. Estúdio 03 VideoCast -->
+          <div class="room-card" onclick="selectRoom('estudio3')">
+            <div class="room-card-num"><span class="room-status-dot dot-pending"></span>Pendente</div>
+            <div class="room-card-name">03. Estúdio 03 - VideoCast</div>
+            <div class="room-card-meta">Área: 21,82 m² • Cenografia</div>
+          </div>
+
+          <!-- 06. Estúdio 04 & 05 -->
+          <div class="room-card" onclick="selectRoom('estudio45')">
+            <div class="room-card-num"><span class="room-status-dot dot-pending"></span>Pendente</div>
+            <div class="room-card-name">04 & 05. Estúdios Auxiliares</div>
+            <div class="room-card-meta">Áreas: 13,40 m² + 5,53 m²</div>
+          </div>
+
+          <!-- 07. Redação 32 Estações -->
+          <div class="room-card" onclick="selectRoom('redacao')">
+            <div class="room-card-num"><span class="room-status-dot dot-pending"></span>Pendente</div>
+            <div class="room-card-name">08. Redação (32 Estações)</div>
+            <div class="room-card-meta">Área: 111,46 m² • Maior Salão</div>
+          </div>
+
+          <!-- 08. Gabinetes E01 a E08 -->
+          <div class="room-card" onclick="selectRoom('gabinetes')">
+            <div class="room-card-num"><span class="room-status-dot dot-pending"></span>Pendente</div>
+            <div class="room-card-name">09 & 10. Gabinetes & Coordenação</div>
+            <div class="room-card-meta">8 Módulos de ~3,2m² + 13,49m²</div>
+          </div>
+
+          <!-- 09. NAUFO & Halls -->
+          <div class="room-card" onclick="selectRoom('naufo')">
+            <div class="room-card-num"><span class="room-status-dot dot-pending"></span>Pendente</div>
+            <div class="room-card-name">11 & 12. NAUFO & Circulação</div>
+            <div class="room-card-meta">Áreas: 13,67 m² + 26,86 m²</div>
+          </div>
+        </div>
+
+        <!-- Painel Inspetor Detalhado do Cômodo -->
+        <div class="room-inspector" id="roomInspector">
+          <span class="room-badge-status" id="inspStatus" style="background: var(--success-light); color: var(--success);">
+            ✓ Auditado na COT (31 fotos processadas)
+          </span>
+          <h3 id="inspName">07. Sala de Operação Técnica (COT)</h3>
+          
+          <div class="inspector-detail-row">
+            <span>Metragem Oficial:</span>
+            <span id="inspArea">12,25 m²</span>
+          </div>
+          <div class="inspector-detail-row">
+            <span>Pé-Direito Arquitetônico:</span>
+            <span id="inspHeight">2,70 m</span>
+          </div>
+          <div class="inspector-detail-row">
+            <span>Meta de Imagens:</span>
+            <span id="inspPhotos">Concluído (31 fotos em alta resolução)</span>
+          </div>
+          <div class="inspector-detail-row">
+            <span>Principais Ativos:</span>
+            <span id="inspEquip">Behringer X32, ATEM 4K, Dell OptiPlex, NovaStar, Spotware</span>
+          </div>
+
+          <div class="inspector-instructions" id="inspInstructions">
+            <strong>Orientações Específicas de Captura:</strong><br>
+            • Sala compacta com alta densidade de equipamentos em rack e bancada técnica.<br>
+            • Recomenda-se lente grande-angular (0.5x ou ~14mm equivalente) para cobrir os racks do chão ao topo.<br>
+            • Fotografar o visor de vidro duplo que conecta visualmente a COT ao Estúdio 01 TV com filtro polarizador ou inclinação de 30º para mitigar reflexos.
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         SEÇÃO 4: CHECKLIST INTERATIVO DE CAMPO
+         ========================================================================== -->
+    <section class="checklist-section" id="checklist">
+      <div class="section-title-wrap">
+        <div>
+          <h3 class="section-title">📋 Checklist Operacional de Campo</h3>
+          <p class="section-subtitle">Marque os itens antes e durante o levantamento fotográfico. O progresso é salvo automaticamente no seu navegador.</p>
+        </div>
+        <span class="diagram-badge" id="checklistCounter">0 de 8 itens verificados</span>
+      </div>
+
+      <div class="checklist-grid">
+        <label class="check-item">
+          <input type="checkbox" onchange="updateChecklist()" id="chk1">
+          <div class="check-content">
+            <strong>Bateria & Armazenamento</strong>
+            <span>Smartphone ou câmera com pelo menos 80% de carga e 15 GB livres para fotos em alta resolução / RAW.</span>
+          </div>
+        </label>
+
+        <label class="check-item">
+          <input type="checkbox" onchange="updateChecklist()" id="chk2">
+          <div class="check-content">
+            <strong>Lente Limpa com Microfibra</strong>
+            <span>Remoção completa de oleosidade e impressões digitais da lente para garantir 100% de nitidez no OCR.</span>
+          </div>
+        </label>
+
+        <label class="check-item">
+          <input type="checkbox" onchange="updateChecklist()" id="chk3">
+          <div class="check-content">
+            <strong>Iluminação de Teto Acesa</strong>
+            <span>Luzes brancas de serviço ligadas e refletores coloridos de cena desligados para não alterar texturas.</span>
+          </div>
+        </label>
+
+        <label class="check-item">
+          <input type="checkbox" onchange="updateChecklist()" id="chk4">
+          <div class="check-content">
+            <strong>Técnica dos 4 Cantos (45º)</strong>
+            <span>4 fotos tiradas dos vértices miradas para o centro focal em altura de 1,50m a 1,60m.</span>
+          </div>
+        </label>
+
+        <label class="check-item">
+          <input type="checkbox" onchange="updateChecklist()" id="chk5">
+          <div class="check-content">
+            <strong>Overlap Perimetral 60% a 70%</strong>
+            <span>Varredura contínua ao redor da sala com passos ritmados de 60cm a 80cm para alimentar o NeRF/Splatting.</span>
+          </div>
+        </label>
+
+        <label class="check-item">
+          <input type="checkbox" onchange="updateChecklist()" id="chk6">
+          <div class="check-content">
+            <strong>Dupla [Contexto + Macro Anti-Reflexo]</strong>
+            <span>Cada bem fotografado em seu local de trabalho e em close-up inclinado a 15º-20º sobre o código de barras.</span>
+          </div>
+        </label>
+
+        <label class="check-item">
+          <input type="checkbox" onchange="updateChecklist()" id="chk7">
+          <div class="check-content">
+            <strong>Service Tag / Serial do Fabricante</strong>
+            <span>Etiquetas técnicas de Dell, Sony, Behringer e Yamaha registradas para salvaguarda contábil.</span>
+          </div>
+        </label>
+
+        <label class="check-item">
+          <input type="checkbox" onchange="updateChecklist()" id="chk8">
+          <div class="check-content">
+            <strong>Pasta de Destino Correta</strong>
+            <span>Imagens organizadas rigorosamente nas pastas oficiais (ex: <code>fotos/01_estudio_tv/</code>).</span>
+          </div>
+        </label>
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         SEÇÃO 5: PERGUNTAS FREQUENTES & PROTOCOLOS ESPECIAIS (FAQ)
+         ========================================================================== -->
+    <div class="section-title-wrap">
+      <div>
+        <h3 class="section-title">❓ Resoluções Operacionais & Casos Especiais</h3>
+        <p class="section-subtitle">Instruções para situações atípicas encontradas nos estúdios da UEG</p>
+      </div>
+    </div>
+
+    <div class="faq-grid">
+      <div class="faq-card">
+        <h4>📦 O que fazer se um equipamento cadastrado não estiver na sala?</h4>
+        <p>
+          Fotografe a estante ou bancada vazia. O sistema fará a checagem com o arquivo <code>data/estoquenow.csv</code>. Se o item constar em missão externa ou empréstimo para aluno/projeto, o sistema marca a justificativa técnica automática, dispensando a abertura de TCA.
+        </p>
+      </div>
+
+      <div class="faq-card">
+        <h4>🖥️ As telas de computadores e monitores devem estar ligadas ou desligadas?</h4>
+        <p>
+          <strong>Preferencialmente desligadas ou em tela neutra.</strong> Monitores exibindo imagens dinâmicas ou com alta taxa de brilho causam cintilação (flicker) e distorcem a interpolação volumétrica do NeRF e dos modelos 3D.
+        </p>
+      </div>
+
+      <div class="faq-card">
+        <h4>🗄️ Como proceder com equipamentos em racks profundos ou embutidos?</h4>
+        <p>
+          Na COT, tire primeiro uma foto aberta do rack com porta aberta. Em seguida, fotografe cada unidade (1U, 2U, 4U) frontalmente. Se a parte traseira for acessível, fotografe o cabeamento e as etiquetas de modelo do fabricante localizadas na carcaça posterior.
+        </p>
+      </div>
+
+      <div class="faq-card">
+        <h4>🪞 Superfícies espelhadas e visores de vidro duplo</h4>
+        <p>
+          Vidros e espelhos quebram a geometria da fotogrametria clássica porque refletem o que está atrás da câmera. Para mitigar isso, posicione-se em ângulo oblíquo (~30º) e nunca aponte o flash diretamente para o vidro.
+        </p>
+      </div>
+    </div>
+
+  </main>
+
+  <!-- ==========================================================================
+       RODAPÉ OFICIAL
+       ========================================================================== -->
+  <footer>
+    <p style="font-weight: 700; margin-bottom: 6px;">
+      Universidade Estadual de Goiás • CriaLab & Radioteledifusão UEG
+    </p>
+    <p>
+      Comissão Permanente de Inventário 2026 • Unidade Universitária Goiânia - Laranjeiras • Planta Layout R05_25_11_2025
+    </p>
+    <p style="margin-top: 10px;">
+      <a href="dashboard.html">Voltar ao Painel do Inventário</a> • 
+      <a href="javascript:window.scrollTo({top: 0, behavior: 'smooth'})">Voltar ao Topo ↑</a>
+    </p>
+  </footer>
+
+  <!-- ==========================================================================
+       SCRIPTS INTERATIVOS: CONTROLE DE TEMA, STEPPER, CÔMODOS & CHECKLIST
+       ========================================================================== -->
+  <script>
+    // --- 1. Alternador de Tema Claro / Escuro ---
+    function toggleTheme() {
+      const html = document.documentElement;
+      const currentTheme = html.getAttribute('data-theme') || 'light';
+      const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+      html.setAttribute('data-theme', newTheme);
+      localStorage.setItem('crialab_theme', newTheme);
+      updateThemeIcon(newTheme);
+    }
+
+    function updateThemeIcon(theme) {
+      const icon = document.getElementById('themeIcon');
+      if (icon) {
+        icon.textContent = theme === 'dark' ? '☀️' : '🌙';
+      }
+    }
+
+    // Inicialização do tema salvo
+    (function initTheme() {
+      const savedTheme = localStorage.getItem('crialab_theme') || 'light';
+      document.documentElement.setAttribute('data-theme', savedTheme);
+      updateThemeIcon(savedTheme);
+    })();
+
+    // --- 2. Simulador de Passos Didático ---
+    function goToStep(stepIndex) {
+      // Atualiza botões de navegação
+      const stepBtns = document.querySelectorAll('.step-btn');
+      stepBtns.forEach((btn, idx) => {
+        if (idx === stepIndex - 1) {
+          btn.classList.add('active');
+        } else {
+          btn.classList.remove('active');
+        }
+      });
+
+      // Atualiza painéis de conteúdo
+      const panes = document.querySelectorAll('.step-pane');
+      panes.forEach((pane, idx) => {
+        if (idx === stepIndex - 1) {
+          pane.classList.add('active');
+        } else {
+          pane.classList.remove('active');
+        }
+      });
+    }
+
+    // --- 3. Mapeamento Visual dos Ambientes da Planta Baixa ---
+    const roomsData = {
+      cot: {
+        name: "07. Sala de Operação Técnica (COT)",
+        status: "✓ Auditado na COT (31 fotos processadas)",
+        statusClass: "background: var(--success-light); color: var(--success);",
+        area: "12,25 m²",
+        height: "2,70 m",
+        photos: "Concluído (31 fotos em alta resolução)",
+        equip: "Behringer X32, ATEM 4K, Desktops Dell OptiPlex, Monitores, NovaStar, Spotware",
+        instructions: "• Sala compacta com alta densidade de equipamentos em rack e bancada técnica.<br>• Recomenda-se lente grande-angular (0.5x ou ~14mm equivalente) para cobrir os racks do chão ao topo.<br>• Fotografar o visor de vidro duplo que conecta visualmente a COT ao Estúdio 01 TV com inclinação de 30º para mitigar reflexos."
+      },
+      almoxarifado: {
+        name: "06. Sala de Equipamentos (Almoxarifado)",
+        status: "⚠️ Varredura Pendente",
+        statusClass: "background: var(--accent-light); color: var(--accent);",
+        area: "13,40 m²",
+        height: "2,70 m",
+        photos: "Estimativa: 35 a 45 fotos",
+        equip: "Câmeras broadcast, tripés, teleprompters, microfones de mão/lapela, cases pelican e lentes",
+        instructions: "• Abrir gaveteiros e armários vedados com etiquetas patrimoniais visíveis.<br>• Para cada case pelican: 1 foto externa fechada e 1 foto interna aberta mostrando os recortes de espuma e os números de série das óticas."
+      },
+      estudio1: {
+        name: "01. Estúdio 01 - TV Broadcast",
+        status: "⚠️ Varredura Pendente",
+        statusClass: "background: var(--accent-light); color: var(--accent);",
+        area: "42,20 m²",
+        height: "2,70 m",
+        photos: "Estimativa: 50 a 60 fotos (Ambiente mais amplo)",
+        equip: "Grid de iluminação aérea (Fresnéis LED), câmeras em pedestal, switcher local, switcher auxiliar, microfones e teleprompters",
+        instructions: "• Executar rigorosamente os 4 Cantos em 45º.<br>• Efetuar giro de 30º para cima nos 4 cantos para capturar o grid aéreo de tubos e a fiação suspensa de luz.<br>• Varredura perimetral com passos de 80cm em torno do ciclorama acústico."
+      },
+      estudio2: {
+        name: "02. Estúdio 02 - Rádio",
+        status: "⚠️ Varredura Pendente",
+        statusClass: "background: var(--accent-light); color: var(--accent);",
+        area: "13,27 m²",
+        height: "2,70 m",
+        photos: "Estimativa: 25 a 35 fotos",
+        equip: "Mesa broadcast de rádio, microfones cardióides com braço articulado, fones estéreo e processadores de voz",
+        instructions: "• Fotografia de cada braço articulado de microfone com sua plaqueta de tombamento.<br>• Foto aberta da mesa redonda de locutores e foto macro das conexões XLR sob a bancada."
+      },
+      estudio3: {
+        name: "03. Estúdio 03 - VideoCast",
+        status: "⚠️ Varredura Pendente",
+        statusClass: "background: var(--accent-light); color: var(--accent);",
+        area: "21,82 m²",
+        height: "2,70 m",
+        photos: "Estimativa: 35 a 45 fotos",
+        equip: "Cenário podcast/videocast, câmeras robotizadas PTZ, iluminação difusa softbox e monitores de retorno",
+        instructions: "• Cenário com múltiplos elementos decorativos. Mantenha o foco travado para não causar 'buracos' no modelo 3D.<br>• Registre a base de fixação das câmeras robotizadas PTZ."
+      },
+      estudio45: {
+        name: "04 & 05. Estúdios Auxiliares (Cabines de Locução)",
+        status: "⚠️ Varredura Pendente",
+        statusClass: "background: var(--accent-light); color: var(--accent);",
+        area: "13,40 m² + 5,53 m²",
+        height: "2,70 m",
+        photos: "Estimativa: 20 a 25 fotos por cabine",
+        equip: "Estações de áudio compactas, cabines acústicas e microfones para gravação de off/locução",
+        instructions: "• Espaços estreitos com forte absorção acústica. Utilize lente grande-angular mantendo a câmera rigorosamente nivelada no horizonte."
+      },
+      redacao: {
+        name: "08. Redação & Estações de Trabalho (32 Estações)",
+        status: "⚠️ Varredura Pendente",
+        statusClass: "background: var(--accent-light); color: var(--accent);",
+        area: "111,46 m²",
+        height: "2,70 m",
+        photos: "Estimativa: 70 a 90 fotos",
+        equip: "32 estações de trabalho, 48 mesas modulares, 63 cadeiras giratórias, desktops Dell OptiPlex e monitores P2422Hb",
+        instructions: "• Maior salão do complexo. Dividir em 4 quadrantes operacionais para a varredura perimetral.<br>• Agrupar fotos das cadeiras giratórias por fileira.<br>• Desktops Dell: fotografar a etiqueta Dell Service Tag na parte superior do gabinete."
+      },
+      gabinetes: {
+        name: "09 & 10. Gabinetes E01 a E08 & Coordenação Administrativa",
+        status: "⚠️ Varredura Pendente",
+        statusClass: "background: var(--accent-light); color: var(--accent);",
+        area: "8 Gabinetes de ~3,2m² cada + Coord. Adm (13,49m²)",
+        height: "2,70 m",
+        photos: "Estimativa: 8 a 12 fotos por gabinete",
+        equip: "Mesas executivas com gaveteiros, armários de aço para arquivo, computadores administrativos e impressoras",
+        instructions: "• 1 foto de contexto na entrada da porta de cada gabinete.<br>• 1 foto macro das plaquetas dos armários de aço e gaveteiros."
+      },
+      naufo: {
+        name: "11 & 12. NAUFO, Halls de Entrada & Circulação",
+        status: "⚠️ Varredura Pendente",
+        statusClass: "background: var(--accent-light); color: var(--accent);",
+        area: "NAUFO (13,67 m²) + Halls (26,86 m²)",
+        height: "2,70 m",
+        photos: "Estimativa: 20 a 30 fotos",
+        equip: "Bancadas de atendimento, divisórias de vidro, longarinas e murais informativos",
+        instructions: "• Corredores longos exigem fotos de transição com overlap de 70% para não perder os pontos de referência geométrica entre os cômodos."
+      }
+    };
+
+    function selectRoom(roomId) {
+      const room = roomsData[roomId];
+      if (!room) return;
+
+      // Atualiza visual dos cards
+      const cards = document.querySelectorAll('.room-card');
+      cards.forEach(card => card.classList.remove('active'));
+      event.currentTarget.classList.add('active');
+
+      // Atualiza dados no inspetor
+      document.getElementById('inspName').textContent = room.name;
+      document.getElementById('inspStatus').textContent = room.status;
+      document.getElementById('inspStatus').style = room.statusClass;
+      document.getElementById('inspArea').textContent = room.area;
+      document.getElementById('inspHeight').textContent = room.height;
+      document.getElementById('inspPhotos').textContent = room.photos;
+      document.getElementById('inspEquip').textContent = room.equip;
+      document.getElementById('inspInstructions').innerHTML = "<strong>Orientações Específicas de Captura:</strong><br>" + room.instructions;
+    }
+
+    // --- 4. Checklist Interativo com LocalStorage ---
+    function updateChecklist() {
+      let checkedCount = 0;
+      const totalCount = 8;
+      const checkStates = {};
+
+      for (let i = 1; i <= totalCount; i++) {
+        const chk = document.getElementById('chk' + i);
+        if (chk && chk.checked) {
+          checkedCount++;
+          checkStates['chk' + i] = true;
+        } else {
+          checkStates['chk' + i] = false;
+        }
+      }
+
+      // Atualiza contador na interface
+      const counterEl = document.getElementById('checklistCounter');
+      if (counterEl) {
+        counterEl.textContent = `${checkedCount} de ${totalCount} itens verificados`;
+        if (checkedCount === totalCount) {
+          counterEl.className = "diagram-badge green";
+        } else if (checkedCount > 0) {
+          counterEl.className = "diagram-badge orange";
+        } else {
+          counterEl.className = "diagram-badge";
+        }
+      }
+
+      // Salva no LocalStorage
+      localStorage.setItem('crialab_checklist', JSON.stringify(checkStates));
+    }
+
+    // Carrega checklist do LocalStorage
+    (function initChecklist() {
+      try {
+        const saved = JSON.parse(localStorage.getItem('crialab_checklist'));
+        if (saved) {
+          for (const key in saved) {
+            const el = document.getElementById(key);
+            if (el) el.checked = !!saved[key];
+          }
+          updateChecklist();
+        }
+      } catch (e) {
+        console.warn("Não foi possível carregar o checklist salvo:", e);
+      }
+    })();
+  </script>
+</body>
+</html>

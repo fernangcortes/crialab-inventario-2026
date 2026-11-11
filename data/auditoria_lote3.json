@@ -1,0 +1,283 @@
+{
+  "lote": "Lote 3 - Central de Operação Técnica (COT)",
+  "data_auditoria": "2026-11-11",
+  "auditor": "Auditor de Patrimônio Especializado UEG",
+  "resumo": {
+    "total_fotos_analisadas": 11,
+    "total_bens_distintos": 6,
+    "bens_tombados_identificados": 2,
+    "bens_com_identificacao_informal_legada": 1,
+    "bens_sem_etiqueta_visivel": 3,
+    "anomalias_detectadas": [
+      {
+        "item": "Roteador Wireless D-Link DIR-615",
+        "tipo": "Bem não constante em carga / Identificação manual legada",
+        "descricao": "Equipamento apresenta etiquetas manuscritas indicando 'TOMBO: 702226 / UEG: 72490' e bilhete 'NÃO CONSTA EM LISTA', além de resíduos de fita crepe antiga identificando 'Secretaria'. Não localizado no cadastro mestre de bens do CriaLab."
+      },
+      {
+        "item": "Servidor de Vídeo Floripa Spotware-M (UEGSW1)",
+        "tipo": "Etiqueta patrimonial física ausente/não afixada na carcaça",
+        "descricao": "Equipamento corresponde indubitavelmente ao tombamento nº 3111136 (Item 259 do CriaLab - Processador/Servidor Floripa de Ingest e Playout Spotware), mas a placa oficial com código de barras UEG/Goiás não está afixada no chassi; há apenas rotulação operacional 'UEGSW1' e etiqueta técnica do fabricante com marca-texto amarelo sobre o número de série."
+      },
+      {
+        "item": "Processador / Controlador de Vídeo NovaStar VX400",
+        "tipo": "Ausência de plaqueta de tombamento",
+        "descricao": "Equipamento rackmount profissional para painéis de LED em pleno funcionamento na COT, com número de série de fábrica legível (21MB44422N0A10002120), porém desprovido de etiqueta patrimonial visível."
+      },
+      {
+        "item": "Placa de Captura de Vídeo USB 3.0 ezcap Game Pro 4K60fps",
+        "tipo": "Ausência de plaqueta de tombamento",
+        "descricao": "Periférico de captura de vídeo com número de série do fabricante (EZCAP26920100003), sem tombamento patrimonial identificado."
+      },
+      {
+        "item": "HD Externo Seagate 4TB Portable Drive",
+        "tipo": "Ausência de plaqueta de tombamento / Identificação apenas por fita de projeto",
+        "descricao": "HD externo com etiqueta manuscrita de uso operacional ('Loggagem 08 / TOTAL 3,63 TB') e número de série de fábrica (NT3D44VV), sem placa oficial de tombamento."
+      }
+    ]
+  },
+  "fotos": [
+    {
+      "foto_indice": 1,
+      "arquivo": "c:\\Users\\FGC\\dev\\CriaLab\\inventario\\2026\\fotos\\central de operacao tecnica\\IMG_20261111_104408.jpg",
+      "tipo_foto": "Detalhe da etiqueta de patrimônio em equipamento",
+      "item_id": 1,
+      "foto_referencia_item": null,
+      "tipo_equipamento": "Notebook",
+      "marca": "Dell",
+      "modelo": "Latitude 3420",
+      "placa_tombamento": {
+        "visivel": true,
+        "numero": "02610808",
+        "numero_formatado": "2610808",
+        "codigo_barras_visivel": true,
+        "orgao": "Estado de Goiás / UEG",
+        "posicao": "Carcaça superior / descanso de pulso ao lado do teclado, próximo à identificação 'Latitude 3420'"
+      },
+      "numero_serie_fabricante": null,
+      "estado_fisico": "Normal",
+      "detalhes_estado_fisico": "Etiqueta patrimonial oficial íntegra e legível, com leve desgaste nas bordas do adesivo; textura e carcaça do notebook bem conservadas.",
+      "observacoes": "Vinculado ao cadastro mestre: Tombamento nº 2610808 - 'NOTEBOOK DELL COM 8 GB DE MEMÓRIA RAM, SSD 256 GB, MONITOR 14 POLEGADAS' (Origem: CRIA LAB, seq 241)."
+    },
+    {
+      "foto_indice": 2,
+      "arquivo": "c:\\Users\\FGC\\dev\\CriaLab\\inventario\\2026\\fotos\\central de operacao tecnica\\IMG_20261111_104431.jpg",
+      "tipo_foto": "Visão geral do item",
+      "item_id": 2,
+      "foto_referencia_item": null,
+      "tipo_equipamento": "Processador / Controlador de Vídeo para Painel de LED (All-in-One Controller)",
+      "marca": "NovaStar",
+      "modelo": "VX400",
+      "placa_tombamento": {
+        "visivel": false,
+        "numero": null,
+        "numero_formatado": null,
+        "codigo_barras_visivel": false,
+        "orgao": null,
+        "posicao": "Não localizada no painel frontal ou tampa superior"
+      },
+      "numero_serie_fabricante": "21MB44422N0A10002120",
+      "estado_fisico": "Normal",
+      "detalhes_estado_fisico": "Equipamento montado em rack em perfeito estado aparente; display LCD frontal, encoder giratório e botões de controle/entradas íntegros.",
+      "observacoes": "Processador de controle de vídeo com entradas HDMI, DVI, SDI, portas ópticas e função Mosaic para acionamento de painéis de LED da COT. Etiqueta técnica no topo do gabinete detalhada na Foto 3."
+    },
+    {
+      "foto_indice": 3,
+      "arquivo": "c:\\Users\\FGC\\dev\\CriaLab\\inventario\\2026\\fotos\\central de operacao tecnica\\IMG_20261111_104438.jpg",
+      "tipo_foto": "Detalhe da etiqueta técnica do fabricante de item anterior",
+      "item_id": 2,
+      "foto_referencia_item": 2,
+      "tipo_equipamento": "Processador / Controlador de Vídeo para Painel de LED (All-in-One Controller)",
+      "marca": "NovaStar",
+      "modelo": "VX400",
+      "placa_tombamento": {
+        "visivel": false,
+        "numero": null,
+        "numero_formatado": null,
+        "codigo_barras_visivel": false,
+        "orgao": null,
+        "posicao": "Ausente na etiqueta técnica do fabricante"
+      },
+      "numero_serie_fabricante": "21MB44422N0A10002120",
+      "estado_fisico": "Normal",
+      "detalhes_estado_fisico": "Etiqueta técnica original preta do fabricante perfeitamente preservada com número de série e código de barras nítidos.",
+      "observacoes": "Fabricante: Xi'an NovaStar Tech Co., Ltd. Produto: All in One Controller. Modelo: VX400. Alimentação: 100-240V~, 50/60Hz, 1.5A. Certificações CE, FCC, UL E472095, EAC, KC (R-R-XIA-VX600)."
+    },
+    {
+      "foto_indice": 4,
+      "arquivo": "c:\\Users\\FGC\\dev\\CriaLab\\inventario\\2026\\fotos\\central de operacao tecnica\\IMG_20261111_104514.jpg",
+      "tipo_foto": "Visão geral do item",
+      "item_id": 3,
+      "foto_referencia_item": null,
+      "tipo_equipamento": "Servidor de Vídeo / Unidade de Processamento Digital (Ingest e Playout)",
+      "marca": "Floripa Tecnologia",
+      "modelo": "Spotware - M",
+      "placa_tombamento": {
+        "visivel": false,
+        "numero": "3111136",
+        "numero_formatado": "3111136",
+        "codigo_barras_visivel": false,
+        "orgao": null,
+        "posicao": "Ausente na parte frontal (apenas etiqueta operacional 'UEGSW1')"
+      },
+      "numero_serie_fabricante": "008479010011225",
+      "estado_fisico": "Normal",
+      "detalhes_estado_fisico": "Chassi industrial metálico para rack (padrão 4U) preto com alças de fixação e grade frontal furada em perfeito estado de conservação, chave de trava frontal íntegra.",
+      "observacoes": "Identificação em fita adesiva frontal: 'UEGSW1' (indica UEG Spotware Servidor 1). Corresponde ao registro patrimonial nº 3111136 do CriaLab (Item 259 - PROCESSADOR FLORIPA SPOTWARE)."
+    },
+    {
+      "foto_indice": 5,
+      "arquivo": "c:\\Users\\FGC\\dev\\CriaLab\\inventario\\2026\\fotos\\central de operacao tecnica\\IMG_20261111_104547.jpg",
+      "tipo_foto": "Detalhe da etiqueta técnica do fabricante de item anterior",
+      "item_id": 3,
+      "foto_referencia_item": 4,
+      "tipo_equipamento": "Servidor de Vídeo / Unidade de Processamento Digital (Ingest e Playout)",
+      "marca": "Floripa Tecnologia",
+      "modelo": "Spotware - M",
+      "placa_tombamento": {
+        "visivel": false,
+        "numero": "3111136",
+        "numero_formatado": "3111136",
+        "codigo_barras_visivel": false,
+        "orgao": null,
+        "posicao": "Plaqueta patrimonial física não localizada na área técnica traseira"
+      },
+      "numero_serie_fabricante": "008479010011225",
+      "estado_fisico": "Normal",
+      "detalhes_estado_fisico": "Etiqueta técnica adesiva branca preservada com marcação em caneta marca-texto amarelo sobre o número de série '008479010011225' e código de barras.",
+      "observacoes": "Dados da etiqueta: Floripa Tecnologia Ind e Com LTDA (CNPJ 01.151.131/0001-32, Tel: 48 2108-9010), Produto: 4701030, Descricao: SPOTWARE - M, Produzido em 05/01/2023. Vinculado com certeza absoluta ao tombamento nº 3111136."
+    },
+    {
+      "foto_indice": 6,
+      "arquivo": "c:\\Users\\FGC\\dev\\CriaLab\\inventario\\2026\\fotos\\central de operacao tecnica\\IMG_20261111_104755.jpg",
+      "tipo_foto": "Visão geral do item",
+      "item_id": 4,
+      "foto_referencia_item": null,
+      "tipo_equipamento": "Roteador Wireless",
+      "marca": "D-Link",
+      "modelo": "DIR-615",
+      "placa_tombamento": {
+        "visivel": false,
+        "numero": "702226 / 72490",
+        "numero_formatado": "702226",
+        "codigo_barras_visivel": false,
+        "orgao": "Indicação manuscrita informal (TOMBO: 702226 / UEG: 72490)",
+        "posicao": "Etiqueta de papel fixada com fita adesiva transparente no painel superior"
+      },
+      "numero_serie_fabricante": "F3XE4B7024692",
+      "estado_fisico": "Imperfeição",
+      "detalhes_estado_fisico": "Gabinete plástico com sujidade, resíduos adesivos e pedaço de fita crepe envelhecida (com inscrição desbotada 'Secretaria'). Papel colado com fita: 'TOMBO: 702226 / UEG: 72490' e bilhete adicional: 'NÃO CONSTA EM LISTA'. Sem plaqueta oficial de código de barras.",
+      "observacoes": "Equipamento com duas antenas externas. Trata-se de item legado ou cedido por outro setor da universidade, pendente de regularização patrimonial no CriaLab."
+    },
+    {
+      "foto_indice": 7,
+      "arquivo": "c:\\Users\\FGC\\dev\\CriaLab\\inventario\\2026\\fotos\\central de operacao tecnica\\IMG_20261111_104809.jpg",
+      "tipo_foto": "Detalhe da etiqueta técnica do fabricante de item anterior",
+      "item_id": 4,
+      "foto_referencia_item": 6,
+      "tipo_equipamento": "Roteador Wireless",
+      "marca": "D-Link",
+      "modelo": "DIR-615",
+      "placa_tombamento": {
+        "visivel": false,
+        "numero": null,
+        "numero_formatado": null,
+        "codigo_barras_visivel": false,
+        "orgao": null,
+        "posicao": "Ausente na base"
+      },
+      "numero_serie_fabricante": "F3XE4B7024692",
+      "estado_fisico": "Imperfeição",
+      "detalhes_estado_fisico": "Base do roteador apresenta pedaços de fita crepe colados nas margens superior e esquerda. Etiqueta técnica do fabricante está íntegra e legível.",
+      "observacoes": "Model: DIR-615, FCC ID: KA2IR615E5, P/N: IIR615ZNA...E5G, MAC ID: 84C9B24D4C04, WPS PIN: 16531215, H/W Ver.: E5, F/W Ver.: 5.11BR, Homologação Anatel presente."
+    },
+    {
+      "foto_indice": 8,
+      "arquivo": "c:\\Users\\FGC\\dev\\CriaLab\\inventario\\2026\\fotos\\central de operacao tecnica\\IMG_20261111_104826.jpg",
+      "tipo_foto": "Visão geral do item",
+      "item_id": 5,
+      "foto_referencia_item": null,
+      "tipo_equipamento": "Placa de Captura de Vídeo USB 3.0 (HDMI Video Capture)",
+      "marca": "ezcap",
+      "modelo": "USB3.0 Game Capture Live Stream (Game Pro 4K60fps)",
+      "placa_tombamento": {
+        "visivel": false,
+        "numero": null,
+        "numero_formatado": null,
+        "codigo_barras_visivel": false,
+        "orgao": null,
+        "posicao": "Ausente na face superior"
+      },
+      "numero_serie_fabricante": "EZCAP26920100003",
+      "estado_fisico": "Normal",
+      "detalhes_estado_fisico": "Corpo metálico em alumínio cinza/prata em excelente estado de conservação, sem amassados ou arranhões, acompanhado de cabo USB 3.0 azul.",
+      "observacoes": "Gravação frontal: 'ezcap' e 'USB3.0 Game Capture Live Stream'. Periférico portátil utilizado para transmissões e streaming na COT."
+    },
+    {
+      "foto_indice": 9,
+      "arquivo": "c:\\Users\\FGC\\dev\\CriaLab\\inventario\\2026\\fotos\\central de operacao tecnica\\IMG_20261111_104837.jpg",
+      "tipo_foto": "Detalhe da etiqueta do fabricante de item anterior",
+      "item_id": 5,
+      "foto_referencia_item": 8,
+      "tipo_equipamento": "Placa de Captura de Vídeo USB 3.0 (HDMI Video Capture)",
+      "marca": "ezcap",
+      "modelo": "Game Pro 4K60fps USB3.0 Capture (ezcap269 / COD. 13729)",
+      "placa_tombamento": {
+        "visivel": false,
+        "numero": null,
+        "numero_formatado": null,
+        "codigo_barras_visivel": false,
+        "orgao": null,
+        "posicao": "Ausente"
+      },
+      "numero_serie_fabricante": "EZCAP26920100003",
+      "estado_fisico": "Normal",
+      "detalhes_estado_fisico": "Etiqueta técnica adesiva com código de barras íntegra e nítida, com ligeiro acúmulo de poeira nas bordas adesivas.",
+      "observacoes": "Etiqueta: COD. 13729 / Game Pro 4K60fps USB3.0 Capture / Código de barras correspondente ao S/N: EZCAP26920100003."
+    },
+    {
+      "foto_indice": 10,
+      "arquivo": "c:\\Users\\FGC\\dev\\CriaLab\\inventario\\2026\\fotos\\central de operacao tecnica\\IMG_20261111_104935.jpg",
+      "tipo_foto": "Visão geral do item",
+      "item_id": 6,
+      "foto_referencia_item": null,
+      "tipo_equipamento": "Disco Rígido Externo Portátil (HD Externo)",
+      "marca": "Seagate",
+      "modelo": "Seagate Portable Drive (4TB)",
+      "placa_tombamento": {
+        "visivel": false,
+        "numero": null,
+        "numero_formatado": null,
+        "codigo_barras_visivel": false,
+        "orgao": null,
+        "posicao": "Ausente na face superior"
+      },
+      "numero_serie_fabricante": "NT3D44VV",
+      "estado_fisico": "Normal",
+      "detalhes_estado_fisico": "Carcaça plástica preta íntegra, sem rachaduras ou arranhões; possui fita adesiva de papel colada com anotação de identificação de projeto operacional.",
+      "observacoes": "Inscrição manual em fita: 'Loggagem 08' e 'TOTAL 3,63 TB' (espaço formatado útil de um disco de 4TB). Conectado via cabo USB a terminal de trabalho da COT."
+    },
+    {
+      "foto_indice": 11,
+      "arquivo": "c:\\Users\\FGC\\dev\\CriaLab\\inventario\\2026\\fotos\\central de operacao tecnica\\IMG_20261111_104945.jpg",
+      "tipo_foto": "Detalhe da etiqueta técnica do fabricante de item anterior",
+      "item_id": 6,
+      "foto_referencia_item": 10,
+      "tipo_equipamento": "Disco Rígido Externo Portátil (HD Externo)",
+      "marca": "Seagate",
+      "modelo": "Seagate Portable Drive 4 TB (Model SRD0NF1)",
+      "placa_tombamento": {
+        "visivel": false,
+        "numero": null,
+        "numero_formatado": null,
+        "codigo_barras_visivel": false,
+        "orgao": null,
+        "posicao": "Ausente na base"
+      },
+      "numero_serie_fabricante": "NT3D44VV",
+      "estado_fisico": "Normal",
+      "detalhes_estado_fisico": "Etiqueta traseira gravada/impressa com todas as informações técnicas perfeitamente legíveis, sem riscos ou desgastes; carcaça muito nova (ano de fabricação 2024).",
+      "observacoes": "SEAGATE Seagate Portable Drive. P/N: 2N1AP6-500. Capacidade: 4 TB. S/N: NT3D44VV. Assembled in Thailand / Product of Thailand (HDD). Model: SRD0NF1. Ano de fabricação: 2024."
+    }
+  ]
+}

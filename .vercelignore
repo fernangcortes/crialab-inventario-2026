@@ -1,0 +1,5 @@
+docs-e-emails/
+planta/
+.git/
+*.py
+crop_*.jpg
