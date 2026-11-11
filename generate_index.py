@@ -10,6 +10,9 @@ with open('data/sequencia_auditoria_temporal.json', encoding='utf-8') as f:
 with open('data/estoquenow_completo.json', encoding='utf-8') as f:
     estoquenow_catalog = json.load(f)
 
+with open('data/pesquisa_sei_documentos_completo.json', encoding='utf-8') as f:
+    sei_dossiers = json.load(f)
+
 # Load photos data
 lote1 = json.load(open('data/auditoria_lote1.json', encoding='utf-8')).get('fotos', [])
 lote2 = json.load(open('data/auditoria_lote2.json', encoding='utf-8')).get('fotos', [])
@@ -20,6 +23,7 @@ payload = {
     'master': master_items,
     'cot_sequence': cot_sequence,
     'estoquenow': estoquenow_catalog,
+    'dossiers': sei_dossiers,
     'photos': all_photos
 }
 
@@ -33,11 +37,11 @@ html = f"""<!DOCTYPE html>
 <title>CriaLab & Radioteledifusão UEG - Inventário e Gestão Patrimonial 2026</title>
 
 <!-- Metatags SEO e OpenGraph -->
-<meta name="description" content="Sistema Integrado de Conciliação Patrimonial, Auditoria Fotográfica por IA e Gestão de Acervo 2026 do CriaLab e Radioteledifusão da Universidade Estadual de Goiás (UEG).">
-<meta name="keywords" content="CriaLab, Radioteledifusão, UEG, Inventário 2026, Patrimônio, SEI 202600005037287, Estoque Now, Auditoria IA">
+<meta name="description" content="Sistema Integrado de Conciliação Patrimonial, Auditoria Fotográfica por IA, Dossiês de Compras SEI e Gestão de Acervo 2026 do CriaLab e Radioteledifusão UEG.">
+<meta name="keywords" content="CriaLab, Radioteledifusão, UEG, Inventário 2026, Patrimônio, SEI 202600005037287, Estoque Now, Auditoria IA, Dossiês SEI">
 <meta name="author" content="Comissão Setorial de Inventário - Fernando Cortes">
-<meta property="og:title" content="CriaLab & Radioteledifusão UEG - Inventário 2026">
-<meta property="og:description" content="Painel de Auditoria Visual, Reconciliação Estoque Now e Fichas Oficiais SPM/SEAD.">
+<meta property="og:title" content="CriaLab & Radioteledifusão UEG - Inventário & Dossiês SEI 2026">
+<meta property="og:description" content="Painel de Auditoria Visual, Dossiês Comprobatórios de Processos SEI, Reconciliação Estoque Now e Fichas SPM/SEAD.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://2026-virid-five.vercel.app">
 <link rel="icon" type="image/svg+xml" href="{favicon_svg}">
@@ -151,6 +155,7 @@ html = f"""<!DOCTYPE html>
   .badge-danger {{ background: var(--danger-bg); color: var(--danger); }}
   .badge-crialab {{ background: #e0f2fe; color: #0284c7; }}
   .badge-radio {{ background: #f3e8ff; color: #9333ea; }}
+  .badge-doc {{ background: #ecfdf5; color: #059669; border: 1px solid #a7f3d0; }}
   
   /* Photo Grid */
   .photo-grid {{ display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 18px; }}
@@ -207,7 +212,8 @@ html = f"""<!DOCTYPE html>
   </div>
   <div style="display: flex; gap: 12px; align-items: center;">
     <span class="sei-badge">SEI nº 202600005037287</span>
-    <a href="guia_fotografia_3d_ar.html" target="_blank" class="btn-action" style="background:#0284c7;">📐 Guia Fotográfico 3D/AR</a>
+    <a href="guia_fotografia_3d_ar.html" target="_blank" class="btn-action" style="background:#0284c7;">📐 Guia 3D/AR</a>
+    <a href="GUIA_INSTRUCAO_PATRIMONIAL_SEI.md" target="_blank" class="btn-action" style="background:#059669;">📑 Guia SEI Goiás</a>
   </div>
 </header>
 
@@ -216,7 +222,7 @@ html = f"""<!DOCTYPE html>
   <!-- Stats Cards -->
   <div class="stats-grid">
     <div class="stat-card">
-      <div class="stat-label">Acervo Total Oficio</div>
+      <div class="stat-label">Acervo Total SPM</div>
       <div class="stat-value">377 <span style="font-size:14px; font-weight:400; color:var(--text-muted);">bens</span></div>
       <div class="stat-desc">285 CriaLab + 92 Radioteledifusão</div>
     </div>
@@ -226,14 +232,19 @@ html = f"""<!DOCTYPE html>
       <div class="stat-desc">Catálogo extraído de <code>estoquenow.pdf</code></div>
     </div>
     <div class="stat-card">
+      <div class="stat-label">Dossiês SEI Mapeados</div>
+      <div class="stat-value" style="color:#059669;">12 <span style="font-size:14px; font-weight:400; color:var(--text-muted);">dossiês</span></div>
+      <div class="stat-desc">Processos de compras, contratos e NFs</div>
+    </div>
+    <div class="stat-card">
       <div class="stat-label">Itens Auditados (COT)</div>
       <div class="stat-value" style="color:var(--success);">14 <span style="font-size:14px; font-weight:400; color:var(--text-muted);">equipamentos</span></div>
-      <div class="stat-desc">5 com tombamento + 9 sem tombamento</div>
+      <div class="stat-desc">5 tombados + 9 sem tombamento físico</div>
     </div>
     <div class="stat-card">
       <div class="stat-label">Fotos COT Processadas</div>
       <div class="stat-value" style="color:#7c3aed;">31 <span style="font-size:14px; font-weight:400; color:var(--text-muted);">fotos</span></div>
-      <div class="stat-desc">Central de Operação Técnica (Lotes 1, 2 e 3)</div>
+      <div class="stat-desc">Central de Operação Técnica (3 Lotes)</div>
     </div>
   </div>
 
@@ -241,10 +252,11 @@ html = f"""<!DOCTYPE html>
   <nav class="tabs-nav">
     <button class="tab-btn active" onclick="switchTab('tab-tabela')">📋 Inventário Geral (377 Bens)</button>
     <button class="tab-btn" onclick="switchTab('tab-cot')">🔍 Auditoria COT (14 Itens Mapeados)</button>
+    <button class="tab-btn" onclick="switchTab('tab-dossies')">📁 Dossiês & Pesquisa SEI (12 Processos)</button>
     <button class="tab-btn" onclick="switchTab('tab-fotos')">📸 Fotos COT (31 Imagens)</button>
     <button class="tab-btn" onclick="switchTab('tab-estoquenow')">📦 Estoque Now (245 Itens)</button>
     <button class="tab-btn" onclick="switchTab('tab-espacos')">🏢 Planta & Espaços (8 Áreas)</button>
-    <button class="tab-btn" onclick="switchTab('tab-fichas')">📑 Fichas SPM / SEAD</button>
+    <button class="tab-btn" onclick="switchTab('tab-fichas')">📑 Fichas & Documentos SEI</button>
   </nav>
 
   <!-- TAB 1: Tabela Geral Conciliada -->
@@ -347,7 +359,46 @@ html = f"""<!DOCTYPE html>
     </div>
   </div>
 
-  <!-- TAB 3: Fotos COT -->
+  <!-- TAB 3: Dossiês & Pesquisa SEI (12 Processos Mapeados) -->
+  <div id="tab-dossies" class="tab-content">
+    <div style="background: #ecfdf5; border-left: 4px solid #059669; padding: 16px 20px; margin-bottom: 20px; font-size: 13px; border-radius: 0 8px 8px 0;">
+      <strong>📁 Acervo Documental e Pesquisa SEI Goiás:</strong>
+      Aqui estão mapeados todos os processos de compra, contratos administrativos, fornecedores, CNPJs, notas fiscais e minutas de despachos oficiais para subsidiar o <strong>Processo SEI nº 202600005037287</strong> (UEG/COPA - 14028).
+      Cada item conta com dossiê comprobatório completo gerado localmente em <code>documentos_patrimoniais/</code> e minuta pronta para instrução no SEI.
+    </div>
+
+    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:15px; flex-wrap:wrap; gap:10px;">
+      <div style="font-size:14px; font-weight:700;">
+        Equipamentos Mapeados com Amparo Documental (Tombados e Não Tombados):
+      </div>
+      <div style="display:flex; gap:10px; align-items:center;">
+        <input type="text" id="searchDossie" placeholder="🔍 Buscar por processo, modelo, serial ou fornecedor..." onkeyup="filterDossieTable()" style="width:320px; padding:8px 12px; border:1px solid var(--border); border-radius:6px; font-size:12px;">
+        <a href="data/pesquisa_sei_documentos_completo.csv" download class="btn-action" style="background:#059669; font-size:12px; padding:7px 14px;">📥 Baixar Tabela CSV</a>
+      </div>
+    </div>
+
+    <div class="table-container">
+      <table id="dossieTable">
+        <thead>
+          <tr>
+            <th class="sortable sort-asc" data-field="id" onclick="sortDossieBy('id')">ID</th>
+            <th class="sortable" data-field="equipamento" onclick="sortDossieBy('equipamento')">Equipamento</th>
+            <th class="sortable" data-field="marca_modelo" onclick="sortDossieBy('marca_modelo')">Marca / Modelo</th>
+            <th class="sortable" data-field="tombamento_status" onclick="sortDossieBy('tombamento_status')">Situação Patrimonial</th>
+            <th class="sortable" data-field="processo_sei" onclick="sortDossieBy('processo_sei')">Processo SEI / Contrato</th>
+            <th class="sortable" data-field="fornecedor" onclick="sortDossieBy('fornecedor')">Fornecedor & CNPJ</th>
+            <th class="sortable" data-field="serial" onclick="sortDossieBy('serial')">S/N Fabricante</th>
+            <th class="sortable" data-field="valor_contratado" onclick="sortDossieBy('valor_contratado')">Valor</th>
+            <th>Ação no SEI</th>
+            <th style="text-align:center;">Dossiê & Minuta</th>
+          </tr>
+        </thead>
+        <tbody id="dossieTableBody"></tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- TAB 4: Fotos COT -->
   <div id="tab-fotos" class="tab-content">
     <div style="margin-bottom: 15px; font-size: 13px; color: var(--text-muted);">
       31 fotografias da Central de Operação Técnica (COT) processadas por agentes de IA com identificação de placas, números de série e avarias:
@@ -355,12 +406,12 @@ html = f"""<!DOCTYPE html>
     <div class="photo-grid" id="photoGrid"></div>
   </div>
 
-  <!-- TAB 4: Estoque Now -->
+  <!-- TAB 5: Estoque Now -->
   <div id="tab-estoquenow" class="tab-content">
     <div style="background: #fef3c7; border-left: 4px solid var(--warning); padding: 16px 20px; margin-bottom: 20px; font-size: 13px; border-radius: 0 8px 8px 0;">
       <strong>⚠️ Diretriz Oficial sobre Bens em Externa:</strong>
       Estar no Estoque Now ou em locação/externa <strong>NÃO serve como justificativa final perante o SEI</strong>.
-      Como o prazo será prorrogado, o procedimento obrigatório é: <strong>quando o equipamento retornar ao laboratório, tirar as fotos na sequência (Geral ➔ Specs ➔ Placa) e atualizar o sistema aqui via IA para auditá-lo oficialmente com fotos.</strong>
+      Como o prazo foi prorrogado formalmente pelo <strong>Despacho nº 1049/2026/UEG/COPA</strong>, o procedimento obrigatório é: <strong>quando o equipamento retornar ao laboratório, tirar as fotos na sequência (Geral ➔ Specs ➔ Placa) e atualizar o sistema aqui via IA para auditá-lo oficialmente com fotos.</strong>
     </div>
 
     <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:15px; flex-wrap:wrap; gap:10px;">
@@ -388,7 +439,7 @@ html = f"""<!DOCTYPE html>
     </div>
   </div>
 
-  <!-- TAB 5: Espaços CriaLab (Planta Baixa) -->
+  <!-- TAB 6: Espaços CriaLab (Planta Baixa) -->
   <div id="tab-espacos" class="tab-content">
     <div style="margin-bottom: 20px; font-size: 13px; color: var(--text-muted);">
       Estrutura de cômodos do CriaLab / Radioteledifusão conforme plantas oficiais (Layout R05/2025):
@@ -437,24 +488,35 @@ html = f"""<!DOCTYPE html>
     </div>
   </div>
 
-  <!-- TAB 6: Fichas & Documentos -->
+  <!-- TAB 7: Fichas & Documentos SEI -->
   <div id="tab-fichas" class="tab-content">
     <div style="background: var(--card); border: 1px solid var(--border-light); border-radius: 12px; padding: 28px;">
-      <h3 style="margin-bottom: 14px; font-size: 16px;">📑 Fichas de Apuração Oficiais Preenchidas para Impressão</h3>
+      <h3 style="margin-bottom: 14px; font-size: 16px;">📑 Fichas Oficiais SPM / SEAD & Atos Normativos</h3>
       <p style="font-size: 13px; color: var(--text-muted); margin-bottom: 22px;">
-        Fichas formatadas rigorosamente no modelo do SPM / SEAD do Governo de Goiás, com checkboxes marcados (Auditado, Nova Etiqueta, Imperfeição) e bloco de assinaturas para envio ao Processo SEI nº 202600005037287:
+        Fichas formatadas rigorosamente no modelo do SPM / SEAD do Governo de Goiás e atos probatórios para envio ao Processo SEI nº 202600005037287:
       </p>
-      <div style="display: flex; gap: 16px; flex-wrap: wrap;">
+      <div style="display: flex; gap: 14px; flex-wrap: wrap; margin-bottom: 24px;">
         <a href="fichas/Ficha_Apuracao_CriaLab_Preenchida.html" target="_blank" class="btn-action" style="padding: 12px 22px; font-size: 13px;">
           🖨️ Ficha Oficial CriaLab (285 Bens)
         </a>
         <a href="fichas/Ficha_Apuracao_Radioteledifusao_Preenchida.html" target="_blank" class="btn-action" style="padding: 12px 22px; font-size: 13px; background: #7e22ce;">
           🖨️ Ficha Oficial Radioteledifusão (92 Bens)
         </a>
+        <a href="GUIA_INSTRUCAO_PATRIMONIAL_SEI.md" target="_blank" class="btn-action" style="padding: 12px 22px; font-size: 13px; background: #059669;">
+          📖 Guia de Instrução Patrimonial SEI (660+ linhas)
+        </a>
         <a href="guia_fotografia_3d_ar.html" target="_blank" class="btn-action" style="padding: 12px 22px; font-size: 13px; background: #0284c7;">
           📐 Guia Ilustrado de Fotografia 3D & AR
         </a>
       </div>
+
+      <h4 style="font-size: 14px; font-weight:700; margin-bottom: 12px; color: var(--text);">Documentos do Processo SEI em <code>docs-e-emails/</code>:</h4>
+      <ul style="font-size: 12.5px; color: var(--text-muted); line-height: 2; padding-left: 20px;">
+        <li><a href="docs-e-emails/SEI_97743688_Despacho_1049.pdf" target="_blank">📄 <strong>Despacho nº 1049/2026/UEG/COPA-14028:</strong> Prorrogação oficial de prazo para envio das fichas</a></li>
+        <li><a href="docs-e-emails/SEI_92319152_Termo_de_Responsabilidade.pdf" target="_blank">📄 <strong>Termo de Responsabilidade (Minuta SEI nº 92319152):</strong> Modelo padrão com itens sem tombamento</a></li>
+        <li><a href="docs-e-emails/Portaria_1210_2026_ComissaoPatrimonioLaranjeiras.pdf" target="_blank">📄 <strong>Portaria UEG nº 1210/2026:</strong> Designação da Comissão Setorial de Inventário de Laranjeiras</a></li>
+        <li><a href="docs-e-emails/SEI_97650901_Oficio_Externo_2317.pdf" target="_blank">📄 <strong>Ofício Externo SEAD nº 2317/2026:</strong> Diretrizes gerais do Inventário de Bens Móveis do Estado de Goiás</a></li>
+      </ul>
     </div>
   </div>
 
@@ -478,9 +540,10 @@ const INITIAL_DATA = {json.dumps(payload, ensure_ascii=False)};
 let localData = localStorage.getItem('crialab_inventario_data_2026');
 let DATA = localData ? JSON.parse(localData) : INITIAL_DATA;
 
-// Ensure cot_sequence and estoquenow are available
+// Ensure cot_sequence, estoquenow and dossiers are available
 DATA.cot_sequence = INITIAL_DATA.cot_sequence;
 DATA.estoquenow = INITIAL_DATA.estoquenow;
+DATA.dossiers = INITIAL_DATA.dossiers;
 
 let currentOrigin = 'ALL';
 let currentStatus = 'ALL';
@@ -497,6 +560,11 @@ let cotSortState = {{
 
 let estoqueSortState = {{
   field: 'nome',
+  direction: 'asc'
+}};
+
+let dossieSortState = {{
+  field: 'id',
   direction: 'asc'
 }};
 
@@ -588,6 +656,26 @@ function updateEstoqueSortHeaders() {{
   }});
 }}
 
+function sortDossieBy(field) {{
+  if (dossieSortState.field === field) {{
+    dossieSortState.direction = dossieSortState.direction === 'asc' ? 'desc' : 'asc';
+  }} else {{
+    dossieSortState.field = field;
+    dossieSortState.direction = 'asc';
+  }}
+  updateDossieSortHeaders();
+  renderDossieTable();
+}}
+
+function updateDossieSortHeaders() {{
+  document.querySelectorAll('#dossieTable th.sortable').forEach(th => {{
+    th.classList.remove('sort-asc', 'sort-desc');
+    if (th.getAttribute('data-field') === dossieSortState.field) {{
+      th.classList.add(dossieSortState.direction === 'asc' ? 'sort-asc' : 'sort-desc');
+    }}
+  }});
+}}
+
 function renderTable() {{
   const tbody = document.getElementById('tableBody');
   const search = document.getElementById('searchInput').value.toLowerCase();
@@ -636,7 +724,7 @@ function renderTable() {{
       <td class="col-especie" style="${{visibleColumns.especie ? '' : 'display:none;'}}"><strong>${{it.especie}}</strong></td>
       <td class="col-descricao" style="${{visibleColumns.descricao ? '' : 'display:none;'}}">
         <div class="editable-cell" ondblclick="editField(this, '${{it.seq}}', '${{it.origem}}', 'descricao')">${{it.descricao}}</div>
-        ${{it.observacao_auditoria ? '<div class="editable-cell" style="margin-top:4px;" ondblclick="editField(this, \\'' + it.seq + '\\', \\'' + it.origem + '\\', \\'observacao_auditoria\\')"><small style=\\"color:#0d47a1\\"><strong>[Obs]:</strong> ' + it.observacao_auditoria + '</small></div>' : ''}}
+        ${{it.observacao_auditoria ? '<div class="editable-cell" style="margin-top:4px;" ondblclick="editField(this, \\'' + it.seq + '\\', \\'' + it.origem + '\\', \\'observacao_auditoria\\')"><small style="color:#0d47a1"><strong>[Obs]:</strong> ' + it.observacao_auditoria + '</small></div>' : ''}}
       </td>
       <td class="col-marca" style="${{visibleColumns.marca ? '' : 'display:none;'}}">${{it.marca}}</td>
       <td class="col-status" style="${{visibleColumns.status ? '' : 'display:none;'}}">
@@ -913,6 +1001,58 @@ function filterEstoqueTable() {{
   renderEstoqueNow();
 }}
 
+/* Render Dossiês & Pesquisa SEI Table */
+function renderDossieTable() {{
+  const tbody = document.getElementById('dossieTableBody');
+  const search = (document.getElementById('searchDossie') ? document.getElementById('searchDossie').value : '').toLowerCase();
+  
+  let filtered = (DATA.dossiers || []).filter(it => {{
+    if (!search) return true;
+    const text = (it.id + ' ' + it.equipamento + ' ' + it.marca_modelo + ' ' + it.serial + ' ' + it.processo_sei + ' ' + it.instrumento_legal + ' ' + it.fornecedor + ' ' + it.cnpj_fornecedor + ' ' + it.tombamento_status).toLowerCase();
+    return text.includes(search);
+  }});
+
+  filtered.sort((a, b) => {{
+    let va = a[dossieSortState.field] ?? '';
+    let vb = b[dossieSortState.field] ?? '';
+    const cmp = va.toString().localeCompare(vb.toString(), 'pt-BR', {{ numeric: true, sensitivity: 'base' }});
+    return dossieSortState.direction === 'asc' ? cmp : -cmp;
+  }});
+
+  tbody.innerHTML = filtered.map(it => {{
+    const isTomb = it.tombamento_status.includes('Tombado');
+    const badgeStatus = isTomb ? 'badge-audited' : 'badge-divergence';
+    const linkHtml = it.arquivo_dossie.replace('.md', '.html');
+
+    return `<tr>
+      <td style="font-weight:700; color:var(--primary); font-family:monospace;">${{it.id}}</td>
+      <td><strong>${{it.equipamento}}</strong></td>
+      <td>${{it.marca_modelo}}</td>
+      <td><span class="badge ${{badgeStatus}}">${{it.tombamento_status}}</span></td>
+      <td>
+        <strong>${{it.processo_sei}}</strong><br>
+        <small style="color:#64748b;">${{it.instrumento_legal}}</small>
+      </td>
+      <td>
+        ${{it.fornecedor}}<br>
+        <small style="font-family:monospace; color:#64748b;">${{it.cnpj_fornecedor}}</small>
+      </td>
+      <td><code style="font-size:11.5px;">${{it.serial}}</code></td>
+      <td style="font-weight:600; color:#059669;">${{it.valor_contratado}}</td>
+      <td style="font-size:11.5px; max-width:240px;">${{it.acao_regularizacao}}</td>
+      <td style="text-align:center; white-space:nowrap;">
+        <a href="${{linkHtml}}" target="_blank" class="btn-action" style="padding:5px 10px; font-size:11px; text-decoration:none; background:#059669;">
+          📄 Ver Dossiê
+        </a>
+      </td>
+    </tr>`;
+  }}).join('');
+}}
+
+function filterDossieTable() {{
+  renderDossieTable();
+}}
+
 /* Render Photos */
 function renderPhotos() {{
   const grid = document.getElementById('photoGrid');
@@ -952,6 +1092,7 @@ function closeModal() {{
 // Initialize
 renderTable();
 renderCOTSequence();
+renderDossieTable();
 renderEstoqueNow();
 renderPhotos();
 </script>
@@ -966,4 +1107,4 @@ with open('index.html', 'w', encoding='utf-8') as f:
 with open('dashboard.html', 'w', encoding='utf-8') as f:
     f.write(html)
 
-print('Updated index.html and dashboard.html with interactive column sorting for all tables!')
+print('Updated index.html and dashboard.html with 12 Dossiês & Pesquisa SEI tab!')

@@ -13,7 +13,50 @@
     "tombamento_oficial": null,
     "status_tombamento": "NÃO TOMBADO (Sem placa física no corpo)",
     "especificacao_tecnica": "Shure SM58 dinâmico cardióide",
-    "estado_fisico": "Imperfeição (globo metálico amassado)"
+    "estado_fisico": "Imperfeição (globo metálico amassado)",
+    "serial_fabricante": "N/A (corpo sem placa)",
+    "dados_tecnicos": {
+      "fabricante_real": "Shure",
+      "modelo_comercial": "SM58-LC",
+      "categoria": "Microfone Dinâmico Vocal",
+      "funcao_operacional": "Microfone vocal para entrevistas e locução em estúdio",
+      "especificacoes": {
+        "tipo_transdutor": "Dinâmico (bobina móvel)",
+        "padrao_polar": "Cardioide uniforme",
+        "resposta_frequencia": "50 Hz a 15.000 Hz",
+        "conector": "XLR macho balanceado de 3 pinos",
+        "observacao_fisica": "Globo metálico esférico amassado por uso contínuo"
+      },
+      "classificacao_original": "COT_NAO_CADASTRADO"
+    },
+    "regularizacao_sei": {
+      "processo_sei": "202600005037287",
+      "documento_sei": null,
+      "acao_recomendada": "Regularizar como tombamento avulso ou vincular ao item SPM Tombamento 723974 (Seq 50 Radioteledifusão)",
+      "status_regularizacao": "EM_INSTRUCAO"
+    },
+    "recursos_visuais": {
+      "fotos_auditoria_paths": [
+        "fotos/central de operacao tecnica/IMG_20261111_103541.jpg"
+      ],
+      "fotos_fundo_neutro": [
+        "assets/images/cutout/cot_id_2_shure_sm58_lc_hero.png"
+      ],
+      "angulos_disponiveis": [
+        "hero_3_4",
+        "frontal"
+      ]
+    },
+    "modelo_3d": {
+      "formato": "glb",
+      "arquivo": "assets/models3d/glb/cot_id_2_shure_sm58_lc.glb",
+      "disponibilidade": "PROXY_VOLUMETRICO"
+    },
+    "documentacao_tecnica": {
+      "manual_pdf": "assets/manuals/user_guides/cot_id_2_shure_sm58_lc_manual.pdf",
+      "url_fabricante": "https://www.shure.com/pt-BR/produtos/microfones/sm58"
+    },
+    "status_enriquecimento": "ENRIQUECIDO"
   },
   {
     "id": 3,
@@ -31,7 +74,50 @@
     "tombamento_oficial": null,
     "status_tombamento": "NÃO TOMBADO (Sem foto de tombamento = Objeto não estava tombado)",
     "especificacao_tecnica": "S/N: 115983, Faixa 42-51 (638.125-697.875 MHz)",
-    "estado_fisico": "Normal"
+    "estado_fisico": "Normal",
+    "serial_fabricante": "115983",
+    "dados_tecnicos": {
+      "fabricante_real": "Sony",
+      "modelo_comercial": "URX-P03 (Kit UWP-D11)",
+      "categoria": "Receptor de Microfone Sem Fio Portátil",
+      "funcao_operacional": "Recepção de áudio sem fio para câmera de externa / estúdio (identificado com fita '02')",
+      "especificacoes": {
+        "tipo_circuito": "Sintetizador PLL analógico/digital híbrido",
+        "faixa_frequencia": "Faixa 42-51 (638.125 MHz a 697.875 MHz)",
+        "saida_audio": "Conector P2 estéreo balanceado / XLR",
+        "display": "LCD retroiluminado com indicador de nível RF e áudio"
+      },
+      "classificacao_original": "COT_NAO_CADASTRADO"
+    },
+    "regularizacao_sei": {
+      "processo_sei": "202600005037287",
+      "documento_sei": null,
+      "acao_recomendada": "Pertencente ao acervo de microfonia sem fio da TV UEG. Regularizar com afixação de nova placa física SPM.",
+      "status_regularizacao": "EM_INSTRUCAO"
+    },
+    "recursos_visuais": {
+      "fotos_auditoria_paths": [
+        "fotos/central de operacao tecnica/IMG_20261111_103556.jpg",
+        "fotos/central de operacao tecnica/IMG_20261111_103625.jpg"
+      ],
+      "fotos_fundo_neutro": [
+        "assets/images/cutout/cot_id_3_sony_urx_p03_kit_uwp_d11_hero.png"
+      ],
+      "angulos_disponiveis": [
+        "hero_3_4",
+        "frontal"
+      ]
+    },
+    "modelo_3d": {
+      "formato": "glb",
+      "arquivo": "assets/models3d/glb/cot_id_3_sony_urx_p03_kit_uwp_d11.glb",
+      "disponibilidade": "PROXY_VOLUMETRICO"
+    },
+    "documentacao_tecnica": {
+      "manual_pdf": "assets/manuals/user_guides/cot_id_3_sony_urx_p03_kit_uwp_d11_manual.pdf",
+      "url_fabricante": "https://pro.sony/pt_BR/products/wireless-audio/urx-p03"
+    },
+    "status_enriquecimento": "ENRIQUECIDO"
   },
   {
     "id": 4,
@@ -49,7 +135,50 @@
     "tombamento_oficial": null,
     "status_tombamento": "NÃO TOMBADO (Sem foto de tombamento = Objeto não estava tombado)",
     "especificacao_tecnica": "S/N: BRACVX01071, 12 canais, efeitos SPX, USB 2.0",
-    "estado_fisico": "Normal"
+    "estado_fisico": "Normal",
+    "serial_fabricante": "BRACVX01071",
+    "dados_tecnicos": {
+      "fabricante_real": "Yamaha",
+      "modelo_comercial": "MG12XU",
+      "categoria": "Mesa de Som Analógica com Efeitos e Interface USB",
+      "funcao_operacional": "Console de áudio de estúdio / bancada de streaming",
+      "especificacoes": {
+        "canais": 12,
+        "preamps": "6 pré-amplificadores D-PRE com circuito Darlington invertido e Phantom +48V",
+        "efeitos": "Processador digital SPX com 24 programas de alta qualidade",
+        "interface_usb": "USB 2.0 com suporte a 24-bit / 192 kHz"
+      },
+      "classificacao_original": "COT_NAO_CADASTRADO"
+    },
+    "regularizacao_sei": {
+      "processo_sei": "202100020006687",
+      "documento_sei": "97743689",
+      "acao_recomendada": "Vincular formalmente ao Processo SEI de compra 202100020006687 e incorporar formalmente à carga do CriaLab/COT.",
+      "status_regularizacao": "CONCILIADO_SEI"
+    },
+    "recursos_visuais": {
+      "fotos_auditoria_paths": [
+        "fotos/central de operacao tecnica/IMG_20261111_103810.jpg",
+        "fotos/central de operacao tecnica/IMG_20261111_103849.jpg"
+      ],
+      "fotos_fundo_neutro": [
+        "assets/images/cutout/cot_id_4_yamaha_mg12xu_hero.png"
+      ],
+      "angulos_disponiveis": [
+        "hero_3_4",
+        "frontal"
+      ]
+    },
+    "modelo_3d": {
+      "formato": "glb",
+      "arquivo": "assets/models3d/glb/cot_id_4_yamaha_mg12xu.glb",
+      "disponibilidade": "DISPONIVEL"
+    },
+    "documentacao_tecnica": {
+      "manual_pdf": "assets/manuals/user_guides/cot_id_4_yamaha_mg12xu_manual.pdf",
+      "url_fabricante": "https://br.yamaha.com/pt/products/audio_visual/mixers/mg_series_xu_model/mg12xu.html"
+    },
+    "status_enriquecimento": "ENRIQUECIDO"
   },
   {
     "id": 8,
@@ -67,7 +196,55 @@
     "tombamento_oficial": null,
     "status_tombamento": "NÃO TOMBADO (Sem foto de tombamento = Objeto não estava tombado)",
     "especificacao_tecnica": "Model P2014Ht, portas VGA/DVI/DP/USB",
-    "estado_fisico": "Normal"
+    "estado_fisico": "Normal",
+    "serial_fabricante": "CN-03H94W-74261",
+    "dados_tecnicos": {
+      "fabricante_real": "Dell",
+      "modelo_comercial": "Professional P2014Ht",
+      "categoria": "Monitor de Vídeo LCD LED Pivot",
+      "funcao_operacional": "Monitor de apoio de estúdio com orientação vertical para monitoração técnica",
+      "especificacoes": {
+        "tamanho": "19.5 polegadas LED Widescreen 16:9",
+        "resolucao": "1600x900 a 60Hz",
+        "pedestal": "Ajuste completo de altura e rotação vertical 90° (Pivot)",
+        "conexoes": [
+          "DisplayPort",
+          "DVI-D",
+          "VGA",
+          "Hub USB 2.0 integrado"
+        ]
+      },
+      "classificacao_original": "COT_NAO_CADASTRADO"
+    },
+    "regularizacao_sei": {
+      "processo_sei": "202600005037287",
+      "documento_sei": null,
+      "acao_recomendada": "Equipamento em operação ativa na COT. Emitir e afixar plaqueta física SPM de tombamento.",
+      "status_regularizacao": "EM_INSTRUCAO"
+    },
+    "recursos_visuais": {
+      "fotos_auditoria_paths": [
+        "fotos/central de operacao tecnica/IMG_20261111_104232.jpg",
+        "fotos/central de operacao tecnica/IMG_20261111_104244.jpg"
+      ],
+      "fotos_fundo_neutro": [
+        "assets/images/cutout/cot_id_8_dell_professional_p2014ht_hero.png"
+      ],
+      "angulos_disponiveis": [
+        "hero_3_4",
+        "frontal"
+      ]
+    },
+    "modelo_3d": {
+      "formato": "glb",
+      "arquivo": "assets/models3d/glb/cot_id_8_dell_professional_p2014ht.glb",
+      "disponibilidade": "PROXY_VOLUMETRICO"
+    },
+    "documentacao_tecnica": {
+      "manual_pdf": "assets/manuals/user_guides/cot_id_8_dell_professional_p2014ht_manual.pdf",
+      "url_fabricante": "https://www.dell.com/support/home/pt-br/product-support/product/dell-p2014h/docs"
+    },
+    "status_enriquecimento": "ENRIQUECIDO"
   },
   {
     "id": 10,
@@ -85,7 +262,55 @@
     "tombamento_oficial": null,
     "status_tombamento": "NÃO TOMBADO (Sem foto de tombamento = Objeto não estava tombado)",
     "especificacao_tecnica": "S/N: 21MB44422N0A10002120, entradas HDMI/DVI/SDI/Ópticas",
-    "estado_fisico": "Normal"
+    "estado_fisico": "Normal",
+    "serial_fabricante": "21MB44422N0A10002120",
+    "dados_tecnicos": {
+      "fabricante_real": "NovaStar",
+      "modelo_comercial": "VX400 (All-in-One Controller)",
+      "categoria": "Processador de Vídeo para Telão LED",
+      "funcao_operacional": "Controlador mestre de processamento e mapeamento do telão LED de estúdio",
+      "especificacoes": {
+        "capacidade_pixels": "Até 2.6 milhões de pixels (largura máxima 10.240, altura máxima 8.192)",
+        "saidas_rede": "4 portas Gigabit Ethernet RJ45 para envio aos módulos de LED",
+        "entradas_video": [
+          "HDMI 1.3",
+          "DVI",
+          "3G-SDI",
+          "Porta óptica 10G"
+        ],
+        "montagem": "Padrão rack 19 polegadas 1U"
+      },
+      "classificacao_original": "COT_NAO_CADASTRADO"
+    },
+    "regularizacao_sei": {
+      "processo_sei": "202600005037287",
+      "documento_sei": "97743691",
+      "acao_recomendada": "Controlador essencial para o estúdio da TV. Emitir plaqueta de tombamento urgente vinculada ao Doc SEI 97743691.",
+      "status_regularizacao": "DOC_SEI_IDENTIFICADO"
+    },
+    "recursos_visuais": {
+      "fotos_auditoria_paths": [
+        "fotos/central de operacao tecnica/IMG_20261111_104431.jpg",
+        "fotos/central de operacao tecnica/IMG_20261111_104438.jpg"
+      ],
+      "fotos_fundo_neutro": [
+        "assets/images/cutout/cot_id_10_novastar_vx400_all_in_one_controller_hero.png"
+      ],
+      "angulos_disponiveis": [
+        "hero_3_4",
+        "frontal"
+      ]
+    },
+    "modelo_3d": {
+      "formato": "glb",
+      "arquivo": "assets/models3d/glb/cot_id_10_novastar_vx400_all_in_one_controller.glb",
+      "disponibilidade": "DISPONIVEL"
+    },
+    "documentacao_tecnica": {
+      "manual_pdf": "assets/manuals/user_guides/cot_id_10_novastar_vx400_all_in_one_controller_manual.pdf",
+      "url_fabricante": "https://www.novastar.tech/products/controller/vx400/"
+    },
+    "status_enriquecimento": "ENRIQUECIDO"
   },
   {
     "id": 11,
@@ -103,7 +328,51 @@
     "tombamento_oficial": null,
     "status_tombamento": "NÃO TOMBADO NO CHASSI (Sem foto de tombamento = Sem placa física afixada)",
     "especificacao_tecnica": "S/N: 008479010011225, Fabr: 05/01/2023, Floripa Tecnologia Ind e Com LTDA",
-    "estado_fisico": "Normal"
+    "estado_fisico": "Normal",
+    "serial_fabricante": "008479010011225",
+    "dados_tecnicos": {
+      "fabricante_real": "Floripa Tecnologia",
+      "modelo_comercial": "Spotware - M (Tag UEGSW1)",
+      "categoria": "Servidor Broadcast de Ingest e Playout 4U",
+      "funcao_operacional": "Servidor central de automação de exibição da TV UEG",
+      "especificacoes": {
+        "arquitetura": "Servidor industrial montagem em rack 4U com dupla fonte redundante",
+        "canais": "2 canais independentes (1 Ingest + 1 Playout com switch automático)",
+        "placas_sdi": "Placas de captura e saída Blackmagic DeckLink SDI broadcast",
+        "data_fabricacao": "05/01/2023 por Floripa Tecnologia Ind e Com LTDA"
+      },
+      "classificacao_original": "COT_NAO_CADASTRADO"
+    },
+    "regularizacao_sei": {
+      "processo_sei": "202100020006687",
+      "documento_sei": "Contrato nº 068/2022",
+      "tombamento_vinculado_spm": "3111136",
+      "acao_recomendada": "CONCILIADO COM SPM! Corresponde ao tombamento SPM nº 3111136 (Seq 259 CriaLab). Afixar plaqueta metálica física no chassi.",
+      "status_regularizacao": "CONCILIADO_COM_SPM"
+    },
+    "recursos_visuais": {
+      "fotos_auditoria_paths": [
+        "fotos/central de operacao tecnica/IMG_20261111_104514.jpg",
+        "fotos/central de operacao tecnica/IMG_20261111_104547.jpg"
+      ],
+      "fotos_fundo_neutro": [
+        "assets/images/cutout/cot_id_11_floripa_tecnologia_spotware_m_tag_uegsw1_hero.png"
+      ],
+      "angulos_disponiveis": [
+        "hero_3_4",
+        "frontal"
+      ]
+    },
+    "modelo_3d": {
+      "formato": "glb",
+      "arquivo": "assets/models3d/glb/cot_id_11_floripa_tecnologia_spotware_m_tag_uegsw1.glb",
+      "disponibilidade": "DISPONIVEL"
+    },
+    "documentacao_tecnica": {
+      "manual_pdf": "assets/manuals/user_guides/cot_id_11_floripa_tecnologia_spotware_m_tag_uegsw1_manual.pdf",
+      "url_fabricante": "https://www.floripatec.com.br"
+    },
+    "status_enriquecimento": "ENRIQUECIDO"
   },
   {
     "id": 12,
@@ -121,7 +390,51 @@
     "tombamento_oficial": null,
     "status_tombamento": "NÃO TOMBADO OFICIALMENTE (Etiqueta manual TOMBO 702226 / UEG 72490)",
     "especificacao_tecnica": "S/N: F3XE4B7024692, MAC: 84C9B24D4C04, H/W: E5, F/W: 5.11BR",
-    "estado_fisico": "Imperfeição (restos de fita crepe antiga da Secretaria)"
+    "estado_fisico": "Imperfeição (restos de fita crepe antiga da Secretaria)",
+    "serial_fabricante": "F3XE4B7024692",
+    "dados_tecnicos": {
+      "fabricante_real": "D-Link",
+      "modelo_comercial": "DIR-615",
+      "categoria": "Roteador Wireless N300",
+      "funcao_operacional": "Roteamento de rede local legada de apoio da COT",
+      "especificacoes": {
+        "padrao": "IEEE 802.11b/g/n até 300 Mbps",
+        "antenas": "2 antenas externas de 5 dBi",
+        "portas": "4 portas LAN Fast Ethernet 10/100 Mbps + 1 porta WAN",
+        "hardware_firmware": "H/W: E5, F/W: 5.11BR, MAC: 84C9B24D4C04",
+        "etiqueta_anterior": "TOMBO 702226 / UEG 72490"
+      },
+      "classificacao_original": "COT_NAO_CADASTRADO"
+    },
+    "regularizacao_sei": {
+      "processo_sei": "202600005037287",
+      "documento_sei": null,
+      "acao_recomendada": "Bem proveniente de migração patrimonial legada (TOMBO 702226 / UEG 72490). Efetuar baixa no sistema legado e nova etiquetagem SPM.",
+      "status_regularizacao": "MIGRACAO_LEGADA"
+    },
+    "recursos_visuais": {
+      "fotos_auditoria_paths": [
+        "fotos/central de operacao tecnica/IMG_20261111_104755.jpg",
+        "fotos/central de operacao tecnica/IMG_20261111_104809.jpg"
+      ],
+      "fotos_fundo_neutro": [
+        "assets/images/cutout/cot_id_12_d_link_dir_615_hero.png"
+      ],
+      "angulos_disponiveis": [
+        "hero_3_4",
+        "frontal"
+      ]
+    },
+    "modelo_3d": {
+      "formato": "glb",
+      "arquivo": "assets/models3d/glb/cot_id_12_d_link_dir_615.glb",
+      "disponibilidade": "PROXY_VOLUMETRICO"
+    },
+    "documentacao_tecnica": {
+      "manual_pdf": "assets/manuals/user_guides/cot_id_12_d_link_dir_615_manual.pdf",
+      "url_fabricante": "https://www.dlink.com.br"
+    },
+    "status_enriquecimento": "ENRIQUECIDO"
   },
   {
     "id": 13,
@@ -139,7 +452,50 @@
     "tombamento_oficial": null,
     "status_tombamento": "NÃO TOMBADO (Sem foto de tombamento = Objeto não estava tombado)",
     "especificacao_tecnica": "S/N: EZCAP26920100003, USB 3.0 4K60fps capture",
-    "estado_fisico": "Normal"
+    "estado_fisico": "Normal",
+    "serial_fabricante": "EZCAP26920100003",
+    "dados_tecnicos": {
+      "fabricante_real": "ezcap",
+      "modelo_comercial": "Game Pro 4K60fps (ezcap269 / Cód. 13729)",
+      "categoria": "Placa de Captura de Vídeo Externa USB 3.0",
+      "funcao_operacional": "Captura e digitalização de sinal HDMI para streaming ao vivo na COT",
+      "especificacoes": {
+        "interface": "USB 3.0 SuperSpeed Plug & Play (padrão UVC)",
+        "entrada_passthrough": "HDMI 2.0 com suporte a 4K a 60fps HDR",
+        "gravacao": "Captura Full HD 1080p ou 4K a 60fps sem compressão",
+        "compatibilidade": "vMix, OBS Studio, Wirecast, QuickTime"
+      },
+      "classificacao_original": "COT_NAO_CADASTRADO"
+    },
+    "regularizacao_sei": {
+      "processo_sei": "202600005037287",
+      "documento_sei": "97743697",
+      "acao_recomendada": "Utilizado ativamente nas transmissões de streaming da COT. Regularizar tombamento vinculado ao Doc SEI 97743697.",
+      "status_regularizacao": "DOC_SEI_IDENTIFICADO"
+    },
+    "recursos_visuais": {
+      "fotos_auditoria_paths": [
+        "fotos/central de operacao tecnica/IMG_20261111_104826.jpg",
+        "fotos/central de operacao tecnica/IMG_20261111_104837.jpg"
+      ],
+      "fotos_fundo_neutro": [
+        "assets/images/cutout/cot_id_13_ezcap_game_pro_4k60fps_ezcap269_cd_13729_hero.png"
+      ],
+      "angulos_disponiveis": [
+        "hero_3_4",
+        "frontal"
+      ]
+    },
+    "modelo_3d": {
+      "formato": "glb",
+      "arquivo": "assets/models3d/glb/cot_id_13_ezcap_game_pro_4k60fps_ezcap269_cd_13729.glb",
+      "disponibilidade": "PROXY_VOLUMETRICO"
+    },
+    "documentacao_tecnica": {
+      "manual_pdf": "assets/manuals/user_guides/cot_id_13_ezcap_game_pro_4k60fps_ezcap269_cd_13729_manual.pdf",
+      "url_fabricante": "https://www.ezcap.com"
+    },
+    "status_enriquecimento": "ENRIQUECIDO"
   },
   {
     "id": 14,
@@ -157,6 +513,50 @@
     "tombamento_oficial": null,
     "status_tombamento": "NÃO TOMBADO (Sem foto de tombamento = Objeto não estava tombado)",
     "especificacao_tecnica": "S/N: NT3D44VV, Capacidade 4TB (3,63TB formatado), Fabr: 2024",
-    "estado_fisico": "Normal"
+    "estado_fisico": "Normal",
+    "serial_fabricante": "NT3D44VV",
+    "dados_tecnicos": {
+      "fabricante_real": "Seagate",
+      "modelo_comercial": "Portable Drive 4TB (SRD0NF1 / 2N1AP6-500)",
+      "categoria": "Armazenamento Externo Portátil 4TB",
+      "funcao_operacional": "Armazenamento ativo de clipes brutos e material jornalístico (identificado como 'Loggagem 08')",
+      "especificacoes": {
+        "capacidade_nominal": "4.0 TB (3.63 TB formatado)",
+        "interface": "USB 3.0 Micro-B SuperSpeed",
+        "taxa_transferencia": "Até 5.0 Gbps",
+        "ano_fabricacao": "2024",
+        "formato": "2.5 polegadas auto-alimentado"
+      },
+      "classificacao_original": "COT_NAO_CADASTRADO"
+    },
+    "regularizacao_sei": {
+      "processo_sei": "202600005037287",
+      "documento_sei": "97743698",
+      "acao_recomendada": "Armazenamento essencial de fluxo jornalístico. Emitir e afixar etiqueta patrimonial SPM vinculada ao Doc SEI 97743698.",
+      "status_regularizacao": "DOC_SEI_IDENTIFICADO"
+    },
+    "recursos_visuais": {
+      "fotos_auditoria_paths": [
+        "fotos/central de operacao tecnica/IMG_20261111_104935.jpg",
+        "fotos/central de operacao tecnica/IMG_20261111_104945.jpg"
+      ],
+      "fotos_fundo_neutro": [
+        "assets/images/cutout/cot_id_14_seagate_portable_drive_4tb_srd0nf1_2n1ap6_500_hero.png"
+      ],
+      "angulos_disponiveis": [
+        "hero_3_4",
+        "frontal"
+      ]
+    },
+    "modelo_3d": {
+      "formato": "glb",
+      "arquivo": "assets/models3d/glb/cot_id_14_seagate_portable_drive_4tb_srd0nf1_2n1ap6_500.glb",
+      "disponibilidade": "PROXY_VOLUMETRICO"
+    },
+    "documentacao_tecnica": {
+      "manual_pdf": "assets/manuals/user_guides/cot_id_14_seagate_portable_drive_4tb_srd0nf1_2n1ap6_500_manual.pdf",
+      "url_fabricante": "https://www.seagate.com"
+    },
+    "status_enriquecimento": "ENRIQUECIDO"
   }
 ]
