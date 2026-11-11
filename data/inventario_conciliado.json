@@ -6538,8 +6538,10 @@
       "funcao_operacional": "Backup e transporte de mídias de vídeo e áudio",
       "especificacoes": {
         "capacidade": "1.0 TB",
-        "interface": "USB 3.0 SuperSpeed",
-        "formato": "2.5 polegadas"
+        "interface": "USB 3.0 SuperSpeed (compatível com USB 2.0)",
+        "formato": "2.5 polegadas",
+        "taxa_transferencia": "Até 5 Gbps no modo USB 3.0, até 480 Mbps no modo USB 2.0",
+        "alimentacao": "Alimentação direta via barramento USB"
       },
       "classificacao_original": "SUFICIENTEMENTE_DESCRITO"
     },
@@ -6559,7 +6561,7 @@
     },
     "documentacao_tecnica": {
       "manual_pdf": "assets/manuals/user_guides/tomb_3205543_seagate_expansion_portable_1tb_usb_3_0_manual.pdf",
-      "url_fabricante": "https://www.seagate.com"
+      "url_fabricante": "https://www.seagate.com/products/external-hard-drives/expansion-portable-hard-drive/"
     },
     "status_enriquecimento": "ENRIQUECIDO"
   },
@@ -6587,8 +6589,10 @@
       "funcao_operacional": "Backup e transporte de mídias de vídeo e áudio",
       "especificacoes": {
         "capacidade": "1.0 TB",
-        "interface": "USB 3.0 SuperSpeed",
-        "formato": "2.5 polegadas"
+        "interface": "USB 3.0 SuperSpeed (compatível com USB 2.0)",
+        "formato": "2.5 polegadas",
+        "taxa_transferencia": "Até 5 Gbps no modo USB 3.0, até 480 Mbps no modo USB 2.0",
+        "alimentacao": "Alimentação direta via barramento USB"
       },
       "classificacao_original": "SUFICIENTEMENTE_DESCRITO"
     },
@@ -6608,7 +6612,7 @@
     },
     "documentacao_tecnica": {
       "manual_pdf": "assets/manuals/user_guides/tomb_3205544_seagate_expansion_portable_1tb_usb_3_0_manual.pdf",
-      "url_fabricante": "https://www.seagate.com"
+      "url_fabricante": "https://www.seagate.com/products/external-hard-drives/expansion-portable-hard-drive/"
     },
     "status_enriquecimento": "ENRIQUECIDO"
   },
@@ -6630,18 +6634,22 @@
     "fotos_evidencia": "",
     "divergencia_carga": "NÃO",
     "dados_tecnicos": {
-      "fabricante_real": "NÃO INFORMADA",
-      "modelo_comercial": "HD DISCO RIGIDO EXTERNO 1TB COR PRETA, USB 3.0,TAXA DE TRANSFERÊNCIA DE DADOS: ATÉ 480MB/SEG NO MODO USB 2.0 E ATÉ 5GB/SEG NO MODO USB SEAGATE O ITEM NÃO FOI LOCALIZADO MARQUE CASO NECESSITE NOVA ETIQUETA MARQUE EM CASO DE IMPERFEIÇÃO MARQUE EM CASO DE DEFEITO O ITEM FOI AUDITADO FUTURA (Em Anos)",
-      "categoria": "Equipamento de Broadcast / Informática Homologado",
-      "funcao_operacional": "Operação técnica de estúdio e computação",
+      "fabricante_real": "Seagate",
+      "modelo_comercial": "Expansion Portable 1TB USB 3.0",
+      "categoria": "Armazenamento Externo Portátil",
+      "funcao_operacional": "Backup e transporte de mídias de vídeo e áudio",
       "especificacoes": {
-        "descricao_detalhada": "HD DISCO RIGIDO EXTERNO 1TB COR PRETA, USB 3.0,TAXA DE TRANSFERÊNCIA DE DADOS: ATÉ 480MB/SEG NO MODO USB 2.0 E ATÉ 5GB/SEG NO MODO USB SEAGATE O ITEM NÃO FOI LOCALIZADO MARQUE CASO NECESSITE NOVA ETIQUETA MARQUE EM CASO DE IMPERFEIÇÃO MARQUE EM CASO DE DEFEITO O ITEM FOI AUDITADO FUTURA (Em Anos)"
+        "capacidade": "1.0 TB",
+        "interface": "USB 3.0 SuperSpeed (compatível com USB 2.0)",
+        "formato": "2.5 polegadas",
+        "taxa_transferencia": "Até 5 Gbps no modo USB 3.0, até 480 Mbps no modo USB 2.0",
+        "alimentacao": "Alimentação direta via barramento USB"
       },
       "classificacao_original": "SUFICIENTEMENTE_DESCRITO"
     },
     "recursos_visuais": {
       "fotos_fundo_neutro": [
-        "assets/images/cutout/tomb_3205545_no_informada_hd_disco_rigido_externo_1tb_cor_preta_usb_3_0taxa_de_transferncia_de_dados_at_480mb_seg_no_modo_usb_2_0_e_at_5gb_seg_no_modo_usb_seagate_o_item_no_foi_localizado_marque_caso_necessite_nova_etiqueta_marque_em_caso_de_imperfeio_marque_em_caso_de_defeito_o_item_foi_auditado_futura_em_anos_hero.png"
+        "assets/images/cutout/tomb_3205545_seagate_expansion_portable_1tb_usb_3_0_hero.png"
       ],
       "angulos_disponiveis": [
         "hero_3_4",
@@ -6650,12 +6658,12 @@
     },
     "modelo_3d": {
       "formato": "glb",
-      "arquivo": "assets/models3d/glb/tomb_3205545_no_informada_hd_disco_rigido_externo_1tb_cor_preta_usb_3_0taxa_de_transferncia_de_dados_at_480mb_seg_no_modo_usb_2_0_e_at_5gb_seg_no_modo_usb_seagate_o_item_no_foi_localizado_marque_caso_necessite_nova_etiqueta_marque_em_caso_de_imperfeio_marque_em_caso_de_defeito_o_item_foi_auditado_futura_em_anos.glb",
+      "arquivo": "assets/models3d/glb/tomb_3205545_seagate_expansion_portable_1tb_usb_3_0.glb",
       "disponibilidade": "PROXY_VOLUMETRICO"
     },
     "documentacao_tecnica": {
-      "manual_pdf": "assets/manuals/user_guides/tomb_3205545_no_informada_hd_disco_rigido_externo_1tb_cor_preta_usb_3_0taxa_de_transferncia_de_dados_at_480mb_seg_no_modo_usb_2_0_e_at_5gb_seg_no_modo_usb_seagate_o_item_no_foi_localizado_marque_caso_necessite_nova_etiqueta_marque_em_caso_de_imperfeio_marque_em_caso_de_defeito_o_item_foi_auditado_futura_em_anos_manual.pdf",
-      "url_fabricante": "https://ueg.br"
+      "manual_pdf": "assets/manuals/user_guides/tomb_3205545_seagate_expansion_portable_1tb_usb_3_0_manual.pdf",
+      "url_fabricante": "https://www.seagate.com/products/external-hard-drives/expansion-portable-hard-drive/"
     },
     "status_enriquecimento": "ENRIQUECIDO"
   },
@@ -6683,8 +6691,10 @@
       "funcao_operacional": "Backup e transporte de mídias de vídeo e áudio",
       "especificacoes": {
         "capacidade": "1.0 TB",
-        "interface": "USB 3.0 SuperSpeed",
-        "formato": "2.5 polegadas"
+        "interface": "USB 3.0 SuperSpeed (compatível com USB 2.0)",
+        "formato": "2.5 polegadas",
+        "taxa_transferencia": "Até 5 Gbps no modo USB 3.0, até 480 Mbps no modo USB 2.0",
+        "alimentacao": "Alimentação direta via barramento USB"
       },
       "classificacao_original": "SUFICIENTEMENTE_DESCRITO"
     },
@@ -6704,7 +6714,7 @@
     },
     "documentacao_tecnica": {
       "manual_pdf": "assets/manuals/user_guides/tomb_3205549_seagate_expansion_portable_1tb_usb_3_0_manual.pdf",
-      "url_fabricante": "https://www.seagate.com"
+      "url_fabricante": "https://www.seagate.com/products/external-hard-drives/expansion-portable-hard-drive/"
     },
     "status_enriquecimento": "ENRIQUECIDO"
   },
@@ -6732,8 +6742,10 @@
       "funcao_operacional": "Backup e transporte de mídias de vídeo e áudio",
       "especificacoes": {
         "capacidade": "1.0 TB",
-        "interface": "USB 3.0 SuperSpeed",
-        "formato": "2.5 polegadas"
+        "interface": "USB 3.0 SuperSpeed (compatível com USB 2.0)",
+        "formato": "2.5 polegadas",
+        "taxa_transferencia": "Até 5 Gbps no modo USB 3.0, até 480 Mbps no modo USB 2.0",
+        "alimentacao": "Alimentação direta via barramento USB"
       },
       "classificacao_original": "SUFICIENTEMENTE_DESCRITO"
     },
@@ -6753,7 +6765,7 @@
     },
     "documentacao_tecnica": {
       "manual_pdf": "assets/manuals/user_guides/tomb_3205550_seagate_expansion_portable_1tb_usb_3_0_manual.pdf",
-      "url_fabricante": "https://www.seagate.com"
+      "url_fabricante": "https://www.seagate.com/products/external-hard-drives/expansion-portable-hard-drive/"
     },
     "status_enriquecimento": "ENRIQUECIDO"
   },
@@ -6781,8 +6793,10 @@
       "funcao_operacional": "Backup e transporte de mídias de vídeo e áudio",
       "especificacoes": {
         "capacidade": "1.0 TB",
-        "interface": "USB 3.0 SuperSpeed",
-        "formato": "2.5 polegadas"
+        "interface": "USB 3.0 SuperSpeed (compatível com USB 2.0)",
+        "formato": "2.5 polegadas",
+        "taxa_transferencia": "Até 5 Gbps no modo USB 3.0, até 480 Mbps no modo USB 2.0",
+        "alimentacao": "Alimentação direta via barramento USB"
       },
       "classificacao_original": "SUFICIENTEMENTE_DESCRITO"
     },
@@ -6802,7 +6816,7 @@
     },
     "documentacao_tecnica": {
       "manual_pdf": "assets/manuals/user_guides/tomb_3205551_seagate_expansion_portable_1tb_usb_3_0_manual.pdf",
-      "url_fabricante": "https://www.seagate.com"
+      "url_fabricante": "https://www.seagate.com/products/external-hard-drives/expansion-portable-hard-drive/"
     },
     "status_enriquecimento": "ENRIQUECIDO"
   },
@@ -6830,8 +6844,10 @@
       "funcao_operacional": "Backup e transporte de mídias de vídeo e áudio",
       "especificacoes": {
         "capacidade": "1.0 TB",
-        "interface": "USB 3.0 SuperSpeed",
-        "formato": "2.5 polegadas"
+        "interface": "USB 3.0 SuperSpeed (compatível com USB 2.0)",
+        "formato": "2.5 polegadas",
+        "taxa_transferencia": "Até 5 Gbps no modo USB 3.0, até 480 Mbps no modo USB 2.0",
+        "alimentacao": "Alimentação direta via barramento USB"
       },
       "classificacao_original": "SUFICIENTEMENTE_DESCRITO"
     },
@@ -6851,7 +6867,7 @@
     },
     "documentacao_tecnica": {
       "manual_pdf": "assets/manuals/user_guides/tomb_3205552_seagate_expansion_portable_1tb_usb_3_0_manual.pdf",
-      "url_fabricante": "https://www.seagate.com"
+      "url_fabricante": "https://www.seagate.com/products/external-hard-drives/expansion-portable-hard-drive/"
     },
     "status_enriquecimento": "ENRIQUECIDO"
   },
@@ -6879,8 +6895,10 @@
       "funcao_operacional": "Backup e transporte de mídias de vídeo e áudio",
       "especificacoes": {
         "capacidade": "1.0 TB",
-        "interface": "USB 3.0 SuperSpeed",
-        "formato": "2.5 polegadas"
+        "interface": "USB 3.0 SuperSpeed (compatível com USB 2.0)",
+        "formato": "2.5 polegadas",
+        "taxa_transferencia": "Até 5 Gbps no modo USB 3.0, até 480 Mbps no modo USB 2.0",
+        "alimentacao": "Alimentação direta via barramento USB"
       },
       "classificacao_original": "SUFICIENTEMENTE_DESCRITO"
     },
@@ -6900,7 +6918,7 @@
     },
     "documentacao_tecnica": {
       "manual_pdf": "assets/manuals/user_guides/tomb_3205561_seagate_expansion_portable_1tb_usb_3_0_manual.pdf",
-      "url_fabricante": "https://www.seagate.com"
+      "url_fabricante": "https://www.seagate.com/products/external-hard-drives/expansion-portable-hard-drive/"
     },
     "status_enriquecimento": "ENRIQUECIDO"
   },
@@ -6928,8 +6946,10 @@
       "funcao_operacional": "Backup e transporte de mídias de vídeo e áudio",
       "especificacoes": {
         "capacidade": "1.0 TB",
-        "interface": "USB 3.0 SuperSpeed",
-        "formato": "2.5 polegadas"
+        "interface": "USB 3.0 SuperSpeed (compatível com USB 2.0)",
+        "formato": "2.5 polegadas",
+        "taxa_transferencia": "Até 5 Gbps no modo USB 3.0, até 480 Mbps no modo USB 2.0",
+        "alimentacao": "Alimentação direta via barramento USB"
       },
       "classificacao_original": "SUFICIENTEMENTE_DESCRITO"
     },
@@ -6949,7 +6969,7 @@
     },
     "documentacao_tecnica": {
       "manual_pdf": "assets/manuals/user_guides/tomb_3205562_seagate_expansion_portable_1tb_usb_3_0_manual.pdf",
-      "url_fabricante": "https://www.seagate.com"
+      "url_fabricante": "https://www.seagate.com/products/external-hard-drives/expansion-portable-hard-drive/"
     },
     "status_enriquecimento": "ENRIQUECIDO"
   },
@@ -6977,8 +6997,10 @@
       "funcao_operacional": "Backup e transporte de mídias de vídeo e áudio",
       "especificacoes": {
         "capacidade": "1.0 TB",
-        "interface": "USB 3.0 SuperSpeed",
-        "formato": "2.5 polegadas"
+        "interface": "USB 3.0 SuperSpeed (compatível com USB 2.0)",
+        "formato": "2.5 polegadas",
+        "taxa_transferencia": "Até 5 Gbps no modo USB 3.0, até 480 Mbps no modo USB 2.0",
+        "alimentacao": "Alimentação direta via barramento USB"
       },
       "classificacao_original": "SUFICIENTEMENTE_DESCRITO"
     },
@@ -6998,7 +7020,7 @@
     },
     "documentacao_tecnica": {
       "manual_pdf": "assets/manuals/user_guides/tomb_3205571_seagate_expansion_portable_1tb_usb_3_0_manual.pdf",
-      "url_fabricante": "https://www.seagate.com"
+      "url_fabricante": "https://www.seagate.com/products/external-hard-drives/expansion-portable-hard-drive/"
     },
     "status_enriquecimento": "ENRIQUECIDO"
   },
@@ -10169,18 +10191,26 @@
     "fotos_evidencia": "",
     "divergencia_carga": "NÃO",
     "dados_tecnicos": {
-      "fabricante_real": "DELL",
-      "modelo_comercial": "MONITOR COM TAMANHO MÍNIMO DE 23,8 POLEGADAS.",
-      "categoria": "Equipamento de Broadcast / Informática Homologado",
-      "funcao_operacional": "Operação técnica de estúdio e computação",
+      "fabricante_real": "Dell",
+      "modelo_comercial": "Dell Professional P2419H 23.8\" IPS Monitor",
+      "categoria": "Monitor Profissional de Vídeo",
+      "funcao_operacional": "Display corporativo para estações de trabalho do CriaLab",
       "especificacoes": {
-        "descricao_detalhada": "MONITOR COM TAMANHO MÍNIMO DE 23,8 POLEGADAS."
+        "painel": "IPS Full HD 1920x1080 a 60Hz antirreflexo",
+        "tamanho_tela": "23.8 polegadas (proporção 16:9)",
+        "conexoes": [
+          "DisplayPort 1.2",
+          "HDMI 1.4",
+          "VGA",
+          "Hub USB integrado"
+        ],
+        "ajustes": "Suporte ergonômico com inclinação, rotação e ajuste de altura"
       },
       "classificacao_original": "SUFICIENTEMENTE_DESCRITO"
     },
     "recursos_visuais": {
       "fotos_fundo_neutro": [
-        "assets/images/cutout/tomb_2612239_dell_monitor_com_tamanho_mnimo_de_238_polegadas_hero.png"
+        "assets/images/cutout/tomb_2612239_dell_dell_professional_p2419h_23_8_ips_monitor_hero.png"
       ],
       "angulos_disponiveis": [
         "hero_3_4",
@@ -10189,12 +10219,12 @@
     },
     "modelo_3d": {
       "formato": "glb",
-      "arquivo": "assets/models3d/glb/tomb_2612239_dell_monitor_com_tamanho_mnimo_de_238_polegadas.glb",
+      "arquivo": "assets/models3d/glb/tomb_2612239_dell_dell_professional_p2419h_23_8_ips_monitor.glb",
       "disponibilidade": "PROXY_VOLUMETRICO"
     },
     "documentacao_tecnica": {
-      "manual_pdf": "assets/manuals/user_guides/tomb_2612239_dell_monitor_com_tamanho_mnimo_de_238_polegadas_manual.pdf",
-      "url_fabricante": "https://ueg.br"
+      "manual_pdf": "assets/manuals/user_guides/tomb_2612239_dell_dell_professional_p2419h_23_8_ips_monitor_manual.pdf",
+      "url_fabricante": "https://www.dell.com/support/home/pt-br/product-support/product/dell-p2419h-monitor/docs"
     },
     "status_enriquecimento": "ENRIQUECIDO"
   },
@@ -10370,20 +10400,23 @@
     "divergencia_carga": "NÃO",
     "dados_tecnicos": {
       "fabricante_real": "Apple",
-      "modelo_comercial": "Mac Studio M2 Max",
-      "categoria": "Estação de Trabalho / Computação de Alta Performance",
-      "funcao_operacional": "Ilha principal de renderização e edição cinematográfica do CriaLab",
+      "modelo_comercial": "Studio Display 27\" 5K Retina",
+      "categoria": "Monitor Profissional de Vídeo 5K",
+      "funcao_operacional": "Monitor de referência para pós-produção e color grading",
       "especificacoes": {
-        "cpu": "12-core",
-        "gpu": "30-core",
-        "memoria_unificada": "32 GB",
-        "armazenamento": "SSD 512 GB"
+        "tamanho_tela": "27 polegadas",
+        "resolucao": "5K Retina (5120 x 2880 pixels a 218 ppi)",
+        "brilho": "600 nits",
+        "painel": "True Tone P3, 1 bilhão de cores",
+        "camera": "12MP Ultra-Wide com Center Stage",
+        "audio": "Sistema de som com 6 alto-falantes e áudio espacial",
+        "ergonomia": "Pedestal com ajuste de inclinação e altura"
       },
       "classificacao_original": "SUFICIENTEMENTE_DESCRITO"
     },
     "recursos_visuais": {
       "fotos_fundo_neutro": [
-        "assets/images/cutout/tomb_3280069_apple_mac_studio_m2_max_hero.png"
+        "assets/images/cutout/tomb_3280069_apple_studio_display_27_5k_retina_hero.png"
       ],
       "angulos_disponiveis": [
         "hero_3_4",
@@ -10392,12 +10425,12 @@
     },
     "modelo_3d": {
       "formato": "glb",
-      "arquivo": "assets/models3d/glb/tomb_3280069_apple_mac_studio_m2_max.glb",
+      "arquivo": "assets/models3d/glb/tomb_3280069_apple_studio_display_27_5k_retina.glb",
       "disponibilidade": "PROXY_VOLUMETRICO"
     },
     "documentacao_tecnica": {
-      "manual_pdf": "assets/manuals/user_guides/tomb_3280069_apple_mac_studio_m2_max_manual.pdf",
-      "url_fabricante": "https://www.apple.com/br/mac-studio/"
+      "manual_pdf": "assets/manuals/user_guides/tomb_3280069_apple_studio_display_27_5k_retina_manual.pdf",
+      "url_fabricante": "https://www.apple.com/br/studio-display/"
     },
     "status_enriquecimento": "ENRIQUECIDO"
   },
