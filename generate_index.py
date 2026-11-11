@@ -34,36 +34,30 @@ html = f"""<!DOCTYPE html>
 
 <!-- Metatags SEO e OpenGraph -->
 <meta name="description" content="Sistema Integrado de Conciliação Patrimonial, Auditoria Fotográfica por IA e Gestão de Acervo 2026 do CriaLab e Radioteledifusão da Universidade Estadual de Goiás (UEG).">
-<meta name="keywords" content="CriaLab, Radioteledifusão, UEG, Inventário 2026, Patrimônio Mobiliário, SEI 202600005037287, SPM">
-<meta name="author" content="Fernando Gomes Cortes - Comissão Setorial de Inventário UEG">
-<meta name="theme-color" content="#1565c0">
-
-<!-- Open Graph / Facebook / WhatsApp -->
+<meta name="keywords" content="CriaLab, Radioteledifusão, UEG, Inventário 2026, Patrimônio, SEI 202600005037287, Estoque Now, Auditoria IA">
+<meta name="author" content="Comissão Setorial de Inventário - Fernando Cortes">
+<meta property="og:title" content="CriaLab & Radioteledifusão UEG - Inventário 2026">
+<meta property="og:description" content="Painel de Auditoria Visual, Reconciliação Estoque Now e Fichas Oficiais SPM/SEAD.">
 <meta property="og:type" content="website">
-<meta property="og:title" content="CriaLab & Radioteledifusão UEG - Inventário Patrimonial 2026">
-<meta property="og:description" content="Painel oficial de conciliação de acervo, auditoria fotográfica por multiagentes e preenchimento de fichas SEAD/SPM.">
-<meta property="og:image" content="{favicon_svg}">
-
-<!-- Twitter -->
-<meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="CriaLab & Radioteledifusão UEG - Inventário 2026">
-<meta name="twitter:description" content="Painel oficial de conciliação patrimonial e auditoria visual da UEG Laranjeiras.">
-
-<!-- Favicon SVG -->
+<meta property="og:url" content="https://2026-virid-five.vercel.app">
 <link rel="icon" type="image/svg+xml" href="{favicon_svg}">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 
 <style>
   :root {{
     --primary: #1565c0;
     --primary-dark: #0d47a1;
     --primary-light: #e3f2fd;
-    --accent: #ff8f00;
+    --accent: #f59e0b;
     --bg: #f8fafc;
     --card: #ffffff;
     --text: #0f172a;
     --text-muted: #64748b;
-    --border: #cbd5e1;
-    --border-light: #e2e8f0;
+    --border: #e2e8f0;
+    --border-light: #f1f5f9;
     --success: #16a34a;
     --success-bg: #dcfce7;
     --warning: #d97706;
@@ -71,56 +65,58 @@ html = f"""<!DOCTYPE html>
     --danger: #dc2626;
     --danger-bg: #fee2e2;
   }}
-  * {{ box-sizing: border-box; margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; }}
-  body {{ background: var(--bg); color: var(--text); padding-bottom: 60px; line-height: 1.5; }}
+
+  * {{ box-sizing: border-box; margin: 0; padding: 0; }}
+  body {{ font-family: 'Inter', system-ui, sans-serif; background: var(--bg); color: var(--text); line-height: 1.5; }}
   
-  header {{
-    background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary) 100%);
-    color: white;
-    padding: 22px 32px;
-    box-shadow: 0 4px 12px rgba(15, 23, 42, 0.15);
-  }}
-  .header-top {{ display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 15px; }}
-  .header-title h1 {{ font-size: 22px; font-weight: 800; display: flex; align-items: center; gap: 10px; }}
-  .header-title p {{ font-size: 13px; opacity: 0.92; margin-top: 4px; }}
-  .header-badges {{ display: flex; gap: 10px; align-items: center; flex-wrap: wrap; }}
-  .badge-processo {{ background: rgba(255,255,255,0.18); border: 1px solid rgba(255,255,255,0.3); padding: 5px 12px; border-radius: 20px; font-size: 11.5px; }}
-  .badge-deadline {{ background: #f59e0b; color: #0f172a; padding: 5px 12px; border-radius: 20px; font-size: 11.5px; font-weight: 700; }}
-  
-  .container {{ max-width: 1480px; margin: 25px auto; padding: 0 24px; }}
-  
-  /* KPI Cards */
-  .kpi-grid {{ display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 16px; margin-bottom: 25px; }}
-  .kpi-card {{ background: var(--card); border-radius: 12px; padding: 18px 20px; border: 1px solid var(--border-light); box-shadow: 0 1px 3px rgba(0,0,0,0.04); }}
-  .kpi-title {{ font-size: 11.5px; font-weight: 700; text-transform: uppercase; color: var(--text-muted); letter-spacing: 0.5px; }}
-  .kpi-value {{ font-size: 30px; font-weight: 800; margin: 6px 0; color: var(--primary); }}
-  .kpi-sub {{ font-size: 11.5px; color: var(--text-muted); display: flex; align-items: center; gap: 6px; }}
-  
-  /* Tabs */
-  .tabs {{ display: flex; gap: 8px; border-bottom: 2px solid var(--border-light); margin-bottom: 20px; overflow-x: auto; padding-bottom: 2px; }}
-  .tab-btn {{ background: none; border: none; padding: 11px 20px; font-size: 13.5px; font-weight: 600; color: var(--text-muted); cursor: pointer; border-bottom: 3px solid transparent; transition: all 0.2s; white-space: nowrap; border-radius: 6px 6px 0 0; }}
-  .tab-btn:hover {{ color: var(--primary); background: rgba(21, 101, 192, 0.04); }}
-  .tab-btn.active {{ color: var(--primary); border-bottom-color: var(--primary); background: rgba(21, 101, 192, 0.06); }}
-  
+  /* Topbar */
+  .topbar {{ background: var(--card); border-bottom: 1px solid var(--border); padding: 12px 28px; display: flex; justify-content: space-between; align-items: center; position: sticky; top: 0; z-index: 100; box-shadow: 0 1px 2px rgba(0,0,0,0.03); }}
+  .brand {{ display: flex; align-items: center; gap: 12px; }}
+  .brand-badge {{ background: linear-gradient(135deg, var(--primary), var(--primary-dark)); color: white; padding: 6px 12px; border-radius: 8px; font-weight: 700; font-size: 14px; letter-spacing: 0.5px; box-shadow: 0 2px 4px rgba(21,101,192,0.3); }}
+  .brand-title h1 {{ font-size: 15px; font-weight: 700; color: var(--text); }}
+  .brand-title p {{ font-size: 11px; color: var(--text-muted); }}
+
+  .sei-badge {{ font-family: 'JetBrains Mono', monospace; font-size: 11px; background: var(--primary-light); color: var(--primary-dark); padding: 4px 10px; border-radius: 6px; font-weight: 600; border: 1px solid #bbdefb; }}
+
+  /* Container */
+  .container {{ max-width: 1480px; margin: 0 auto; padding: 24px 28px; }}
+
+  /* Stats Grid */
+  .stats-grid {{ display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 16px; margin-bottom: 24px; }}
+  .stat-card {{ background: var(--card); border-radius: 12px; padding: 18px 20px; border: 1px solid var(--border-light); box-shadow: 0 1px 3px rgba(0,0,0,0.04); display: flex; flex-direction: column; transition: transform 0.15s, box-shadow 0.15s; }}
+  .stat-card:hover {{ transform: translateY(-2px); box-shadow: 0 4px 12px rgba(0,0,0,0.06); }}
+  .stat-label {{ font-size: 11.5px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; color: var(--text-muted); margin-bottom: 6px; }}
+  .stat-value {{ font-size: 26px; font-weight: 700; color: var(--text); line-height: 1.1; }}
+  .stat-desc {{ font-size: 11px; color: var(--text-muted); margin-top: 6px; }}
+
+  /* Tabs Navigation */
+  .tabs-nav {{ display: flex; gap: 8px; border-bottom: 2px solid var(--border); margin-bottom: 24px; overflow-x: auto; }}
+  .tab-btn {{ background: none; border: none; padding: 12px 18px; font-size: 13.5px; font-weight: 600; color: var(--text-muted); cursor: pointer; border-bottom: 2px solid transparent; margin-bottom: -2px; transition: all 0.2s; white-space: nowrap; }}
+  .tab-btn:hover {{ color: var(--primary); }}
+  .tab-btn.active {{ color: var(--primary); border-bottom-color: var(--primary); }}
+
   .tab-content {{ display: none; }}
   .tab-content.active {{ display: block; }}
-  
-  /* Controls & Action Bar */
-  .control-bar {{ display: flex; flex-wrap: wrap; gap: 12px; margin-bottom: 16px; align-items: center; justify-content: space-between; }}
-  .search-box {{ flex: 1; min-width: 280px; position: relative; }}
-  .search-box input {{ width: 100%; padding: 11px 16px; border: 1px solid var(--border); border-radius: 8px; font-size: 13px; outline: none; transition: border-color 0.2s; background: var(--card); }}
-  .search-box input:focus {{ border-color: var(--primary); box-shadow: 0 0 0 3px rgba(21, 101, 192, 0.15); }}
-  .filter-group {{ display: flex; gap: 8px; flex-wrap: wrap; align-items: center; }}
-  .btn-filter {{ padding: 8px 14px; border-radius: 7px; border: 1px solid var(--border); background: var(--card); font-size: 12px; cursor: pointer; font-weight: 600; color: var(--text); transition: all 0.15s; }}
-  .btn-filter:hover {{ background: #f1f5f9; }}
+
+  /* Filters & Controls */
+  .controls-bar {{ display: flex; flex-wrap: wrap; gap: 12px; justify-content: space-between; align-items: center; margin-bottom: 16px; background: var(--card); padding: 14px 18px; border-radius: 10px; border: 1px solid var(--border-light); }}
+  .search-box {{ flex: 1; min-width: 260px; position: relative; }}
+  .search-box input {{ width: 100%; padding: 8px 12px 8px 34px; border-radius: 6px; border: 1px solid var(--border); font-size: 13px; font-family: inherit; outline: none; transition: border-color 0.2s; }}
+  .search-box input:focus {{ border-color: var(--primary); }}
+  .search-box::before {{ content: '🔍'; position: absolute; left: 10px; top: 50%; transform: translateY(-50%); font-size: 13px; opacity: 0.5; }}
+
+  .filter-group {{ display: flex; gap: 6px; align-items: center; flex-wrap: wrap; }}
+  .filter-label {{ font-size: 12px; font-weight: 600; color: var(--text-muted); margin-right: 4px; }}
+  .btn-filter {{ background: var(--bg); border: 1px solid var(--border); padding: 6px 12px; border-radius: 6px; font-size: 12px; font-weight: 500; cursor: pointer; transition: all 0.15s; color: var(--text); }}
+  .btn-filter:hover {{ background: #e2e8f0; }}
   .btn-filter.active {{ background: var(--primary); color: white; border-color: var(--primary); }}
-  
-  .btn-action {{ padding: 9px 16px; border-radius: 7px; background: var(--primary); color: white; border: none; font-size: 12.5px; font-weight: 600; cursor: pointer; text-decoration: none; display: inline-flex; align-items: center; gap: 7px; transition: background 0.15s; }}
+
+  .btn-action {{ background: var(--primary); color: white; border: none; padding: 7px 14px; border-radius: 6px; font-size: 12px; font-weight: 600; cursor: pointer; transition: background 0.15s; text-decoration: none; display: inline-flex; align-items: center; gap: 6px; }}
   .btn-action:hover {{ background: var(--primary-dark); }}
-  .btn-secondary {{ background: var(--card); color: var(--text); border: 1px solid var(--border); }}
-  .btn-secondary:hover {{ background: #f1f5f9; }}
-  
-  /* Dropdown */
+  .btn-secondary {{ background: #f1f5f9; color: var(--text); border: 1px solid var(--border); }}
+  .btn-secondary:hover {{ background: #e2e8f0; }}
+
+  /* Column Visibility Dropdown */
   .dropdown {{ position: relative; display: inline-block; }}
   .dropdown-menu {{ display: none; position: absolute; right: 0; top: 100%; background: white; min-width: 250px; box-shadow: 0 10px 25px rgba(0,0,0,0.15); border-radius: 8px; border: 1px solid var(--border); padding: 12px; z-index: 999; margin-top: 5px; max-height: 400px; overflow-y: auto; }}
   .dropdown-menu.show {{ display: block; }}
@@ -134,6 +130,13 @@ html = f"""<!DOCTYPE html>
   td {{ padding: 10px 14px; border-bottom: 1px solid var(--border-light); vertical-align: middle; }}
   tr:hover {{ background: #f8fafc; }}
   
+  /* Sortable Table Headers */
+  th.sortable {{ cursor: pointer; position: relative; transition: background 0.15s, color 0.15s; }}
+  th.sortable:hover {{ background: #e2e8f0; color: var(--primary); }}
+  th.sortable::after {{ content: ' ⇅'; opacity: 0.3; font-size: 11px; margin-left: 6px; display: inline-block; }}
+  th.sortable.sort-asc::after {{ content: ' ▲'; opacity: 1; color: var(--primary); font-weight: 900; }}
+  th.sortable.sort-desc::after {{ content: ' ▼'; opacity: 1; color: var(--primary); font-weight: 900; }}
+
   /* Editable Cells */
   .editable-cell {{ cursor: pointer; position: relative; border-radius: 4px; padding: 2px 4px; transition: background 0.15s; }}
   .editable-cell:hover {{ background: #e0f2fe; outline: 1px dashed var(--primary); }}
@@ -158,101 +161,123 @@ html = f"""<!DOCTYPE html>
   .photo-card:hover .photo-img-box img {{ transform: scale(1.04); }}
   .photo-info {{ padding: 14px; }}
   .photo-title {{ font-size: 13.5px; font-weight: 700; margin-bottom: 4px; }}
-  .photo-meta {{ font-size: 11.5px; color: var(--text-muted); margin-bottom: 8px; line-height: 1.45; }}
-  
+  .photo-meta {{ font-size: 11.5px; color: var(--text-muted); line-height: 1.6; }}
+
+  /* Spaces Grid */
+  .spaces-grid {{ display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 16px; }}
+  .space-box {{ background: var(--card); border-radius: 10px; border: 1px solid var(--border); padding: 16px; }}
+  .space-box h3 {{ font-size: 14px; font-weight: 700; margin-bottom: 6px; display: flex; justify-content: space-between; align-items: center; }}
+  .space-box p {{ font-size: 12px; color: var(--text-muted); margin-bottom: 10px; }}
+
   /* Modal */
-  .modal {{ display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.88); z-index: 9999; justify-content: center; align-items: center; padding: 20px; }}
+  .modal {{ display: none; position: fixed; z-index: 1000; left: 0; top: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.85); backdrop-filter: blur(4px); align-items: center; justify-content: center; }}
   .modal.active {{ display: flex; }}
-  .modal-content {{ max-width: 90%; max-height: 90%; position: relative; text-align: center; }}
+  .modal-content {{ max-width: 90%; max-height: 90%; position: relative; }}
   .modal-content img {{ max-width: 100%; max-height: 85vh; border-radius: 8px; box-shadow: 0 10px 30px rgba(0,0,0,0.5); }}
-  .close-modal {{ position: absolute; top: -40px; right: 0; color: white; font-size: 32px; cursor: pointer; font-weight: bold; }}
-  
-  /* Toast */
-  .toast {{ position: fixed; bottom: 20px; right: 20px; background: #1e293b; color: white; padding: 12px 20px; border-radius: 8px; font-size: 13px; z-index: 10000; box-shadow: 0 4px 12px rgba(0,0,0,0.2); opacity: 0; transform: translateY(10px); transition: all 0.3s; pointer-events: none; }}
-  .toast.show {{ opacity: 1; transform: translateY(0); pointer-events: auto; }}
+  .close-modal {{ position: absolute; top: -35px; right: 0; color: white; font-size: 28px; cursor: pointer; }}
+
+  /* Toast Notification */
+  .toast {{ position: fixed; bottom: 24px; right: 24px; background: #0f172a; color: white; padding: 12px 20px; border-radius: 8px; font-size: 13px; font-weight: 500; box-shadow: 0 10px 25px rgba(0,0,0,0.2); z-index: 9999; display: none; align-items: center; gap: 8px; }}
+  .toast.show {{ display: flex; animation: slideUp 0.3s ease; }}
+  @keyframes slideUp {{ from {{ transform: translateY(20px); opacity: 0; }} to {{ transform: translateY(0); opacity: 1; }} }}
+
+  /* Print Styles */
+  @media print {{
+    .topbar, .tabs-nav, .controls-bar, .btn-action, .btn-filter, #toast, .sei-badge {{ display: none !important; }}
+    body {{ background: white; color: black; }}
+    .table-container {{ border: none; box-shadow: none; }}
+    table {{ font-size: 10px; }}
+    th, td {{ padding: 6px 8px; border: 1px solid #ccc; }}
+    .tab-content {{ display: none !important; }}
+    #tab-tabela {{ display: block !important; }}
+    th.sortable::after {{ display: none !important; }}
+  }}
 </style>
 </head>
 <body>
 
-<header>
-  <div class="header-top">
-    <div class="header-title">
-      <h1>🏛️ CriaLab & Radioteledifusão UEG</h1>
-      <p>Sistema Integrado de Conciliação Patrimonial, Auditoria Visual e Gestão de Acervo 2026</p>
+<!-- Topbar -->
+<header class="topbar">
+  <div class="brand">
+    <div class="brand-badge">CriaLab & Rádio</div>
+    <div class="brand-title">
+      <h1>Inventário Físico & Reconciliação Patrimonial 2026</h1>
+      <p>Unidade Universitária Goiânia - Laranjeiras | Universidade Estadual de Goiás</p>
     </div>
-    <div class="header-badges">
-      <div class="badge-processo">SEI: <strong>202600005037287</strong></div>
-      <div class="badge-deadline">Prazo SEI em Prorrogação</div>
-      <a href="guia_fotografia_3d_ar.html" target="_blank" class="btn-action" style="background:#ffd54f; color:#0f172a;">📐 Guia Ilustrado 3D / AR</a>
-    </div>
+  </div>
+  <div style="display: flex; gap: 12px; align-items: center;">
+    <span class="sei-badge">SEI nº 202600005037287</span>
+    <a href="guia_fotografia_3d_ar.html" target="_blank" class="btn-action" style="background:#0284c7;">📐 Guia Fotográfico 3D/AR</a>
   </div>
 </header>
 
 <div class="container">
-  
-  <!-- KPIs -->
-  <div class="kpi-grid">
-    <div class="kpi-card">
-      <div class="kpi-title">Total no Acervo Oficial</div>
-      <div class="kpi-value">377</div>
-      <div class="kpi-sub"><span>📦 CriaLab: 285</span> | <span>📻 Rádio: 92</span></div>
+
+  <!-- Stats Cards -->
+  <div class="stats-grid">
+    <div class="stat-card">
+      <div class="stat-label">Acervo Total Oficio</div>
+      <div class="stat-value">377 <span style="font-size:14px; font-weight:400; color:var(--text-muted);">bens</span></div>
+      <div class="stat-desc">285 CriaLab + 92 Radioteledifusão</div>
     </div>
-    <div class="kpi-card">
-      <div class="kpi-title">Tombados na COT</div>
-      <div class="kpi-value" style="color: var(--success);">5</div>
-      <div class="kpi-sub"><span>✓ Com foto da placa UEG</span></div>
+    <div class="stat-card">
+      <div class="stat-label">Estoque Now (Ativo)</div>
+      <div class="stat-value" style="color:var(--primary);">245 <span style="font-size:14px; font-weight:400; color:var(--text-muted);">itens</span></div>
+      <div class="stat-desc">Catálogo extraído de <code>estoquenow.pdf</code></div>
     </div>
-    <div class="kpi-card">
-      <div class="kpi-title">Não Tombados na COT</div>
-      <div class="kpi-value" style="color: var(--warning);">9</div>
-      <div class="kpi-sub"><span>⚠️ Sem placa (14 itens / 31 fotos)</span></div>
+    <div class="stat-card">
+      <div class="stat-label">Itens Auditados (COT)</div>
+      <div class="stat-value" style="color:var(--success);">14 <span style="font-size:14px; font-weight:400; color:var(--text-muted);">equipamentos</span></div>
+      <div class="stat-desc">5 com tombamento + 9 sem tombamento</div>
     </div>
-    <div class="kpi-card">
-      <div class="kpi-title">Itens no Estoque Now</div>
-      <div class="kpi-value" style="color: #7c3aed;">245</div>
-      <div class="kpi-sub"><span>📦 Acervo Operacional de Circulação</span></div>
-    </div>
-    <div class="kpi-card">
-      <div class="kpi-title">Fotos Processadas (IA)</div>
-      <div class="kpi-value" style="color: var(--primary);">31</div>
-      <div class="kpi-sub"><span>🤖 Mapeamento Sequencial Exato</span></div>
+    <div class="stat-card">
+      <div class="stat-label">Fotos COT Processadas</div>
+      <div class="stat-value" style="color:#7c3aed;">31 <span style="font-size:14px; font-weight:400; color:var(--text-muted);">fotos</span></div>
+      <div class="stat-desc">Central de Operação Técnica (Lotes 1, 2 e 3)</div>
     </div>
   </div>
 
-  <!-- Tabs Navigation -->
-  <div class="tabs">
-    <button class="tab-btn active" onclick="switchTab('tab-inventario')">📋 Inventário Consolidado (377)</button>
-    <button class="tab-btn" onclick="switchTab('tab-cot')">🔍 Itens Auditados na COT (14)</button>
-    <button class="tab-btn" onclick="switchTab('tab-fotos')">📸 Auditoria Fotográfica COT (31 fotos)</button>
-    <button class="tab-btn" onclick="switchTab('tab-estoquenow')">📦 Estoque Now (245 Itens Operacionais)</button>
-    <button class="tab-btn" onclick="switchTab('tab-espacos')">🗺️ Espaços & Planta Baixa</button>
-    <button class="tab-btn" onclick="switchTab('tab-fichas')">📑 Fichas & Documentos Oficiais</button>
-  </div>
+  <!-- Tabs Nav -->
+  <nav class="tabs-nav">
+    <button class="tab-btn active" onclick="switchTab('tab-tabela')">📋 Inventário Geral (377 Bens)</button>
+    <button class="tab-btn" onclick="switchTab('tab-cot')">🔍 Auditoria COT (14 Itens Mapeados)</button>
+    <button class="tab-btn" onclick="switchTab('tab-fotos')">📸 Fotos COT (31 Imagens)</button>
+    <button class="tab-btn" onclick="switchTab('tab-estoquenow')">📦 Estoque Now (245 Itens)</button>
+    <button class="tab-btn" onclick="switchTab('tab-espacos')">🏢 Planta & Espaços (8 Áreas)</button>
+    <button class="tab-btn" onclick="switchTab('tab-fichas')">📑 Fichas SPM / SEAD</button>
+  </nav>
 
-  <!-- TAB 1: Inventário Consolidado -->
-  <div id="tab-inventario" class="tab-content active">
+  <!-- TAB 1: Tabela Geral Conciliada -->
+  <div id="tab-tabela" class="tab-content active">
     
-    <div class="control-bar">
+    <div class="controls-bar">
       <div class="search-box">
-        <input type="text" id="searchInput" placeholder="🔍 Buscar por tombamento, descrição, espécie, marca, serial..." onkeyup="filterTable()">
-      </div>
-      
-      <div class="filter-group">
-        <button class="btn-filter active" onclick="setOriginFilter('ALL', this)">Todos (377)</button>
-        <button class="btn-filter" onclick="setOriginFilter('CRIA LAB', this)">CriaLab (285)</button>
-        <button class="btn-filter" onclick="setOriginFilter('RADIOTELEDIFUSÃO', this)">Radioteledifusão (92)</button>
-        <button class="btn-filter" onclick="setStatusFilter('AUDITED', this)">Tombados na COT (5)</button>
-        <button class="btn-filter" onclick="setStatusFilter('DIVERGENCE', this)">Divergência Carga</button>
+        <input type="text" id="searchInput" placeholder="Buscar por tombamento, descrição, marca, espécie ou local..." onkeyup="filterTable()">
       </div>
 
       <div class="filter-group">
+        <span class="filter-label">Origem:</span>
+        <button class="btn-filter active" onclick="setOriginFilter('ALL', this)">Todos</button>
+        <button class="btn-filter" onclick="setOriginFilter('CRIA LAB', this)">CriaLab (285)</button>
+        <button class="btn-filter" onclick="setOriginFilter('RADIO UEG', this)">Rádio (92)</button>
+      </div>
+
+      <div class="filter-group">
+        <span class="filter-label">Status:</span>
+        <button class="btn-filter active" onclick="setStatusFilter('ALL', this)">Todos</button>
+        <button class="btn-filter" onclick="setStatusFilter('AUDITED', this)">Auditados</button>
+        <button class="btn-filter" onclick="setStatusFilter('DIVERGENCE', this)">Divergências</button>
+      </div>
+
+      <div style="display: flex; gap: 8px;">
+        <!-- Colunas Dropdown -->
         <div class="dropdown">
-          <button class="btn-filter btn-secondary" onclick="toggleColumnDropdown()">👁️ Colunas & Campos ▾</button>
-          <div class="dropdown-menu" id="colDropdown">
-            <div class="dropdown-header">Exibir / Ocultar Colunas</div>
-            <label class="col-toggle-item"><input type="checkbox" checked data-col="origem" onchange="toggleColumn(this)"> Origem (CriaLab/Rádio)</label>
+          <button class="btn-filter btn-secondary" onclick="toggleColumnDropdown()">👁️ Ocultar / Exibir Colunas ▾</button>
+          <div id="colDropdown" class="dropdown-menu">
+            <div class="dropdown-header">Colunas do Inventário</div>
+            <label class="col-toggle-item"><input type="checkbox" checked data-col="origem" onchange="toggleColumn(this)"> Origem</label>
             <label class="col-toggle-item"><input type="checkbox" checked data-col="seq" onchange="toggleColumn(this)"> Seq</label>
-            <label class="col-toggle-item"><input type="checkbox" checked data-col="tombamento" onchange="toggleColumn(this)"> Nº Tombamento</label>
+            <label class="col-toggle-item"><input type="checkbox" checked data-col="tombamento" onchange="toggleColumn(this)"> Tombamento</label>
             <label class="col-toggle-item"><input type="checkbox" checked data-col="especie" onchange="toggleColumn(this)"> Espécie</label>
             <label class="col-toggle-item"><input type="checkbox" checked data-col="descricao" onchange="toggleColumn(this)"> Descrição</label>
             <label class="col-toggle-item"><input type="checkbox" checked data-col="marca" onchange="toggleColumn(this)"> Marca</label>
@@ -270,7 +295,7 @@ html = f"""<!DOCTYPE html>
     </div>
 
     <div style="margin-bottom: 12px; font-size: 12px; color: var(--text-muted); display:flex; justify-content:space-between; align-items:center;">
-      <span>💡 <em>Dica: Dê duplo-clique nas células de <strong>Status</strong>, <strong>Local</strong>, <strong>Estado</strong> ou <strong>Observações</strong> para editar diretamente os dados.</em></span>
+      <span>💡 <em>Dica: <strong>Clique em qualquer cabeçalho de coluna</strong> para ordenar (crescente/decrescente). Dê duplo-clique nas células de <strong>Status</strong>, <strong>Local</strong>, <strong>Estado</strong> ou <strong>Observações</strong> para editar diretamente os dados.</em></span>
       <span id="saveStatus" style="font-weight:600; color:var(--success);">✓ Dados sincronizados localmente</span>
     </div>
 
@@ -278,16 +303,16 @@ html = f"""<!DOCTYPE html>
       <table id="mainTable">
         <thead>
           <tr>
-            <th class="col-origem">Origem</th>
-            <th class="col-seq">Seq</th>
-            <th class="col-tombamento">Tombamento</th>
-            <th class="col-especie">Espécie</th>
-            <th class="col-descricao">Descrição</th>
-            <th class="col-marca">Marca</th>
-            <th class="col-status">Status Auditoria</th>
-            <th class="col-local">Local Físico</th>
-            <th class="col-avarias">Estado / Imperfeições</th>
-            <th class="col-fotos">Fotos</th>
+            <th class="col-origem sortable" data-field="origem" onclick="sortBy('origem')" title="Clique para ordenar por Origem">Origem</th>
+            <th class="col-seq sortable sort-asc" data-field="seq" onclick="sortBy('seq')" title="Clique para ordenar por Sequência">Seq</th>
+            <th class="col-tombamento sortable" data-field="tombamento" onclick="sortBy('tombamento')" title="Clique para ordenar por Nº Tombamento">Tombamento</th>
+            <th class="col-especie sortable" data-field="especie" onclick="sortBy('especie')" title="Clique para ordenar por Espécie">Espécie</th>
+            <th class="col-descricao sortable" data-field="descricao" onclick="sortBy('descricao')" title="Clique para ordenar por Descrição">Descrição</th>
+            <th class="col-marca sortable" data-field="marca" onclick="sortBy('marca')" title="Clique para ordenar por Marca">Marca</th>
+            <th class="col-status sortable" data-field="auditado" onclick="sortBy('auditado')" title="Clique para ordenar por Status de Auditoria">Status Auditoria</th>
+            <th class="col-local sortable" data-field="local_fisico" onclick="sortBy('local_fisico')" title="Clique para ordenar por Local Físico">Local Físico</th>
+            <th class="col-avarias sortable" data-field="estado_fisico" onclick="sortBy('estado_fisico')" title="Clique para ordenar por Estado / Imperfeições">Estado / Imperfeições</th>
+            <th class="col-fotos sortable" data-field="fotos_evidencia" onclick="sortBy('fotos_evidencia')" title="Clique para ordenar por Fotos">Fotos</th>
           </tr>
         </thead>
         <tbody id="tableBody"></tbody>
@@ -304,17 +329,17 @@ html = f"""<!DOCTYPE html>
     </div>
 
     <div class="table-container">
-      <table>
+      <table id="cotTable">
         <thead>
           <tr>
-            <th>Item #</th>
-            <th>Equipamento</th>
-            <th>Marca / Modelo</th>
-            <th>Situação Patrimonial</th>
-            <th>Tombamento Oficial</th>
-            <th>Especificação Técnica / Serial</th>
-            <th>Estado Físico</th>
-            <th>Fotos na Sequência</th>
+            <th class="sortable sort-asc" data-field="id" onclick="sortCOTBy('id')" title="Clique para ordenar por Item #">Item #</th>
+            <th class="sortable" data-field="equipamento" onclick="sortCOTBy('equipamento')" title="Clique para ordenar por Equipamento">Equipamento</th>
+            <th class="sortable" data-field="marca" onclick="sortCOTBy('marca')" title="Clique para ordenar por Marca/Modelo">Marca / Modelo</th>
+            <th class="sortable" data-field="status_tombamento" onclick="sortCOTBy('status_tombamento')" title="Clique para ordenar por Situação">Situação Patrimonial</th>
+            <th class="sortable" data-field="tombamento_oficial" onclick="sortCOTBy('tombamento_oficial')" title="Clique para ordenar por Tombamento">Tombamento Oficial</th>
+            <th class="sortable" data-field="especificacao_tecnica" onclick="sortCOTBy('especificacao_tecnica')" title="Clique para ordenar por Specs/Serial">Especificação Técnica / Serial</th>
+            <th class="sortable" data-field="estado_fisico" onclick="sortCOTBy('estado_fisico')" title="Clique para ordenar por Estado Físico">Estado Físico</th>
+            <th class="sortable" data-field="fotos" onclick="sortCOTBy('fotos')" title="Clique para ordenar por Fotos">Fotos na Sequência</th>
           </tr>
         </thead>
         <tbody id="cotTableBody"></tbody>
@@ -348,13 +373,13 @@ html = f"""<!DOCTYPE html>
     </div>
 
     <div class="table-container">
-      <table>
+      <table id="estoqueTable">
         <thead>
           <tr>
-            <th>Código</th>
-            <th>Nome do Equipamento (Estoque Now)</th>
-            <th>Código de Barras</th>
-            <th>Alerta Manutenção</th>
+            <th class="sortable" data-field="codigo" onclick="sortEstoqueBy('codigo')" title="Clique para ordenar por Código">Código</th>
+            <th class="sortable sort-asc" data-field="nome" onclick="sortEstoqueBy('nome')" title="Clique para ordenar por Nome">Nome do Equipamento (Estoque Now)</th>
+            <th class="sortable" data-field="barcode" onclick="sortEstoqueBy('barcode')" title="Clique para ordenar por Código de Barras">Código de Barras</th>
+            <th class="sortable" data-field="em_manutencao" onclick="sortEstoqueBy('em_manutencao')" title="Clique para ordenar por Manutenção">Alerta Manutenção</th>
             <th>Ação no Retorno da Externa</th>
           </tr>
         </thead>
@@ -460,6 +485,21 @@ DATA.estoquenow = INITIAL_DATA.estoquenow;
 let currentOrigin = 'ALL';
 let currentStatus = 'ALL';
 
+let sortState = {{
+  field: 'seq',
+  direction: 'asc'
+}};
+
+let cotSortState = {{
+  field: 'id',
+  direction: 'asc'
+}};
+
+let estoqueSortState = {{
+  field: 'nome',
+  direction: 'asc'
+}};
+
 let visibleColumns = {{
   origem: true,
   seq: true,
@@ -484,14 +524,75 @@ function switchTab(tabId) {{
   document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
   document.querySelectorAll('.tab-btn').forEach(el => el.classList.remove('active'));
   document.getElementById(tabId).classList.add('active');
-  if (event && event.target) event.target.classList.add('active');
+  if (window.event && window.event.target) window.event.target.classList.add('active');
+}}
+
+/* Sorting Functions */
+function sortBy(field) {{
+  if (sortState.field === field) {{
+    sortState.direction = sortState.direction === 'asc' ? 'desc' : 'asc';
+  }} else {{
+    sortState.field = field;
+    sortState.direction = 'asc';
+  }}
+  updateSortHeaders();
+  renderTable();
+}}
+
+function updateSortHeaders() {{
+  document.querySelectorAll('#mainTable th.sortable').forEach(th => {{
+    th.classList.remove('sort-asc', 'sort-desc');
+    if (th.getAttribute('data-field') === sortState.field) {{
+      th.classList.add(sortState.direction === 'asc' ? 'sort-asc' : 'sort-desc');
+    }}
+  }});
+}}
+
+function sortCOTBy(field) {{
+  if (cotSortState.field === field) {{
+    cotSortState.direction = cotSortState.direction === 'asc' ? 'desc' : 'asc';
+  }} else {{
+    cotSortState.field = field;
+    cotSortState.direction = 'asc';
+  }}
+  updateCOTSortHeaders();
+  renderCOTSequence();
+}}
+
+function updateCOTSortHeaders() {{
+  document.querySelectorAll('#cotTable th.sortable').forEach(th => {{
+    th.classList.remove('sort-asc', 'sort-desc');
+    if (th.getAttribute('data-field') === cotSortState.field) {{
+      th.classList.add(cotSortState.direction === 'asc' ? 'sort-asc' : 'sort-desc');
+    }}
+  }});
+}}
+
+function sortEstoqueBy(field) {{
+  if (estoqueSortState.field === field) {{
+    estoqueSortState.direction = estoqueSortState.direction === 'asc' ? 'desc' : 'asc';
+  }} else {{
+    estoqueSortState.field = field;
+    estoqueSortState.direction = 'asc';
+  }}
+  updateEstoqueSortHeaders();
+  renderEstoqueNow();
+}}
+
+function updateEstoqueSortHeaders() {{
+  document.querySelectorAll('#estoqueTable th.sortable').forEach(th => {{
+    th.classList.remove('sort-asc', 'sort-desc');
+    if (th.getAttribute('data-field') === estoqueSortState.field) {{
+      th.classList.add(estoqueSortState.direction === 'asc' ? 'sort-asc' : 'sort-desc');
+    }}
+  }});
 }}
 
 function renderTable() {{
   const tbody = document.getElementById('tableBody');
   const search = document.getElementById('searchInput').value.toLowerCase();
   
-  const filtered = DATA.master.filter(it => {{
+  let filtered = DATA.master.filter(it => {{
     if (currentOrigin !== 'ALL' && it.origem !== currentOrigin) return false;
     if (currentStatus === 'AUDITED' && it.auditado !== 'SIM') return false;
     if (currentStatus === 'DIVERGENCE' && !it.divergencia_carga.startsWith('SIM')) return false;
@@ -501,6 +602,23 @@ function renderTable() {{
       if (!text.includes(search)) return false;
     }}
     return true;
+  }});
+
+  // Sort filtered list
+  filtered.sort((a, b) => {{
+    let va = a[sortState.field];
+    let vb = b[sortState.field];
+    if (va === undefined || va === null) va = '';
+    if (vb === undefined || vb === null) vb = '';
+
+    if (sortState.field === 'seq') {{
+      const na = parseInt(va, 10) || 0;
+      const nb = parseInt(vb, 10) || 0;
+      return sortState.direction === 'asc' ? na - nb : nb - na;
+    }}
+
+    const cmp = va.toString().localeCompare(vb.toString(), 'pt-BR', {{ numeric: true, sensitivity: 'base' }});
+    return sortState.direction === 'asc' ? cmp : -cmp;
   }});
 
   tbody.innerHTML = filtered.map((it) => {{
@@ -654,10 +772,10 @@ function toggleColumn(checkbox) {{
   }});
 }}
 
-/* Export CSV with visible columns */
+/* Export CSV with visible columns and active sort */
 function exportCustomCSV() {{
   const search = document.getElementById('searchInput').value.toLowerCase();
-  const filtered = DATA.master.filter(it => {{
+  let filtered = DATA.master.filter(it => {{
     if (currentOrigin !== 'ALL' && it.origem !== currentOrigin) return false;
     if (currentStatus === 'AUDITED' && it.auditado !== 'SIM') return false;
     if (currentStatus === 'DIVERGENCE' && !it.divergencia_carga.startsWith('SIM')) return false;
@@ -666,6 +784,21 @@ function exportCustomCSV() {{
       if (!text.includes(search)) return false;
     }}
     return true;
+  }});
+
+  // Apply current sort order to export
+  filtered.sort((a, b) => {{
+    let va = a[sortState.field];
+    let vb = b[sortState.field];
+    if (va === undefined || va === null) va = '';
+    if (vb === undefined || vb === null) vb = '';
+    if (sortState.field === 'seq') {{
+      const na = parseInt(va, 10) || 0;
+      const nb = parseInt(vb, 10) || 0;
+      return sortState.direction === 'asc' ? na - nb : nb - na;
+    }}
+    const cmp = va.toString().localeCompare(vb.toString(), 'pt-BR', {{ numeric: true, sensitivity: 'base' }});
+    return sortState.direction === 'asc' ? cmp : -cmp;
   }});
 
   const cols = [];
@@ -709,7 +842,27 @@ function exportCustomCSV() {{
 /* Render COT Items Sequence Table */
 function renderCOTSequence() {{
   const tbody = document.getElementById('cotTableBody');
-  tbody.innerHTML = DATA.cot_sequence.map(it => {{
+  const items = [...DATA.cot_sequence];
+
+  items.sort((a, b) => {{
+    let va = a[cotSortState.field];
+    let vb = b[cotSortState.field];
+    if (va === undefined || va === null) va = '';
+    if (vb === undefined || vb === null) vb = '';
+
+    if (cotSortState.field === 'id') {{
+      const na = parseInt(va, 10) || 0;
+      const nb = parseInt(vb, 10) || 0;
+      return cotSortState.direction === 'asc' ? na - nb : nb - na;
+    }}
+
+    if (Array.isArray(va)) va = va.join(', ');
+    if (Array.isArray(vb)) vb = vb.join(', ');
+    const cmp = va.toString().localeCompare(vb.toString(), 'pt-BR', {{ numeric: true, sensitivity: 'base' }});
+    return cotSortState.direction === 'asc' ? cmp : -cmp;
+  }});
+
+  tbody.innerHTML = items.map(it => {{
     const isTomb = it.tombamento_oficial ? true : false;
     const badgeStatus = isTomb ? 'badge-audited' : 'badge-divergence';
     
@@ -731,12 +884,21 @@ function renderEstoqueNow() {{
   const tbody = document.getElementById('estoqueTableBody');
   const search = (document.getElementById('searchEstoque') ? document.getElementById('searchEstoque').value : '').toLowerCase();
   
-  const filtered = DATA.estoquenow.filter(it => {{
+  let filtered = DATA.estoquenow.filter(it => {{
     if (!search) return true;
     return (it.codigo + ' ' + it.nome + ' ' + it.barcode).toLowerCase().includes(search);
   }});
 
-  tbody.innerHTML = filtered.slice(0, 100).map(it => `
+  filtered.sort((a, b) => {{
+    let va = a[estoqueSortState.field];
+    let vb = b[estoqueSortState.field];
+    if (va === undefined || va === null) va = '';
+    if (vb === undefined || vb === null) vb = '';
+    const cmp = va.toString().localeCompare(vb.toString(), 'pt-BR', {{ numeric: true, sensitivity: 'base' }});
+    return estoqueSortState.direction === 'asc' ? cmp : -cmp;
+  }});
+
+  tbody.innerHTML = filtered.map(it => `
     <tr>
       <td style="font-weight:700; color:var(--primary); font-family:monospace;">${{it.codigo}}</td>
       <td><strong>${{it.nome}}</strong></td>
@@ -804,4 +966,4 @@ with open('index.html', 'w', encoding='utf-8') as f:
 with open('dashboard.html', 'w', encoding='utf-8') as f:
     f.write(html)
 
-print('Updated index.html and dashboard.html with 14 sequence items and 245 Estoque Now items!')
+print('Updated index.html and dashboard.html with interactive column sorting for all tables!')
