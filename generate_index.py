@@ -209,24 +209,24 @@ html = f"""<!DOCTYPE html>
       <div class="kpi-sub"><span>📦 CriaLab: 285</span> | <span>📻 Rádio: 92</span></div>
     </div>
     <div class="kpi-card">
-      <div class="kpi-title">Auditados / Conciliados</div>
-      <div class="kpi-value" style="color: var(--success);" id="kpi-audited">8</div>
-      <div class="kpi-sub"><span>✓ Confirmados com placa/serial</span></div>
+      <div class="kpi-title">Tombados Auditados</div>
+      <div class="kpi-value" style="color: var(--success);" id="kpi-audited">5</div>
+      <div class="kpi-sub"><span>✓ Confirmados com placa UEG</span></div>
     </div>
     <div class="kpi-card">
-      <div class="kpi-title">Bens Extras na COT</div>
-      <div class="kpi-value" style="color: var(--warning);">6</div>
-      <div class="kpi-sub"><span>⚠️ Sem tombamento oficial</span></div>
+      <div class="kpi-title">Bens Não Tombados</div>
+      <div class="kpi-value" style="color: var(--warning);">9</div>
+      <div class="kpi-sub"><span>⚠️ Sem foto de tombamento</span></div>
     </div>
     <div class="kpi-card">
       <div class="kpi-title">Divergências de Setor</div>
-      <div class="kpi-value" style="color: var(--accent);">5</div>
+      <div class="kpi-value" style="color: var(--accent);">3</div>
       <div class="kpi-sub"><span>🔄 Carga Rádio na COT</span></div>
     </div>
     <div class="kpi-card">
       <div class="kpi-title">Fotos Processadas (IA)</div>
       <div class="kpi-value" style="color: var(--primary);">31</div>
-      <div class="kpi-sub"><span>🤖 Gemini Flash Multiagentes</span></div>
+      <div class="kpi-sub"><span>🤖 14 itens mapeados em sequência</span></div>
     </div>
   </div>
 
@@ -234,7 +234,7 @@ html = f"""<!DOCTYPE html>
   <div class="tabs">
     <button class="tab-btn active" onclick="switchTab('tab-inventario')">📋 Inventário Consolidado (377)</button>
     <button class="tab-btn" onclick="switchTab('tab-fotos')">📸 Auditoria Fotográfica COT (31 fotos)</button>
-    <button class="tab-btn" onclick="switchTab('tab-extras')">⚠️ Bens Extras / Não Cadastrados (6)</button>
+    <button class="tab-btn" onclick="switchTab('tab-extras')">⚠️ Bens Não Tombados na COT (9)</button>
     <button class="tab-btn" onclick="switchTab('tab-espacos')">🗺️ Espaços & Planta Baixa</button>
     <button class="tab-btn" onclick="switchTab('tab-estoquenow')">📦 Estoque Now (Externa / Empréstimos)</button>
     <button class="tab-btn" onclick="switchTab('tab-fichas')">📑 Fichas & Documentos Oficiais</button>
@@ -773,10 +773,10 @@ function renderExtras() {{
     <tr>
       <td><strong>${{e.equipamento}}</strong></td>
       <td>${{e.marca}} ${{e.modelo}}</td>
-      <td><code>${{e.numero_serie}}</code></td>
-      <td><span class="badge badge-warning">${{e.tombamento_identificado}}</span></td>
+      <td><code>${{e.especificacao_tecnica || e.numero_serie || '-'}}</code></td>
+      <td><span class="badge badge-warning">${{e.status_tombamento || 'NÃO TOMBADO'}}</span></td>
       <td>${{e.estado_fisico}}</td>
-      <td style="font-size:11.5px;">${{e.recomendacao}}</td>
+      <td style="font-size:11.5px; color:#64748b;">${{e.fotos ? e.fotos.join(', ') : '-'}}</td>
     </tr>
   `).join('');
 }}

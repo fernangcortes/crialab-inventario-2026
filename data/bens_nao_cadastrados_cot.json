@@ -1,68 +1,162 @@
 [
   {
-    "equipamento": "Mesa de Som Analógica com Interface USB",
+    "id": 2,
+    "equipamento": "Microfone Dinâmico Vocal",
+    "marca": "Shure",
+    "modelo": "SM58",
+    "fotos": [
+      "IMG_20261111_103541.jpg"
+    ],
+    "ordem_fotos": [
+      "1. Visão geral do equipamento"
+    ],
+    "tombamento_oficial": null,
+    "status_tombamento": "NÃO TOMBADO (Sem placa física no corpo)",
+    "especificacao_tecnica": "Shure SM58 dinâmico cardióide",
+    "estado_fisico": "Imperfeição (globo metálico amassado)"
+  },
+  {
+    "id": 3,
+    "equipamento": "Receptor Sem Fio Bodypack",
+    "marca": "Sony",
+    "modelo": "URX-P03 (Kit UWP-D11)",
+    "fotos": [
+      "IMG_20261111_103556.jpg",
+      "IMG_20261111_103625.jpg"
+    ],
+    "ordem_fotos": [
+      "1. Visão geral do equipamento no estojo (fita 02)",
+      "2. Especificação técnica / Serial do fabricante"
+    ],
+    "tombamento_oficial": null,
+    "status_tombamento": "NÃO TOMBADO (Sem foto de tombamento = Objeto não estava tombado)",
+    "especificacao_tecnica": "S/N: 115983, Faixa 42-51 (638.125-697.875 MHz)",
+    "estado_fisico": "Normal"
+  },
+  {
+    "id": 4,
+    "equipamento": "Mesa de Som Analógica USB",
     "marca": "Yamaha",
     "modelo": "MG12XU",
-    "numero_serie": "BRACVX01071",
-    "tombamento_identificado": "Sem placa colada",
-    "localizacao_encontrada": "Central de Operação Técnica (COT)",
-    "estado_fisico": "Normal / Operacional",
-    "fotos": ["IMG_20261111_103810.jpg", "IMG_20261111_103849.jpg"],
-    "recomendacao": "Verificar nota fiscal de aquisição ou patrimoniamento de laboratório para afixação de plaqueta com código de barras."
+    "fotos": [
+      "IMG_20261111_103810.jpg",
+      "IMG_20261111_103849.jpg"
+    ],
+    "ordem_fotos": [
+      "1. Visão geral do equipamento (painel superior)",
+      "2. Especificação técnica / Serial no painel traseiro"
+    ],
+    "tombamento_oficial": null,
+    "status_tombamento": "NÃO TOMBADO (Sem foto de tombamento = Objeto não estava tombado)",
+    "especificacao_tecnica": "S/N: BRACVX01071, 12 canais, efeitos SPX, USB 2.0",
+    "estado_fisico": "Normal"
   },
   {
-    "equipamento": "Processador / Controlador de Vídeo para Painel de LED",
-    "marca": "NovaStar",
-    "modelo": "VX400 (All-in-One Controller)",
-    "numero_serie": "21MB44422N0A10002120",
-    "tombamento_identificado": "Sem placa visível no rack",
-    "localizacao_encontrada": "Central de Operação Técnica (COT)",
-    "estado_fisico": "Normal / Operacional",
-    "fotos": ["IMG_20261111_104431.jpg", "IMG_20261111_104438.jpg"],
-    "recomendacao": "Equipamento crítico para controle do painel de LED dos estúdios. Solicitar emplacamento patrimonial oficial."
-  },
-  {
-    "equipamento": "Placa de Captura de Vídeo USB 3.0",
-    "marca": "ezcap",
-    "modelo": "Game Pro 4K60fps USB 3.0 Capture (COD. 13729)",
-    "numero_serie": "EZCAP26920100003",
-    "tombamento_identificado": "Sem placa colada",
-    "localizacao_encontrada": "Central de Operação Técnica (COT)",
-    "estado_fisico": "Normal / Operacional",
-    "fotos": ["IMG_20261111_104826.jpg", "IMG_20261111_104837.jpg"],
-    "recomendacao": "Periférico móvel de transmissão/streaming. Cadastrar no controle interno e verificar incorporação."
-  },
-  {
-    "equipamento": "HD Externo Portátil 4TB",
-    "marca": "Seagate",
-    "modelo": "Seagate Portable Drive (SRD0NF1 / P/N: 2N1AP6-500)",
-    "numero_serie": "NT3D44VV",
-    "tombamento_identificado": "Etiqueta operacional manuscrita 'Loggagem 08 / TOTAL 3,63 TB'",
-    "localizacao_encontrada": "Central de Operação Técnica (COT)",
-    "estado_fisico": "Normal / Operacional (Fabr. 2024)",
-    "fotos": ["IMG_20261111_104935.jpg", "IMG_20261111_104945.jpg"],
-    "recomendacao": "Mídia de armazenamento recente (2024). Vincular ao inventário permanente ou registrar como material de projeto."
-  },
-  {
-    "equipamento": "Roteador Wireless 300Mbps",
-    "marca": "D-Link",
-    "modelo": "DIR-615 (H/W Ver: E5)",
-    "numero_serie": "F3XE4B7024692",
-    "tombamento_identificado": "Etiqueta manual: 'TOMBO: 702226 / UEG: 72490' + bilhete 'NÃO CONSTA EM LISTA' + fita 'Secretaria'",
-    "localizacao_encontrada": "Central de Operação Técnica (COT)",
-    "estado_fisico": "Imperfeição (resíduos de fita crepe e marcas de cola)",
-    "fotos": ["IMG_20261111_104755.jpg", "IMG_20261111_104809.jpg"],
-    "recomendacao": "Item cedido ou remanejado informalmente do setor Secretaria. Tramitar transferência formal via SPM ou avaliar destinação para SUKATECH."
-  },
-  {
-    "equipamento": "Monitor de Vídeo 19.5 polegadas (Pivot Vertical)",
+    "id": 8,
+    "equipamento": "Monitor Pivot Vertical 19.5\"",
     "marca": "Dell",
     "modelo": "P2014Ht",
-    "numero_serie": "A verificar na face traseira",
-    "tombamento_identificado": "Pendente de inspeção presencial na lateral/base",
-    "localizacao_encontrada": "Central de Operação Técnica (COT)",
-    "estado_fisico": "Normal / Operacional",
-    "fotos": ["IMG_20261111_104232.jpg", "IMG_20261111_104244.jpg"],
-    "recomendacao": "Verificar se corresponde a um dos monitores cadastrados na carga da Unidade ou se requer nova etiqueta."
+    "fotos": [
+      "IMG_20261111_104232.jpg",
+      "IMG_20261111_104244.jpg"
+    ],
+    "ordem_fotos": [
+      "1. Visão geral do equipamento vertical",
+      "2. Especificação técnica / Portas traseiras"
+    ],
+    "tombamento_oficial": null,
+    "status_tombamento": "NÃO TOMBADO (Sem foto de tombamento = Objeto não estava tombado)",
+    "especificacao_tecnica": "Model P2014Ht, portas VGA/DVI/DP/USB",
+    "estado_fisico": "Normal"
+  },
+  {
+    "id": 10,
+    "equipamento": "Processador de Vídeo LED (Rackmount)",
+    "marca": "NovaStar",
+    "modelo": "VX400 (All-in-One Controller)",
+    "fotos": [
+      "IMG_20261111_104431.jpg",
+      "IMG_20261111_104438.jpg"
+    ],
+    "ordem_fotos": [
+      "1. Visão geral do equipamento montado no rack",
+      "2. Especificação técnica / Etiqueta do fabricante"
+    ],
+    "tombamento_oficial": null,
+    "status_tombamento": "NÃO TOMBADO (Sem foto de tombamento = Objeto não estava tombado)",
+    "especificacao_tecnica": "S/N: 21MB44422N0A10002120, entradas HDMI/DVI/SDI/Ópticas",
+    "estado_fisico": "Normal"
+  },
+  {
+    "id": 11,
+    "equipamento": "Servidor de Ingest e Playout 4U (Rackmount)",
+    "marca": "Floripa Tecnologia",
+    "modelo": "Spotware - M (tag operacional UEGSW1)",
+    "fotos": [
+      "IMG_20261111_104514.jpg",
+      "IMG_20261111_104547.jpg"
+    ],
+    "ordem_fotos": [
+      "1. Visão geral frontal no rack (fita UEGSW1)",
+      "2. Especificação técnica traseira do fabricante"
+    ],
+    "tombamento_oficial": null,
+    "status_tombamento": "NÃO TOMBADO NO CHASSI (Sem foto de tombamento = Sem placa física afixada)",
+    "especificacao_tecnica": "S/N: 008479010011225, Fabr: 05/01/2023, Floripa Tecnologia Ind e Com LTDA",
+    "estado_fisico": "Normal"
+  },
+  {
+    "id": 12,
+    "equipamento": "Roteador Wireless 300Mbps",
+    "marca": "D-Link",
+    "modelo": "DIR-615",
+    "fotos": [
+      "IMG_20261111_104755.jpg",
+      "IMG_20261111_104809.jpg"
+    ],
+    "ordem_fotos": [
+      "1. Visão geral com etiqueta manual Secretaria/Tombo antigo",
+      "2. Especificação técnica na base"
+    ],
+    "tombamento_oficial": null,
+    "status_tombamento": "NÃO TOMBADO OFICIALMENTE (Etiqueta manual TOMBO 702226 / UEG 72490)",
+    "especificacao_tecnica": "S/N: F3XE4B7024692, MAC: 84C9B24D4C04, H/W: E5, F/W: 5.11BR",
+    "estado_fisico": "Imperfeição (restos de fita crepe antiga da Secretaria)"
+  },
+  {
+    "id": 13,
+    "equipamento": "Placa de Captura de Vídeo USB 3.0",
+    "marca": "ezcap",
+    "modelo": "Game Pro 4K60fps (COD. 13729)",
+    "fotos": [
+      "IMG_20261111_104826.jpg",
+      "IMG_20261111_104837.jpg"
+    ],
+    "ordem_fotos": [
+      "1. Visão geral do equipamento",
+      "2. Especificação técnica no verso"
+    ],
+    "tombamento_oficial": null,
+    "status_tombamento": "NÃO TOMBADO (Sem foto de tombamento = Objeto não estava tombado)",
+    "especificacao_tecnica": "S/N: EZCAP26920100003, USB 3.0 4K60fps capture",
+    "estado_fisico": "Normal"
+  },
+  {
+    "id": 14,
+    "equipamento": "HD Externo Portátil 4TB",
+    "marca": "Seagate",
+    "modelo": "Portable Drive (SRD0NF1 / 2N1AP6-500)",
+    "fotos": [
+      "IMG_20261111_104935.jpg",
+      "IMG_20261111_104945.jpg"
+    ],
+    "ordem_fotos": [
+      "1. Visão geral do equipamento com etiqueta Loggagem 08",
+      "2. Especificação técnica na base"
+    ],
+    "tombamento_oficial": null,
+    "status_tombamento": "NÃO TOMBADO (Sem foto de tombamento = Objeto não estava tombado)",
+    "especificacao_tecnica": "S/N: NT3D44VV, Capacidade 4TB (3,63TB formatado), Fabr: 2024",
+    "estado_fisico": "Normal"
   }
 ]
