@@ -401,7 +401,7 @@ html = f"""<!DOCTYPE html>
       </div>
 
       <div style="display:flex; gap:10px; align-items:center;">
-        <span id="dossieCountBadge" style="font-size:12px; font-weight:700; color:var(--primary);">636 equipamentos</span>
+        <span id="dossieCountBadge" style="font-size:12px; font-weight:700; color:var(--primary);">636 equipamentos | R$ 2.065.710,00</span>
         <a href="data/pesquisa_sei_documentos_completo.csv" download class="btn-action" style="background:#059669; font-size:12px; padding:7px 14px;">📥 Baixar Tabela CSV Completa</a>
       </div>
     </div>
@@ -414,12 +414,13 @@ html = f"""<!DOCTYPE html>
             <th class="sortable" data-field="fonte_registro" onclick="sortDossieBy('fonte_registro')">Fonte</th>
             <th class="sortable" data-field="equipamento" onclick="sortDossieBy('equipamento')">Espécie / Equipamento</th>
             <th class="sortable" data-field="marca_modelo" onclick="sortDossieBy('marca_modelo')">Marca / Modelo / Descrição</th>
+            <th class="sortable" data-field="valor_num" onclick="sortDossieBy('valor_num')">Preço Unitário (R$)</th>
             <th class="sortable" data-field="tombamento_status" onclick="sortDossieBy('tombamento_status')">Situação Patrimonial</th>
-            <th class="sortable" data-field="processo_sei" onclick="sortDossieBy('processo_sei')">Processo SEI / Instrumento</th>
+            <th class="sortable" data-field="processo_sei" onclick="sortDossieBy('processo_sei')">Processo SEI / Compra</th>
             <th class="sortable" data-field="fornecedor" onclick="sortDossieBy('fornecedor')">Fornecedor & CNPJ</th>
             <th class="sortable" data-field="serial" onclick="sortDossieBy('serial')">S/N / Barcode</th>
             <th>Diretriz de Regularização SEI</th>
-            <th style="text-align:center;">Dossiê</th>
+            <th style="text-align:center;">Dossiê Individual / Lote</th>
           </tr>
         </thead>
         <tbody id="dossieTableBody"></tbody>
@@ -445,7 +446,7 @@ html = f"""<!DOCTYPE html>
 
     <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:15px; flex-wrap:wrap; gap:10px;">
       <div style="font-size:14px; font-weight:700;">
-        Catálogo do Estoque Now Extraído de <code>data/estoquenow.pdf</code> (245 itens operacionais):
+        Catálogo do Estoque Now Extraído de <code>data/estoquenow.pdf</code> (245 itens operacionais | Total: <span style="color:#059669;">R$ 793.278,00</span>):
       </div>
       <div style="width:300px;">
         <input type="text" id="searchEstoque" placeholder="🔍 Filtrar no Estoque Now..." onkeyup="filterEstoqueTable()" style="width:100%; padding:8px 12px; border:1px solid var(--border); border-radius:6px; font-size:12px;">
@@ -458,6 +459,8 @@ html = f"""<!DOCTYPE html>
           <tr>
             <th class="sortable" data-field="codigo" onclick="sortEstoqueBy('codigo')" title="Clique para ordenar por Código">Código</th>
             <th class="sortable sort-asc" data-field="nome" onclick="sortEstoqueBy('nome')" title="Clique para ordenar por Nome">Nome do Equipamento (Estoque Now)</th>
+            <th class="sortable" data-field="categoria" onclick="sortEstoqueBy('categoria')" title="Clique para ordenar por Categoria">Categoria</th>
+            <th class="sortable" data-field="preco_custo" onclick="sortEstoqueBy('preco_custo')" title="Clique para ordenar por Preço de Custo">Preço de Custo (R$)</th>
             <th class="sortable" data-field="barcode" onclick="sortEstoqueBy('barcode')" title="Clique para ordenar por Código de Barras">Código de Barras</th>
             <th class="sortable" data-field="em_manutencao" onclick="sortEstoqueBy('em_manutencao')" title="Clique para ordenar por Manutenção">Alerta Manutenção</th>
             <th>Ação no Retorno da Externa</th>
@@ -584,6 +587,13 @@ html = f"""<!DOCTYPE html>
     <span class="close-modal" onclick="closeModal()">&times;</span>
     <img id="modalImg" src="">
     <div id="modalCaption" style="color: white; margin-top: 12px; font-size: 13.5px; text-align: center;"></div>
+  </div>
+</div>
+
+<!-- Individual Dossier & SEI Purchase Modal -->
+<div class="modal" id="dossieModal" onclick="closeDossieModal()">
+  <div class="modal-content" onclick="event.stopPropagation()" style="background:white; color:#0f172a; max-width:850px; width:95%; border-radius:12px; padding:28px; max-height:90vh; overflow-y:auto; box-shadow:0 20px 40px rgba(0,0,0,0.3);">
+    <div id="dossieModalBody"></div>
   </div>
 </div>
 
@@ -1031,14 +1041,17 @@ function renderEstoqueNow() {{
   
   let filtered = DATA.estoquenow.filter(it => {{
     if (!search) return true;
-    return (it.codigo + ' ' + it.nome + ' ' + it.barcode).toLowerCase().includes(search);
+    return (it.codigo + ' ' + it.nome + ' ' + (it.categoria || '') + ' ' + (it.valor_formatado || '') + ' ' + it.barcode).toLowerCase().includes(search);
   }});
 
   filtered.sort((a, b) => {{
-    let va = a[estoqueSortState.field];
-    let vb = b[estoqueSortState.field];
-    if (va === undefined || va === null) va = '';
-    if (vb === undefined || vb === null) vb = '';
+    if (estoqueSortState.field === 'preco_custo') {{
+      const na = parseFloat(a.preco_custo) || 0;
+      const nb = parseFloat(b.preco_custo) || 0;
+      return estoqueSortState.direction === 'asc' ? na - nb : nb - na;
+    }}
+    let va = a[estoqueSortState.field] ?? '';
+    let vb = b[estoqueSortState.field] ?? '';
     const cmp = va.toString().localeCompare(vb.toString(), 'pt-BR', {{ numeric: true, sensitivity: 'base' }});
     return estoqueSortState.direction === 'asc' ? cmp : -cmp;
   }});
@@ -1047,6 +1060,8 @@ function renderEstoqueNow() {{
     <tr>
       <td style="font-weight:700; color:var(--primary); font-family:monospace;">${{it.codigo}}</td>
       <td><strong>${{it.nome}}</strong></td>
+      <td><span class="badge" style="background:#f1f5f9; color:#334155;">${{it.categoria || 'Audiovisual'}}</span></td>
+      <td style="font-weight:700; color:#059669; white-space:nowrap;">${{it.valor_formatado || 'R$ 0,00'}}</td>
       <td style="font-family:monospace; color:#64748b;">${{it.barcode}}</td>
       <td>${{it.em_manutencao === 'Sim' ? '<span class="badge badge-danger">Em Manutenção</span>' : '<span style="color:#64748b;">Operacional</span>'}}</td>
       <td style="font-size:11.5px; color:#1565c0;">Tirar fotos no retorno (Geral ➔ Specs ➔ Placa) para auditoria por IA</td>
@@ -1076,49 +1091,62 @@ function renderDossieTable() {{
       if (currentDossieOrigin === 'RADIOTELEDIFUSÃO' && !it.fonte_registro.includes('RADIOTELEDIFUSÃO')) return false;
       if (currentDossieOrigin === 'ESTOQUE' && !it.fonte_registro.includes('Estoque Now')) return false;
       if (currentDossieOrigin === 'COT' && !it.fonte_registro.includes('COT')) return false;
-      if (currentDossieOrigin === 'SEM_TOMBO' && !it.tombamento_status.includes('Sem')) return false;
+      if (currentDossieOrigin === 'SEM_TOMBO' && !it.tombamento_status.includes('Sem') && !it.tombamento_status.includes('Pendente')) return false;
     }}
     if (search) {{
-      const text = (it.id + ' ' + it.fonte_registro + ' ' + it.equipamento + ' ' + it.marca_modelo + ' ' + it.serial + ' ' + it.processo_sei + ' ' + it.instrumento_legal + ' ' + it.fornecedor + ' ' + it.cnpj_fornecedor + ' ' + it.tombamento_status + ' ' + it.tombamento_numero).toLowerCase();
+      const text = (it.id + ' ' + it.fonte_registro + ' ' + it.equipamento + ' ' + it.marca_modelo + ' ' + (it.valor_formatado || '') + ' ' + it.serial + ' ' + it.processo_sei + ' ' + it.instrumento_legal + ' ' + it.fornecedor + ' ' + it.cnpj_fornecedor + ' ' + it.tombamento_status + ' ' + it.tombamento_numero).toLowerCase();
       if (!text.includes(search)) return false;
     }}
     return true;
   }});
 
   filtered.sort((a, b) => {{
+    if (dossieSortState.field === 'valor_num') {{
+      const na = parseFloat(a.valor_num) || 0;
+      const nb = parseFloat(b.valor_num) || 0;
+      return dossieSortState.direction === 'asc' ? na - nb : nb - na;
+    }}
     let va = a[dossieSortState.field] ?? '';
     let vb = b[dossieSortState.field] ?? '';
     const cmp = va.toString().localeCompare(vb.toString(), 'pt-BR', {{ numeric: true, sensitivity: 'base' }});
     return dossieSortState.direction === 'asc' ? cmp : -cmp;
   }});
 
+  const totalReais = filtered.reduce((acc, x) => acc + (parseFloat(x.valor_num) || 0), 0);
+  const totalFmt = totalReais.toLocaleString('pt-BR', {{ style: 'currency', currency: 'BRL' }});
+
   const countBadge = document.getElementById('dossieCountBadge');
-  if (countBadge) countBadge.innerText = `${{filtered.length}} equipamentos`;
+  if (countBadge) countBadge.innerText = `${{filtered.length}} equipamentos | Total: ${{totalFmt}}`;
 
   tbody.innerHTML = filtered.map(it => {{
     const isTomb = it.tombamento_status.includes('Tombado');
     const badgeStatus = isTomb ? 'badge-audited' : 'badge-divergence';
     const linkHtml = it.arquivo_dossie;
+    const valStr = it.valor_formatado || it.valor_contratado || 'R$ 0,00';
 
     return `<tr>
       <td style="font-weight:700; color:var(--primary); font-family:monospace; font-size:11px;">${{it.id}}</td>
       <td><span class="badge" style="font-size:10px; background:#f1f5f9; color:#475569;">${{it.fonte_registro}}</span></td>
       <td><strong>${{it.equipamento}}</strong></td>
-      <td style="max-width:260px;">${{it.marca_modelo}}</td>
+      <td style="max-width:240px;">${{it.marca_modelo}}</td>
+      <td style="font-weight:700; color:#059669; white-space:nowrap; font-size:12.5px;">${{valStr}}</td>
       <td><span class="badge ${{badgeStatus}}">${{it.tombamento_status}}</span></td>
       <td>
         <strong>${{it.processo_sei}}</strong><br>
         <small style="color:#64748b; font-size:10.5px;">${{it.instrumento_legal}}</small>
       </td>
-      <td style="max-width:180px;">
+      <td style="max-width:170px;">
         <span style="font-size:11.5px;">${{it.fornecedor}}</span><br>
         <small style="font-family:monospace; color:#64748b;">${{it.cnpj_fornecedor}}</small>
       </td>
       <td><code style="font-size:11px;">${{it.serial}}</code></td>
-      <td style="font-size:11px; max-width:240px; color:#334155;">${{it.acao_regularizacao}}</td>
+      <td style="font-size:11px; max-width:220px; color:#334155;">${{it.acao_regularizacao}}</td>
       <td style="text-align:center; white-space:nowrap;">
-        <a href="${{linkHtml}}" target="_blank" class="btn-action" style="padding:4px 8px; font-size:11px; text-decoration:none; background:#059669;">
-          📄 Dossiê
+        <button onclick="openDossieModal('${{it.id}}')" class="btn-action" style="padding:5px 9px; font-size:11px; background:#0d47a1; border:none; cursor:pointer; margin-right:4px;" title="Abrir Dossiê Individual deste Equipamento com Preço e Minuta SEI">
+          🔍 Individual
+        </button>
+        <a href="${{linkHtml}}" target="_blank" class="btn-action" style="padding:5px 8px; font-size:11px; text-decoration:none; background:#059669;" title="Abrir Dossiê Completo da Compra/Lote">
+          📁 Lote
         </a>
       </td>
     </tr>`;
@@ -1127,6 +1155,97 @@ function renderDossieTable() {{
 
 function filterDossieTable() {{
   renderDossieTable();
+}}
+
+function openDossieModal(id) {{
+  const it = (DATA.dossiers || []).find(x => x.id === id);
+  if (!it) return;
+  const valStr = it.valor_formatado || it.valor_contratado || 'R$ 0,00';
+  const minutaText = `Ao Senhor Coordenador de Patrimônio (UEG/COPA - 14028 - Isaquiel Melo Peres),\n\nNo âmbito dos trabalhos da Comissão Setorial de Inventário (Portaria nº 1210/2026 - Processo SEI nº 202600005037287), apresentamos a Ficha Patrimonial Individualizada do equipamento abaixo:\n\n- ID Dossiê: ${{it.id}}\n- Equipamento: ${{it.equipamento}} (${{it.marca_modelo}})\n- Identificação / Tombamento: ${{it.tombamento_numero}} (${{it.tombamento_status}})\n- Número de Série / Barcode: ${{it.serial}}\n- Valor Unitário de Aquisição/Custo: ${{valStr}}\n- Processo SEI de Compra/Referência: ${{it.processo_sei}}\n- Instrumento Legal / Contrato: ${{it.instrumento_legal}}\n- Fornecedor: ${{it.fornecedor}} (CNPJ: ${{it.cnpj_fornecedor}})\n- Localização Física: ${{it.local_fisico}}\n\nPROVIDÊNCIA REQUERIDA À COPA:\n${{it.acao_regularizacao}}`;
+
+  const body = document.getElementById('dossieModalBody');
+  body.innerHTML = `
+    <div style="display:flex; justify-content:space-between; align-items:flex-start; border-bottom:2px solid #e2e8f0; padding-bottom:14px; margin-bottom:18px;">
+      <div>
+        <span style="background:#dbeafe; color:#1e40af; font-weight:700; font-size:11px; padding:3px 8px; border-radius:4px; font-family:monospace;">${{it.id}} | ${{it.fonte_registro}}</span>
+        <h2 style="font-size:18px; color:#0d47a1; margin-top:6px;">${{it.equipamento}} — ${{it.marca_modelo}}</h2>
+      </div>
+      <button onclick="closeDossieModal()" style="background:#f1f5f9; border:none; border-radius:6px; padding:6px 12px; font-size:16px; cursor:pointer; font-weight:700;">✕</button>
+    </div>
+
+    <div style="display:grid; grid-template-columns: 1fr 1fr; gap:14px; margin-bottom:18px;">
+      <div style="background:#ecfdf5; border:1px solid #a7f3d0; border-radius:8px; padding:14px;">
+        <div style="font-size:11px; color:#065f46; font-weight:700; text-transform:uppercase;">💰 Valor Unitário do Equipamento</div>
+        <div style="font-size:24px; font-weight:800; color:#059669; margin-top:4px;">${{valStr}}</div>
+        <div style="font-size:11.5px; color:#047857; margin-top:4px;">Fonte: ${{it.documento_comprobatorio}}</div>
+      </div>
+      <div style="background:#eff6ff; border:1px solid #bfdbfe; border-radius:8px; padding:14px;">
+        <div style="font-size:11px; color:#1e40af; font-weight:700; text-transform:uppercase;">🏛️ Processo SEI da Compra / Licitação</div>
+        <div style="font-size:16px; font-weight:800; color:#1d4ed8; margin-top:4px;">SEI nº ${{it.processo_sei}}</div>
+        <div style="font-size:11.5px; color:#1e3a8a; margin-top:4px;">${{it.instrumento_legal}}</div>
+      </div>
+    </div>
+
+    <table style="width:100%; border-collapse:collapse; font-size:12.5px; margin-bottom:18px;">
+      <tbody>
+        <tr style="border-bottom:1px solid #e2e8f0;"><td style="padding:8px; font-weight:700; width:32%; background:#f8fafc;">Tombamento / Identificação:</td><td style="padding:8px; font-family:monospace; font-weight:700;">${{it.tombamento_numero}} (${{it.tombamento_status}})</td></tr>
+        <tr style="border-bottom:1px solid #e2e8f0;"><td style="padding:8px; font-weight:700; background:#f8fafc;">Número de Série / Barcode:</td><td style="padding:8px; font-family:monospace;">${{it.serial}}</td></tr>
+        <tr style="border-bottom:1px solid #e2e8f0;"><td style="padding:8px; font-weight:700; background:#f8fafc;">Fornecedor & CNPJ:</td><td style="padding:8px;">${{it.fornecedor}} — <code>${{it.cnpj_fornecedor}}</code></td></tr>
+        <tr style="border-bottom:1px solid #e2e8f0;"><td style="padding:8px; font-weight:700; background:#f8fafc;">Origem do Recurso:</td><td style="padding:8px;">${{it.origem_recurso}}</td></tr>
+        <tr style="border-bottom:1px solid #e2e8f0;"><td style="padding:8px; font-weight:700; background:#f8fafc;">Localização Física:</td><td style="padding:8px;">${{it.local_fisico}}</td></tr>
+        <tr style="border-bottom:1px solid #e2e8f0;"><td style="padding:8px; font-weight:700; background:#f8fafc;">Unidade SEI Destinatária:</td><td style="padding:8px; font-weight:700; color:#0d47a1;">${{it.unidade_sei_destino}} (Patrimônio UEG)</td></tr>
+      </tbody>
+    </table>
+
+    <div style="background:#f8fafc; border:1px solid #cbd5e1; border-radius:8px; padding:14px; margin-bottom:18px;">
+      <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
+        <strong style="font-size:12px; color:#334155;">📝 Minuta de Despacho Individual para o SEI (Processo 202600005037287):</strong>
+        <button onclick="navigator.clipboard.writeText(document.getElementById('minutaTextArea').value); showToast('Minuta copiada para a área de transferência!');" class="btn-action" style="background:#0284c7; padding:4px 10px; font-size:11px; border:none; cursor:pointer;">📋 Copiar Texto SEI</button>
+      </div>
+      <textarea id="minutaTextArea" readonly style="width:100%; height:135px; font-family:monospace; font-size:11.5px; padding:10px; border:1px solid #cbd5e1; border-radius:6px; background:white; resize:vertical;">${{minutaText}}</textarea>
+    </div>
+
+    <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px;">
+      <div style="display:flex; gap:8px;">
+        <button onclick="printIndividualDossie('${{it.id}}')" class="btn-action" style="background:#0d47a1; border:none; cursor:pointer; font-size:12px;">🖨️ Imprimir / Salvar PDF Individual</button>
+        <a href="${{it.arquivo_dossie}}" target="_blank" class="btn-action" style="background:#059669; text-decoration:none; font-size:12px;">📁 Abrir Dossiê Completo do Lote/Compra</a>
+      </div>
+      <button onclick="closeDossieModal()" class="btn-action" style="background:#64748b; border:none; cursor:pointer; font-size:12px;">Fechar</button>
+    </div>
+  `;
+  document.getElementById('dossieModal').classList.add('active');
+}}
+
+function closeDossieModal() {{
+  document.getElementById('dossieModal').classList.remove('active');
+}}
+
+function printIndividualDossie(id) {{
+  const it = (DATA.dossiers || []).find(x => x.id === id);
+  if (!it) return;
+  const valStr = it.valor_formatado || it.valor_contratado || 'R$ 0,00';
+  const w = window.open('', '_blank');
+  w.document.write(`<!DOCTYPE html><html><head><meta charset="UTF-8"><title>Dossiê Individual ${{it.id}} - ${{it.equipamento}}</title>
+  <style>body{{font-family:Arial,sans-serif; padding:40px; color:#1e293b; max-width:800px; margin:0 auto;}} h1{{color:#0d47a1; font-size:20px; border-bottom:2px solid #0d47a1; padding-bottom:10px;}} .box{{background:#f8fafc; border:1px solid #cbd5e1; padding:15px; border-radius:8px; margin:15px 0;}} table{{width:100%; border-collapse:collapse; margin:15px 0;}} td{{padding:8px; border-bottom:1px solid #e2e8f0; font-size:13px;}} .val{{font-size:22px; font-weight:bold; color:#059669;}}</style>
+  </head><body>
+  <h1>UNIVERSIDADE ESTADUAL DE GOIÁS (UEG)<br><small style="font-size:14px; color:#475569;">Comissão Setorial de Inventário 2026 (Portaria nº 1210/2026) — CriaLab & Radioteledifusão</small></h1>
+  <h2>FICHA E DOSSIÊ PATRIMONIAL INDIVIDUAL DE EQUIPAMENTO (${{it.id}})</h2>
+  <div class="box"><strong>Equipamento:</strong> ${{it.equipamento}} — ${{it.marca_modelo}}<br><br><strong>Valor Unitário Registrado:</strong> <span class="val">${{valStr}}</span></div>
+  <table>
+    <tr><td><strong>Fonte de Registro:</strong></td><td>${{it.fonte_registro}}</td></tr>
+    <tr><td><strong>Tombamento / Código:</strong></td><td>${{it.tombamento_numero}} (${{it.tombamento_status}})</td></tr>
+    <tr><td><strong>Número de Série / Barcode:</strong></td><td>${{it.serial}}</td></tr>
+    <tr><td><strong>Processo SEI da Compra / Referência:</strong></td><td>${{it.processo_sei}}</td></tr>
+    <tr><td><strong>Instrumento Legal / Licitação:</strong></td><td>${{it.instrumento_legal}}</td></tr>
+    <tr><td><strong>Documento Comprobatório:</strong></td><td>${{it.documento_comprobatorio}}</td></tr>
+    <tr><td><strong>Fornecedor & CNPJ:</strong></td><td>${{it.fornecedor}} (${{it.cnpj_fornecedor}})</td></tr>
+    <tr><td><strong>Localização Física:</strong></td><td>${{it.local_fisico}}</td></tr>
+    <tr><td><strong>Unidade SEI de Destino:</strong></td><td>${{it.unidade_sei_destino}}</td></tr>
+  </table>
+  <div class="box"><strong>Diretriz de Regularização Patrimonial perante a COPA:</strong><br><br>${{it.acao_regularizacao}}</div>
+  <script>window.onload = function(){{ window.print(); }}</script>
+  </body></html>`);
+  w.document.close();
 }}
 
 /* Render Photos */

@@ -1,0 +1,13 @@
+# DOCUMENTOS OFICIAIS E ANEXOS DO SEI (COMPRAS E TOMBAMENTO)
+
+Esta pasta local armazena os arquivos digitais (PDF, notas fiscais, contratos, termos de doação e fichas de tombamento) referentes às compras e aos processos do SEI Goiás.
+
+## Estrutura Recomendada para Salvar os Arquivos:
+1. `Processo_202600005037287_Inventario_Geral.pdf` (Processo Mãe)
+2. `Contrato_068_2022_Servidor_Spotware.pdf` (Nota Fiscal e Termo de Recebimento)
+3. `Pregao_019_2021_Equipamentos_Audiovisuais_Estudios.pdf` (Blackmagic, Câmeras Sony, Áudio)
+4. `Pregao_012_2022_Workstations_Dell_e_TI.pdf` (Desktops, Monitores, Switches)
+5. `Pregao_008_2021_Mobiliario_Caderode.pdf` (Cadeiras, Mesas, Armários)
+6. `Relatorio_EstoqueNow_Itens_Completo.pdf` (Export do sistema Estoque Now)
+
+Qualquer PDF colocado nesta pasta será indexado automaticamente e linkado diretamente no site e nos dossiês individuais de cada equipamento!
