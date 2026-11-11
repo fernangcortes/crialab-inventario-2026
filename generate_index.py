@@ -27,7 +27,7 @@ payload = {
     'photos': all_photos
 }
 
-favicon_svg = '''data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><linearGradient id="g" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="%231565c0"/><stop offset="100%" stop-color="%230d47a1"/></linearGradient></defs><rect width="100" height="100" rx="20" fill="url(%23g)"/><path d="M25 35h50v40H25z" fill="%23ffffff" rx="6"/><circle cx="50" cy="55" r="14" fill="%231565c0"/><circle cx="50" cy="55" r="8" fill="%23ffd54f"/><rect x="40" y="24" width="20" height="8" rx="3" fill="%23ffd54f"/></svg>'''
+favicon_svg = "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><defs><linearGradient id='g' x1='0%25' y1='0%25' x2='100%25' y2='100%25'><stop offset='0%25' stop-color='%231565c0'/><stop offset='100%25' stop-color='%230d47a1'/></linearGradient></defs><rect width='100' height='100' rx='20' fill='url(%23g)'/><path d='M25 35h50v40H25z' fill='%23ffffff' rx='6'/><circle cx='50' cy='55' r='14' fill='%231565c0'/><circle cx='50' cy='55' r='8' fill='%23ffd54f'/><rect x='40' y='24' width='20' height='8' rx='3' fill='%23ffd54f'/></svg>"
 
 html = f"""<!DOCTYPE html>
 <html lang="pt-BR">
@@ -1243,9 +1243,9 @@ function printIndividualDossie(id) {{
     <tr><td><strong>Unidade SEI de Destino:</strong></td><td>${{it.unidade_sei_destino}}</td></tr>
   </table>
   <div class="box"><strong>Diretriz de Regularização Patrimonial perante a COPA:</strong><br><br>${{it.acao_regularizacao}}</div>
-  <script>window.onload = function(){{ window.print(); }}</script>
   </body></html>`);
   w.document.close();
+  setTimeout(() => {{ w.focus(); w.print(); }}, 300);
 }}
 
 /* Render Photos */
